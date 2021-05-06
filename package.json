@@ -1,0 +1,13 @@
+{
+  "name": "fin-calc",
+  "version": "0.0.1",
+  "description": "a lib to calculate finance related indicators",
+  "main": "FinCalc.js",
+  "scripts": {
+    "start":"node demo",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Kunogi Hsuan",
+  "license": "ISC"
+}
