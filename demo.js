@@ -55,5 +55,5 @@ function testSAR() {
   const a = SAR(testdata);
   console.log('SAR',a);
   const container = getContainer();
-  container.innerHTML = `SAR:<br/>${JSON.stringify(a)}...`;
+  container.innerHTML = `SAR:<br/>${JSON.stringify(a.slice(0,9))}...`;
 }
