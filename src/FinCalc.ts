@@ -1,11 +1,15 @@
 class FinCalc {
+
 	/**
+	 * 
+	 * @function MA
+	 * @description calculate moving average
 	 * @param {number[]} arr_ original data array
 	 * @param {number} days_ days
 	 * @param {boolean} calcAnyDays_ calculate or not based on not enough days
 	 * @returns {number[]} moving average array
 	 */
-	public calcMA(arr_: number[], days_: number, calcAnyDays_: boolean = true): (number | null)[] {
+	public ma(arr_: number[], days_: number, calcAnyDays_: boolean = true): (number | null)[] {
 		let result: (number | null)[] = [];
 
 		for (let i: number = 0, sum: number = 0, ma: number | null, l: number = arr_.length; i < l; i++) {
@@ -25,6 +29,24 @@ class FinCalc {
 		}
 		return result;
 	};
+
+	/**
+	 * 
+	 * @function EMA
+	 * @description calculate exponential moving average
+	 * @param arr_ original data array
+	 * @param days_ days
+	 * @returns 
+	 */
+	public ema(arr_: number[], days_: number): number[] {
+		let result: number[] = [arr_[0]];
+
+		for (let i: number = 1, l: number = arr_.length; i < l; i++) {
+			result.push((2 * arr_[i] + (days_ - 1) * result[i - 1]) / (days_ + 1));
+		}
+		return result;
+	};
+
 }
 
 export default new FinCalc();
