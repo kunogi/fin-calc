@@ -1,4 +1,4 @@
-import FinUtil from './FinUtil';
+import FinUtil from './util/FinUtil';
 import EMA from './EMA';
 
 interface iMACD {

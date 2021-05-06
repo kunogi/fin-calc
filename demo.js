@@ -1,6 +1,6 @@
 import testdata from './testdata';
 
-import FinUtil from './src/FinUtil';
+import FinUtil from './src/util/FinUtil';
 import MA from './src/MA';
 import MACD from './src/MACD';
 import OBV from './src/OBV';
