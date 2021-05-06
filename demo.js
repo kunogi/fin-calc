@@ -1,8 +1,6 @@
-import FinCalc from './src/FinMath';
-
-//generate some demo datas:
-let test_data = [];
-for (let i = 0; i < 100; i += 5) test_data.push(i);
+import FinIndicator from './src/FinIndicator';
+import FinUtil from './src/FinUtil';
+import testdata from './testdata';
 
 function getContainer() {
   const root = document.getElementById('root');
@@ -14,33 +12,36 @@ function getContainer() {
 window.addEventListener('load', () => {
   showTestData();
   testMA();
-  testEMA();
-  testSMA();
+  testMACD();
+  testOBV();
 })
 
 function showTestData() {
+  console.log('original data:', testdata);
   const container = getContainer();
-  console.log('original data:', test_data);
-  container.innerHTML = ['original data:', test_data].join('<br/>');
+  //container.innerHTML = ['original data:', JSON.stringify(testdata)].join('<br/>');
+  container.innerHTML = "original data example (see console for more): <br/>[{'open':2, 'high': 4, 'low': 1, 'close':3, 'volume':999, 'date':'2019-10-11T00:00:00.000Z'}, ...]";
 }
 
 function testMA() {
+  const prop = 'close';//or any other prop of the original data
+  const data = FinUtil.genArrByProp(testdata, prop);
+  const a = FinIndicator.ma(data, 5);
+  console.log('Moving Average(MA) based on', prop, a);
   const container = getContainer();
-  const ma = FinCalc.ma(test_data, 5);
-  console.log('Moving Average(MA):', ma);
-  container.innerHTML = ['MA:', ma].join('<br/>');
+  container.innerHTML = `MA based on ${prop}:<br/>${a.slice(0,9)}...`;
 }
 
-function testEMA(){
-  const container=getContainer();
-  const ema=FinCalc.ema(test_data, 5);
-  console.log('Exponential Moving Average(EMA):',ema);
-  container.innerHTML=['EMA:',ema].join('<br/>');
+function testMACD() {
+  const a = FinIndicator.macd(testdata);
+  console.log('MACD',a);
+  const container = getContainer();
+  container.innerHTML = `MACD:<br/>${JSON.stringify(a.slice(0,9))}...`;
 }
 
-function testSMA(){
-  const container=getContainer();
-  const sma=FinCalc.sma(test_data, 5,9);
-  console.log('Simple Moving Average(SMA):',sma);
-  container.innerHTML=['SMA:',sma].join('<br/>');
+function testOBV() {
+  const a = FinIndicator.obv(testdata);
+  console.log('OBV',a);
+  const container = getContainer();
+  container.innerHTML = `OBV:<br/>${JSON.stringify(a.slice(0,9))}...`;
 }
