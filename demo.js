@@ -4,10 +4,18 @@ import FinCalc from './src/FinCalc';
 let test_data = [];
 for (let i = 0; i < 100; i += 5) test_data.push(i);
 
+function getContainer() {
+  const root = document.getElementById('root');
+  const container = document.createElement('p');
+  root.appendChild(container);
+  return container;
+}
+
 window.addEventListener('load', () => {
   showTestData();
   testMA();
   testEMA();
+  testSMA();
 })
 
 function showTestData() {
@@ -30,9 +38,9 @@ function testEMA(){
   container.innerHTML=['EMA:',ema].join('<br/>');
 }
 
-function getContainer() {
-  const root = document.getElementById('root');
-  const container = document.createElement('p');
-  root.appendChild(container);
-  return container;
+function testSMA(){
+  const container=getContainer();
+  const sma=FinCalc.sma(test_data, 5,9);
+  console.log('Simple Moving Average(SMA):',sma);
+  container.innerHTML=['SMA:',sma].join('<br/>');
 }
