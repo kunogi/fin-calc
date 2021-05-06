@@ -1,6 +1,19 @@
-import { iMACD } from './interface/iDatas';
 import FinUtil from './FinUtil';
 import EMA from './EMA';
+
+interface iMACD {
+  data: {
+    dif: number,
+    dea: number,
+    bar: number
+  },
+  param: {
+    prop: string,
+    v0: number,
+    v1: number,
+    v2: number
+  }
+}
 
 /**
  * 

@@ -1,4 +1,15 @@
-import { iKData, iOBV } from './interface/iDatas';
+import { iKData } from './interface/iDatas';
+
+interface iOBV {
+  data: {
+    obv: number,
+    obvma: number
+  },
+  param: {
+    v0: number
+  }
+}
+
 /**
  * 
  * @description OBV, On Balance Volume

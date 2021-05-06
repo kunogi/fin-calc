@@ -1,4 +1,20 @@
 import FinUtil from './FinUtil';
+import { iKData } from './interface/iDatas';
+interface iSAR {
+  data: {
+    ignore_minmax: number,
+    sar: number
+  },
+  param: {
+    v0: number,
+    v1: number,
+    v2: number
+  },
+  calc: {
+    data: number[],
+    direction: number[]
+  }
+}
 /**
  * 
  * @param arr_ 
@@ -7,15 +23,27 @@ import FinUtil from './FinUtil';
  * @param max_ 
  * @returns 
  */
- export default function(arr_: any[], n_: number, step_: number, max_: number): { data: number[], direction: number[] } {
-  let highArr: number[] = FinUtil.genArrByProp(arr_, 'high'),
-    lowArr: number[] = FinUtil.genArrByProp(arr_, 'low'),
-    len: number = arr_.length,
-    result: number[] = [],
-    stepArr: number[] = [],
-    extremeArr: number[] = [],
-    directionArr: number[] = [];
+export default function (arr_: iKData[], customData_: iSAR['param'] = { v0: 1, v1: 1, v2: 1 }): iSAR['data'][] {
+  let { v0, v1, v2 } = customData_;
+  let sarArr: iSAR['calc'] = calc(arr_, v0, v1, v2);
+  let result: iSAR['data'][] = [];
+  for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+    result[i] = {
+      ignore_minmax: sarArr.direction[i],
+      sar: sarArr.data[i]
+    };
+  }
+  return result;
+}
 
+function calc(arr_: iKData[], n_: number, step_: number, max_: number): iSAR['calc'] {
+  let highArr: number[] = FinUtil.genArrByProp(arr_, 'high');
+  let lowArr: number[] = FinUtil.genArrByProp(arr_, 'low');
+  let len: number = arr_.length;
+  let result: number[] = [];
+  let stepArr: number[] = [];
+  let extremeArr: number[] = [];
+  let directionArr: number[] = [];
   function up(l: number): void {
     if (l < len) {
       result[l] = Math.min(...lowArr.slice(l - n_, l));
