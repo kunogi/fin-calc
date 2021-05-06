@@ -1,4 +1,4 @@
-import FinCalc from './src/FinCalc';
+import FinCalc from './src/FinMath';
 
 //generate some demo datas:
 let test_data = [];

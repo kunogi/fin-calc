@@ -1,4 +1,4 @@
-class FinCalc {
+class FinMath {
 
   /**
    * 
@@ -11,11 +11,9 @@ class FinCalc {
    */
   public ma(arr_: number[], days_: number, calcAnyDays_: boolean = true): (number | null)[] {
     let result: (number | null)[] = [];
-
     for (let i: number = 0, sum: number = 0, ma: number | null, l: number = arr_.length; i < l; i++) {
       //add new incoming value to sum:
       arr_[i] && (sum += arr_[i]);
-
       if (i >= days_ - 1) {
         ma = sum / days_;
         //remove the oldest value from sum, to keep the total count
@@ -24,7 +22,6 @@ class FinCalc {
         //not enough days:
         ma = calcAnyDays_ ? sum / (i + 1) : null;
       }
-
       result.push(ma);
     }
     return result;
@@ -40,7 +37,6 @@ class FinCalc {
    */
   public ema(arr_: number[], days_: number): number[] {
     let result: number[] = [arr_[0]];
-
     for (let i: number = 1, l: number = arr_.length; i < l; i++) {
       result.push((2 * arr_[i] + (days_ - 1) * result[i - 1]) / (days_ + 1));
     }
@@ -63,6 +59,24 @@ class FinCalc {
     return result;
   }
 
+  /**
+   * 
+   * @param arr_ 
+   * @param prop_ 
+   * @param f_ 
+   * @returns 
+   */
+  private genArrByProp(arr_: any[], prop_: string, f_?: Function) {
+    if (prop_) {
+      let result = [];
+      for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+        result.push(f_ ? f_(arr_[i][prop_]) : arr_[i][prop_]);
+      }
+      return result;
+    } else {
+      return arr_;
+    }
+  }
 }
 
-export default new FinCalc();
+export default new FinMath();
