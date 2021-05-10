@@ -78,6 +78,22 @@ class FinUtil {
 
   /**
    * 
+   * @description Simple Moving Average
+   * @param arr_ 
+   * @param days_ 
+   * @param weight_ 
+   * @returns 
+   */
+  public sma(arr_: number[], days_: number, weight_: number): number[] {
+    let result: number[] = [arr_[0]];
+    for (let i: number = 1, l: number = arr_.length; i < l; i++) {
+      result.push((weight_ * arr_[i] + (days_ - weight_) * result[i - 1]) / days_);
+    }
+    return result;
+  }
+
+  /**
+   * 
    * @description 
    * @param arr_ 
    * @param n_ 
@@ -103,7 +119,7 @@ class FinUtil {
     let avg: number = this.avg(arr_);
     let sum: number = 0;
     let l: number = arr_.length;
-    for (var i = l; i--;) {
+    for (let i: number = l; i--;) {
       sum += Math.abs(arr_[i] - avg);
     }
     return sum / l;
@@ -164,7 +180,7 @@ class FinUtil {
       }
     }
     return result;
-  }  
+  }
 
   public abs(o_: any) {
     switch (this.getClass(o_)) {
@@ -259,7 +275,7 @@ class FinUtil {
    * @param f_ 
    * @returns 
    */
-  public genArrByProp(arr_: any[], prop_: string, f_?: Function):number[] {
+  public genArrByProp(arr_: any[], prop_: string, f_?: Function): number[] {
     if (prop_) {
       let result = [];
       for (let i: number = 0, l: number = arr_.length; i < l; i++) {

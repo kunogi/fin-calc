@@ -5,6 +5,7 @@ import MA from './src/MA';
 import MACD from './src/MACD';
 import SAR from './src/SAR';
 import BBIBOLL from './src/BBIBOLL';
+import KDJ from './src/KDJ';
 
 function getContainer() {
   const root = document.getElementById('root');
@@ -19,6 +20,7 @@ function showTestData() {
   container.innerHTML = "original data example (see console for more): <br/>[{'open':2, 'high': 4, 'low': 1, 'close':3, 'volume':999, 'date':'2019-10-11T00:00:00.000Z'}, ...]";
 }
 function test(name_,data_){
+  data_=data_.reverse();//show newer datas first
   console.log(name_,data_);
   const container = getContainer();
   container.innerHTML = `${name_}:<br/>${JSON.stringify(data_.slice(0,9))}...`;
@@ -29,6 +31,7 @@ window.addEventListener('load', () => {
   test('MACD',MACD(testdata));
   test('SAR',SAR(testdata));
   test('BBIBOLL',BBIBOLL(testdata));
+  test('KDJ',KDJ(testdata));
 })
 
 function testMA() {
