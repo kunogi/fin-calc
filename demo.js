@@ -5,6 +5,7 @@ import MA from './src/MA';
 import MACD from './src/MACD';
 import OBV from './src/OBV';
 import SAR from './src/SAR';
+import BOLL from './src/BOLL';
 
 function getContainer() {
   const root = document.getElementById('root');
@@ -19,6 +20,7 @@ window.addEventListener('load', () => {
   testMACD();
   testOBV();
   testSAR();
+  testBOLL();
 })
 
 function showTestData() {
@@ -56,4 +58,11 @@ function testSAR() {
   console.log('SAR',a);
   const container = getContainer();
   container.innerHTML = `SAR:<br/>${JSON.stringify(a.slice(0,9))}...`;
+}
+
+function testBOLL(){
+  const a = BOLL(testdata);
+  console.log('BOLL',a);
+  const container = getContainer();
+  container.innerHTML = `BOLL:<br/>${JSON.stringify(a.slice(0,9))}...`;
 }
