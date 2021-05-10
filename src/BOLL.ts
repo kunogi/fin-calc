@@ -1,8 +1,10 @@
 import FinUtil from './util/FinUtil';
 import MA from './MA';
+import { iKData } from './interface/iDatas';
 
 interface iBOLL {
   param: {
+    prop: string,
     v0: number,
     v1: number
   },
@@ -13,10 +15,10 @@ interface iBOLL {
   }
 }
 
-export default function (arr_: number[], customData_: iBOLL['param'] = { v0: 20, v1: 2 }): iBOLL['data'][] {
-  const { v0, v1 } = customData_;
+export default function (arr_: iKData[], customData_: iBOLL['param'] = { prop: 'close', v0: 20, v1: 2 }): iBOLL['data'][] {
+  const { prop, v0, v1 } = customData_;
   let result: iBOLL['data'][] = new Array(arr_.length),
-    arr: number[] = FinUtil.genArrByProp(arr_, 'close'),
+    arr: number[] = FinUtil.genArrByProp(arr_, prop),
     bollArr: (number | null)[] = MA(arr, v0),
     stdArr: number[] = FinUtil.arrOp(FinUtil.std(arr, v0), v1, '*'),
     upArr: number[] = FinUtil.arrOp(bollArr, stdArr, '+'),

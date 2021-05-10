@@ -3,9 +3,8 @@ import testdata from './testdata';
 import FinUtil from './src/util/FinUtil';
 import MA from './src/MA';
 import MACD from './src/MACD';
-import OBV from './src/OBV';
 import SAR from './src/SAR';
-import BOLL from './src/BOLL';
+import BBIBOLL from './src/BBIBOLL';
 
 function getContainer() {
   const root = document.getElementById('root');
@@ -13,22 +12,24 @@ function getContainer() {
   root.appendChild(container);
   return container;
 }
-
-window.addEventListener('load', () => {
-  showTestData();
-  testMA();
-  testMACD();
-  testOBV();
-  testSAR();
-  testBOLL();
-})
-
 function showTestData() {
   console.log('original data:', testdata);
   const container = getContainer();
   //container.innerHTML = ['original data:', JSON.stringify(testdata)].join('<br/>');
   container.innerHTML = "original data example (see console for more): <br/>[{'open':2, 'high': 4, 'low': 1, 'close':3, 'volume':999, 'date':'2019-10-11T00:00:00.000Z'}, ...]";
 }
+function test(name_,data_){
+  console.log(name_,data_);
+  const container = getContainer();
+  container.innerHTML = `${name_}:<br/>${JSON.stringify(data_.slice(0,9))}...`;
+}
+window.addEventListener('load', () => {
+  showTestData();
+  testMA();
+  test('MACD',MACD(testdata));
+  test('SAR',SAR(testdata));
+  test('BBIBOLL',BBIBOLL(testdata));
+})
 
 function testMA() {
   const prop = 'close';//or any other prop of the original data
@@ -37,32 +38,4 @@ function testMA() {
   console.log('Moving Average(MA) based on', prop, a);
   const container = getContainer();
   container.innerHTML = `MA based on ${prop}:<br/>${a.slice(0,9)}...`;
-}
-
-function testMACD() {
-  const a = MACD(testdata);
-  console.log('MACD',a);
-  const container = getContainer();
-  container.innerHTML = `MACD:<br/>${JSON.stringify(a.slice(0,9))}...`;
-}
-
-function testOBV() {
-  const a = OBV(testdata);
-  console.log('OBV',a);
-  const container = getContainer();
-  container.innerHTML = `OBV:<br/>${JSON.stringify(a.slice(0,9))}...`;
-}
-
-function testSAR() {
-  const a = SAR(testdata);
-  console.log('SAR',a);
-  const container = getContainer();
-  container.innerHTML = `SAR:<br/>${JSON.stringify(a.slice(0,9))}...`;
-}
-
-function testBOLL(){
-  const a = BOLL(testdata);
-  console.log('BOLL',a);
-  const container = getContainer();
-  container.innerHTML = `BOLL:<br/>${JSON.stringify(a.slice(0,9))}...`;
 }

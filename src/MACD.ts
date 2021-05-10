@@ -1,5 +1,6 @@
 import FinUtil from './util/FinUtil';
 import EMA from './EMA';
+import { iKData } from './interface/iDatas';
 
 interface iMACD {
   data: {
@@ -22,7 +23,7 @@ interface iMACD {
  * @param customData_ default to calculate based on close price with params:12,26,9
  * @returns 
  */
-export default function (arr_: number[], customData_: iMACD['param'] = { prop: 'close', v0: 12, v1: 26, v2: 9 }): iMACD['data'][] {
+export default function (arr_: iKData[], customData_: iMACD['param'] = { prop: 'close', v0: 12, v1: 26, v2: 9 }): iMACD['data'][] {
   let { prop, v0, v1, v2 } = customData_;
   let result: iMACD['data'][] = [];
   let arr: number[] = FinUtil.genArrByProp(arr_, prop);

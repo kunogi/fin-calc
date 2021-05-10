@@ -5,3 +5,4 @@
 ## SAR
 ## OBV
 ## MACD
+## BOLL
