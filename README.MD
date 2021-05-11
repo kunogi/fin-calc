@@ -7,3 +7,6 @@
 ## MACD
 ## BOLL
 ## BBIBOLL
+## KDJ
+## RSI
+## WR

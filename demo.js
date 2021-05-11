@@ -6,6 +6,7 @@ import MACD from './src/MACD';
 import SAR from './src/SAR';
 import BBIBOLL from './src/BBIBOLL';
 import KDJ from './src/KDJ';
+import WR from './src/WR';
 
 function getContainer() {
   const root = document.getElementById('root');
@@ -32,6 +33,7 @@ window.addEventListener('load', () => {
   test('SAR',SAR(testdata));
   test('BBIBOLL',BBIBOLL(testdata));
   test('KDJ',KDJ(testdata));
+  test('WR',WR(testdata));
 })
 
 function testMA() {
