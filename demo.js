@@ -1,4 +1,4 @@
-import testdata from './testdata';
+import testdata from './testdata.json';
 
 import FinUtil from './src/util/FinUtil';
 import MA from './src/MA';
@@ -6,7 +6,6 @@ import MACD from './src/MACD';
 import SAR from './src/SAR';
 import BBIBOLL from './src/BBIBOLL';
 import KDJ from './src/KDJ';
-import WR from './src/WR';
 import DMI from './src/DMI';
 
 function getContainer() {
