@@ -10,3 +10,4 @@
 ## KDJ
 ## RSI
 ## WR
+## DMI

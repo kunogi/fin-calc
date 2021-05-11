@@ -261,7 +261,7 @@ class FinUtil {
   }
 
   public ref(arr_: number[], n_: number): number[] {
-    let result: number[] = new Array(n_).fill(NaN);
+    let result: number[] = new Array(n_).fill(0);
     for (let i: number = n_, l: number = arr_.length; i < l; i++) {
       result.push(arr_[i - n_]);
     }
