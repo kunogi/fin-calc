@@ -7,8 +7,8 @@
  * @param {boolean} calcAnyDays_ calculate or not based on not enough days
  * @returns {number[]} moving average array
  */
-export default function (arr_: number[], days_: number, calcAnyDays_: boolean = true): (number | null)[] {
-  let result: (number | null)[] = [];
+export default function (arr_: number[], days_: number, calcAnyDays_: boolean = true): number[] {
+  let result: number[] = [];
   for (let i: number = 0, sum: number = 0, ma: number | null, l: number = arr_.length; i < l; i++) {
     //add new incoming value to sum:
     arr_[i] && (sum += arr_[i]);
@@ -18,7 +18,7 @@ export default function (arr_: number[], days_: number, calcAnyDays_: boolean = 
       arr_[i - days_ + 1] && (sum -= arr_[i - days_ + 1]);
     } else {
       //not enough days:
-      ma = calcAnyDays_ ? sum / (i + 1) : null;
+      ma = calcAnyDays_ ? sum / (i + 1) : 0;
     }
     result.push(ma);
   }
