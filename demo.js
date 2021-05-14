@@ -7,6 +7,7 @@ import SAR from './src/SAR';
 import BBIBOLL from './src/BBIBOLL';
 import KDJ from './src/KDJ';
 import DMI from './src/DMI';
+import ROC from './src/ROC';
 
 function getContainer() {
   const root = document.getElementById('root');
@@ -33,7 +34,7 @@ window.addEventListener('load', () => {
   test('SAR',SAR(testdata));
   test('BBIBOLL',BBIBOLL(testdata));
   test('KDJ',KDJ(testdata));
-  test('DMI',DMI(testdata));
+  test('ROC',ROC(testdata));
 })
 
 function testMA() {

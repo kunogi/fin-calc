@@ -3,11 +3,19 @@
 ## EMA
 ## SMA
 ## SAR
-## OBV
 ## MACD
-## BOLL
-## BBIBOLL
 ## KDJ
 ## RSI
+## BOLL
 ## WR
 ## DMI
+## BBIBOLL
+## ROC
+## OBV
+
+
+
+
+
+
+
