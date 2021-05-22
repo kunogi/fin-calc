@@ -6,7 +6,7 @@ import MACD from './src/MACD';
 import SAR from './src/SAR';
 import BBIBOLL from './src/BBIBOLL';
 import KDJ from './src/KDJ';
-import DMI from './src/DMI';
+import WVAD from './src/WVAD';
 import ROC from './src/ROC';
 
 function getContainer() {
@@ -34,7 +34,7 @@ window.addEventListener('load', () => {
   test('SAR',SAR(testdata));
   test('BBIBOLL',BBIBOLL(testdata));
   test('KDJ',KDJ(testdata));
-  test('ROC',ROC(testdata));
+  test('WVAD',ROC(testdata));
 })
 
 function testMA() {

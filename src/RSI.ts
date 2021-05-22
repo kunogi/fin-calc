@@ -1,5 +1,4 @@
 import FinUtil from './util/FinUtil';
-
 interface iRSI {
   param: {
     prop: string,
