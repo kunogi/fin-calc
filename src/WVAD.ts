@@ -17,18 +17,18 @@ export default function (arr_: iKData[], customeData_: iWVAD['param'] = { v0: 24
   const { v0, v1 } = customeData_;
   let result: iWVAD['data'][] = [];
   let closeArr: number[] = FinUtil.genArrByProp(arr_, 'close'),
-    _openArr: number[] = FinUtil.genArrByProp(arr_, 'open'),
+    openArr: number[] = FinUtil.genArrByProp(arr_, 'open'),
     highArr: number[] = FinUtil.genArrByProp(arr_, 'high'),
     lowArr: number[] = FinUtil.genArrByProp(arr_, 'low'),
-    _volArr: number[] = FinUtil.genArrByProp(arr_, 'volume');
+    volArr: number[] = FinUtil.genArrByProp(arr_, 'volume');
 
-  let _wvadArr: number[] = FinUtil.arrOp(FinUtil.sum(FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(closeArr, _openArr, '-'), FinUtil.arrOp(highArr, lowArr, '-'), '/'), _volArr, '*'), v0), 1e4, '/'),
-    _maxvadArr: number[] = MA(_wvadArr, v1);
+  let wvadArr: number[] = FinUtil.arrOp(FinUtil.sum(FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(closeArr, openArr, '-'), FinUtil.arrOp(highArr, lowArr, '-'), '/'), volArr, '*'), v0), 1e4, '/'),
+    maxvadArr: number[] = MA(wvadArr, v1);
 
   for (let i: number = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
-      wvad: _wvadArr[i],
-      wvadma: _maxvadArr[i]
+      wvad: wvadArr[i],
+      wvadma: maxvadArr[i]
     };
   }
   return result;

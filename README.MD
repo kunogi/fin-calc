@@ -12,7 +12,8 @@
 ## BBIBOLL
 ## ROC
 ## OBV
-
+## WVAD
+## CCI
 
 
 
