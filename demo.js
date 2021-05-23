@@ -6,7 +6,7 @@ import MACD from './src/MACD';
 import SAR from './src/SAR';
 import BBIBOLL from './src/BBIBOLL';
 import KDJ from './src/KDJ';
-import TRIX from './src/TRIX';
+import DMA from './src/DMA';
 
 function getContainer() {
   const root = document.getElementById('root');
@@ -33,7 +33,7 @@ window.addEventListener('load', () => {
   test('SAR',SAR(testdata));
   test('BBIBOLL',BBIBOLL(testdata));
   test('KDJ',KDJ(testdata));
-  test('TRIX',TRIX(testdata));
+  test('DMA',DMA(testdata));
 })
 
 function testMA() {
