@@ -182,21 +182,20 @@ class FinUtil {
     return result;
   }
 
-  public abs(o_: any) {
+  public abs(o_: any):number[] {
+    /*
     switch (this.getClass(o_)) {
+      default:throw new Error('argument of abs() is not supported');
       case 'Number':
         return Math.abs(o_);
 
       case 'Array':
+    */
         let result: number[] = [];
         for (let i: number = 0, l: number = o_.length; i < l; i++) {
           result.push(Math.abs(o_[i]));
         }
         return result;
-
-      default:
-        throw new Error('argument of abs() is not supported');
-    }
   }
 
   public sum(arr_: number[], n_: number): number[] {
