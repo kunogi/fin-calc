@@ -4,11 +4,10 @@
   "description": "a lib to calculate finance related indicators",
   "scripts": {
     "build": "webpack",
-    "serve": "webpack serve",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "webpack serve"
   },
   "keywords": [],
-  "author": "Kunogi Hsuan",
+  "author": "Xuan",
   "license": "ISC",
   "devDependencies": {
     "html-webpack-plugin": "^5.3.1",

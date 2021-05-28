@@ -17,6 +17,7 @@
 ## DMA
 ## BIAS
 ## ASI
+## VR
 
 
 
