@@ -9,26 +9,39 @@ interface iBOLL {
     v1: number
   },
   data: {
-    boll: number | null,
+    boll: number,
     upper: number,
     lower: number
   }
 }
 
-export default function (arr_: iKData[], customData_: iBOLL['param'] = { prop: 'close', v0: 20, v1: 2 }): iBOLL['data'][] {
+/**
+ * @param arr_ 
+ * @param customData_ 
+ * @returns 
+ * @description
+  MID=MA(CLOSE,PERIOD)
+  UPPER=MID + TIMES*STD(CLOSE,PERIOD)
+  LOWER=MID - TIMES*STD(CLOSE,PERIOD)
+ */
+export default function (arr_: iKData[], customData_: iBOLL['param'] = { prop: 'close', v0: 20, v1: 2 }): iBOLL['data'][]{
+  let result: iBOLL['data'][] = new Array(arr_.length);
+
   const { prop, v0, v1 } = customData_;
-  let result: iBOLL['data'][] = new Array(arr_.length),
-    arr: number[] = FinUtil.genArrByProp(arr_, prop),
-    bollArr: (number | null)[] = MA(arr, v0),
+
+  let arr: number[] = FinUtil.genArrByProp(arr_, prop),
+    maArr: number[] = MA(arr, v0),
     stdArr: number[] = FinUtil.arrOp(FinUtil.std(arr, v0), v1, '*'),
-    upArr: number[] = FinUtil.arrOp(bollArr, stdArr, '+'),
-    downArr: number[] = FinUtil.arrOp(bollArr, stdArr, '-');
+    upperArr: number[] = FinUtil.arrOp(maArr, stdArr, '+'),
+    lowerArr: number[] = FinUtil.arrOp(maArr, stdArr, '-');
+
   for (let i: number = 0, l: number = arr.length; i < l; i++) {
     result[i] = {
-      boll: bollArr[i],
-      upper: upArr[i],
-      lower: downArr[i]
+      boll: maArr[i],
+      upper: upperArr[i],
+      lower: lowerArr[i]
     }
   }
+
   return result;
 }
