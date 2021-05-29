@@ -13,7 +13,7 @@ interface iVR {
   }
 }
 
-export default function (arr_: iKData[], customData_: iVR['param'] = { v0: 26, v1: 6 }) {
+export default function (arr_: iKData[], customData_: iVR['param'] = { v0: 26, v1: 6 }):iVR['data'][] {
   let result: iVR['data'][] = [];
 
   const { v0, v1 } = customData_;
