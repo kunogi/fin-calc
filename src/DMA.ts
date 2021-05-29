@@ -4,9 +4,10 @@ import MA from './MA';
 
 interface iDMA {
   param: {
-    v0: number,
-    v1: number,
-    v2: number
+    v0: number,//short
+    v1: number,//long
+    v2: number,
+    prop: string
   },
   data: {
     dif: number,
@@ -14,14 +15,23 @@ interface iDMA {
   }
 }
 
-export default function (arr_: iKData[], customeData_: iDMA['param'] = { v0: 10, v1: 50, v2: 10 }) {
+/**
+ * 
+ * @param arr_ 
+ * @param customeData_ 
+ * @returns 
+ * @description
+  DIF = MA(CLOSE,SHORT) - MA(CLOSE,LONG)
+  DMA = MA(DIF,M)
+ */
+export default function (arr_: iKData[], customeData_: iDMA['param'] = { v0: 10, v1: 50, v2: 10, prop: 'close' }) {
   let result: iDMA['data'][] = [];
 
-  const { v0, v1, v2 } = customeData_;
+  const { v0, v1, v2, prop } = customeData_;
 
-  let closeArr: number[] = FinUtil.genArrByProp(arr_, 'close'),
-    maArr1: number[] = MA(closeArr, v0),
-    maArr2: number[] = MA(closeArr, v1),
+  let arr: number[] = FinUtil.genArrByProp(arr_, prop),
+    maArr1: number[] = MA(arr, v0),
+    maArr2: number[] = MA(arr, v1),
     difArr: number[] = FinUtil.arrOp(maArr1, maArr2, '-'),
     amaArr: number[] = MA(difArr, v2);
 

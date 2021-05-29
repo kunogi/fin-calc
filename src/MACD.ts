@@ -19,9 +19,9 @@ interface iMACD {
 /**
  * 
  * @description MACD, Moving Average Convergence and Divergence
-  DIF = EMA( CLOSE, SHORT ) - EMA( CLOSE, LONG )
-  DEA = EMA( DIF, MID )
-  MACD= (DIF - DEA ) *2
+  DIF = EMA(CLOSE, SHORT) - EMA(CLOSE, LONG)
+  DEA = EMA(DIF, MID)
+  MACD= (DIF - DEA) *2
  * @param arr_ 
  * @param customData_ default to calculate based on close price with params:12,26,9
  * @returns 
