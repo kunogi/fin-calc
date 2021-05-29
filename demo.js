@@ -7,7 +7,6 @@ import SAR from './src/SAR';
 import BBIBOLL from './src/BBIBOLL';
 import KDJ from './src/KDJ';
 import EMV from './src/EMV';
-import BOLL from './src/BOLL';
 
 function getContainer() {
   const root = document.getElementById('root');
@@ -35,7 +34,6 @@ window.addEventListener('load', () => {
   test('BBIBOLL',BBIBOLL(testdata));
   test('KDJ',KDJ(testdata));
   test('EMV',EMV(testdata));
-  BOLL()
 })
 
 function testMA() {
