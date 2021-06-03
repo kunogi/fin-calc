@@ -1,23 +1,19 @@
 # calculator lib for finance related indicators
-## Moving Average (MA)
-## EMA
-## SAR
-## MACD
-```
-DIF = EMA(CLOSE, SHORT) - EMA(CLOSE, LONG)
-DEA = EMA(DIF, MID)
-MACD= (DIF - DEA) *2
-```
-
-## KDJ
-## RSI
+## ASI
+## BBIBOLL
+## BIAS
 ## BOLL
 ```
 MID=MA(CLOSE,PERIOD)
 UPPER=MID + TIMES*STD(CLOSE,PERIOD)
 LOWER=MID - TIMES*STD(CLOSE,PERIOD)
 ```
-## WR
+## CCI
+## DMA
+```
+DIF = MA(CLOSE,SHORT) - MA(CLOSE,LONG)
+DMA = MA(DIF,M)
+```
 ## DMI
 ```
 MTR=EXPMEMA(MAX(MAX(HIGH-LOW,ABS(HIGH-REF(CLOSE,1))),ABS(REF(CLOSE,1)-LOW)),N)
@@ -30,23 +26,27 @@ MDI=DMM*100/MTR
 ADX=EXPMEMA(ABS(MDI-PDI)/(MDI+PDI)*100,M)
 ADXR=EXPMEMA(ADX,M)
 ```
-## BBIBOLL
-## ROC
-## OBV
-## WVAD
-## CCI
-## TRIX
-## DMA
-```
-DIF = MA(CLOSE,SHORT) - MA(CLOSE,LONG)
-DMA = MA(DIF,M)
-```
-## BIAS
-## ASI
-## VR
+## EMA
 ## EMV
-
-
-
-
-
+```
+VOLUME=MA(VOL,N)/VOL
+MID = 100*(HIGH+LOW-REFV(HIGH+LOW,1))/(HIGH+LOW)
+EMV = MA(MID*VOLUME*(HIGH-LOW)/MA(HIGH-LOW,N),N)
+EMVA= MA(EMV,N1)
+```
+## KDJ
+## Moving Average (MA)
+## MACD
+```
+DIF = EMA(CLOSE, SHORT) - EMA(CLOSE, LONG)
+DEA = EMA(DIF, MID)
+MACD= (DIF - DEA) *2
+```
+## OBV
+## ROC
+## RSI
+## SAR
+## TRIX
+## VR
+## WR
+## WVAD
