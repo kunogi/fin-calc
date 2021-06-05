@@ -1,6 +1,12 @@
 # calculator lib for finance related indicators
+
 ## ASI
 ## BBIBOLL
+```
+BBIBOLL:(MA(CLOSE,3)+MA(CLOSE,6)+MA(CLOSE,12)+MA(CLOSE,24))/4
+UPR:BBIBOLL+M*STD(BBIBOLL,N)
+DWN:BBIBOLL-M*STD(BBIBOLL,N)
+```
 ## BIAS
 ## BOLL
 ```
