@@ -10,9 +10,9 @@ interface iMACD {
   },
   param: {
     prop: string,
-    v0: number,//short
-    v1: number,//long
-    v2: number//mid
+    v0: number,//SHORT
+    v1: number,//LONG
+    v2: number//MID
   }
 }
 
@@ -29,11 +29,12 @@ interface iMACD {
 export default function (arr_: iKData[], customData_: iMACD['param'] = { prop: 'close', v0: 12, v1: 26, v2: 9 }): iMACD['data'][] {
   let result: iMACD['data'][] = [];
 
-  const { prop, v0, v1, v2 } = customData_;
+  const { prop, v0: SHORT, v1: LONG, v2: MID } = customData_;
 
-  let arr: number[] = FinUtil.genArrByProp(arr_, prop),
-    difArr: number[] = FinUtil.arrOp(EMA(arr, v0), EMA(arr, v1), '-'),
-    deaArr: number[] = EMA(difArr, v2),
+  let arr: number[] = FinUtil.genArrByProp(arr_, prop);
+
+  let difArr: number[] = FinUtil.arrOp(EMA(arr, SHORT), EMA(arr, LONG), '-'),
+    deaArr: number[] = EMA(difArr, MID),
     macdArr: number[] = FinUtil.arrOp(FinUtil.arrOp(difArr, deaArr, '-'), 2, '*');
 
   for (let i: number = 0, l: number = arr.length; i < l; i++) {

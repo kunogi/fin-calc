@@ -15,11 +15,13 @@ interface iOBV {
  * @description OBV, On Balance Volume
  * @param arr_ 
  * @param customData_ 
- * @returns 
+ * @returns
  */
 export default function (arr_: iKData[], customData_: iOBV['param'] = { v0: 30 }): iOBV['data'][] {
-  const { v0 } = customData_;
   let result: iOBV['data'][] = [];
+
+  const { v0 } = customData_;
+  
   let data: iKData = arr_[0];
   let va: number = data.volume;
   let obv: number = va;

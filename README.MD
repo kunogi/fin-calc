@@ -67,7 +67,12 @@ DEA = EMA(DIF, MID)
 MACD= (DIF - DEA) *2
 ```
 ## OBV
+
 ## ROC
+```
+ROC = (CLOSE-REF(CLOSE,N))/REF(CLOSE,N)*100
+ROCMA=MA(ROC,M)
+```
 ## RSI
 ## SAR
 ## TRIX
