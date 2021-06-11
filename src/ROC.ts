@@ -4,8 +4,8 @@ import MA from './MA';
 interface iROC {
   param: {
     prop: string,
-    v0: number,
-    v1: number
+    v0: number,//N
+    v1: number//M
   },
   data: {
     roc: number,
