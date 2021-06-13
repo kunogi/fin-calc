@@ -14,8 +14,10 @@ interface iWVAD {
 }
 
 export default function (arr_: iKData[], customeData_: iWVAD['param'] = { v0: 24, v1: 6 }): iWVAD['data'][] {
-  const { v0, v1 } = customeData_;
   let result: iWVAD['data'][] = [];
+
+  const { v0, v1 } = customeData_;
+  
   let closeArr: number[] = FinUtil.genArrByProp(arr_, 'close'),
     openArr: number[] = FinUtil.genArrByProp(arr_, 'open'),
     highArr: number[] = FinUtil.genArrByProp(arr_, 'high'),
@@ -29,7 +31,8 @@ export default function (arr_: iKData[], customeData_: iWVAD['param'] = { v0: 24
     result[i] = {
       wvad: wvadArr[i],
       wvadma: maxvadArr[i]
-    };
+    }
   }
+
   return result;
 }

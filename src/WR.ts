@@ -13,8 +13,10 @@ interface iWR {
 }
 
 export default function (arr_: iKData[], customData_: iWR['param'] = { v0: 1, v1: 0 }): iWR['data'][] {
-  const { v0, v1 } = customData_;
   let result: iWR['data'][] = [];
+  
+  const { v0, v1 } = customData_;
+  
   let closeArr: number[] = FinUtil.genArrByProp(arr_, 'close'),
     highArr: number[] = FinUtil.genArrByProp(arr_, 'high'),
     lowArr: number[] = FinUtil.genArrByProp(arr_, 'low'),
