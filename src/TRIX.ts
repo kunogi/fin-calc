@@ -5,6 +5,7 @@ import MA from './MA';
 
 interface iTRIX {
   param: {
+    prop: string,
     v0: number,
     v1: number
   },
@@ -14,11 +15,14 @@ interface iTRIX {
   }
 }
 
-export default function (arr_: iKData[], customData_: iTRIX['param'] = { v0: 12, v1: 9 }): iTRIX['data'][] {
-  const { v0, v1 } = customData_;
+export default function (arr_: iKData[], customData_: iTRIX['param'] = { prop: 'close', v0: 12, v1: 9 }): iTRIX['data'][] {
   let result: iTRIX['data'][] = [];
-  let propArr: number[] = FinUtil.genArrByProp(arr_, 'close'),
-    trAr: number[] = EMA(EMA(EMA(propArr, v0), v0), v0),
+
+  const { prop, v0, v1 } = customData_;
+
+  let propArr: number[] = FinUtil.genArrByProp(arr_, prop);
+
+  let trAr: number[] = EMA(EMA(EMA(propArr, v0), v0), v0),
     tr1Arr: number[] = FinUtil.ref(trAr, 1),
     trixArr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(trAr, tr1Arr, '-'), tr1Arr, '/'), 100, '*'),
     matrixArr: number[] = MA(trixArr, v1);
@@ -29,5 +33,6 @@ export default function (arr_: iKData[], customData_: iTRIX['param'] = { v0: 12,
       matrix: matrixArr[i]
     }
   }
+
   return result;
 }
