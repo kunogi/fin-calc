@@ -29,8 +29,9 @@ export default function (arr_: iKData[], customeData_: iDMA['param'] = { prop: '
 
   const { v0: SHORT, v1: LONG, v2: M, prop } = customeData_;
 
-  let arr: number[] = FinUtil.genArrByProp(arr_, prop),
-    maArr1: number[] = MA(arr, SHORT),
+  let arr: number[] = FinUtil.genArrByProp(arr_, prop);
+
+  let maArr1: number[] = MA(arr, SHORT),
     maArr2: number[] = MA(arr, LONG),
     difArr: number[] = FinUtil.arrOp(maArr1, maArr2, '-'),
     amaArr: number[] = MA(difArr, M);

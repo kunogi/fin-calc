@@ -4,6 +4,7 @@ import FinUtil from './util/FinUtil';
 
 interface iVR {
   param: {
+    prop:string,
     v0: number,
     v1: number
   },
@@ -13,22 +14,22 @@ interface iVR {
   }
 }
 
-export default function (arr_: iKData[], customData_: iVR['param'] = { v0: 26, v1: 6 }):iVR['data'][] {
+export default function (arr_: iKData[], customData_: iVR['param'] = {prop:'close', v0: 26, v1: 6 }):iVR['data'][] {
   let result: iVR['data'][] = [];
 
-  const { v0, v1 } = customData_;
+  const { prop,v0, v1 } = customData_;
 
-  let closeArr: number[] = FinUtil.genArrByProp(arr_, 'close'),
+  let propArr: number[] = FinUtil.genArrByProp(arr_, prop),
     volumeArr: number[] = FinUtil.genArrByProp(arr_, 'volume');
 
-  let ref1Arr: number[] = FinUtil.ref(closeArr, 1),
+  let ref1Arr: number[] = FinUtil.ref(propArr, 1),
     thArr: number[] = [],
     tlArr: number[] = [],
     tqArr: number[] = [];
-  for (let i: number = 0, l: number = closeArr.length; i < l; i++) {
-    thArr.push(closeArr[i] > ref1Arr[i] ? volumeArr[i] : 0);
-    tlArr.push(closeArr[i] < ref1Arr[i] ? volumeArr[i] : 0);
-    tqArr.push(closeArr[i] == ref1Arr[i] ? volumeArr[i] : 0);
+  for (let i: number = 0, l: number = propArr.length; i < l; i++) {
+    thArr.push(propArr[i] > ref1Arr[i] ? volumeArr[i] : 0);
+    tlArr.push(propArr[i] < ref1Arr[i] ? volumeArr[i] : 0);
+    tqArr.push(propArr[i] == ref1Arr[i] ? volumeArr[i] : 0);
   }
   thArr = FinUtil.sum(thArr, v0);
   tlArr = FinUtil.sum(tlArr, v0);
