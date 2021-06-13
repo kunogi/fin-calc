@@ -4,6 +4,7 @@ import FinUtil from "./util/FinUtil";
 
 interface iBIAS {
   param: {
+    prop: string,
     v0: number,
     v1: number,
     v2: number
@@ -28,18 +29,19 @@ interface iBIAS {
   BIAS2=(CLOSE-MA_V1)/MA_V1*100
   BIAS3=(CLOSE-MA_V2)/MA_V2*100
  */
-export default function (arr_: iKData[], customeData_: iBIAS['param'] = { v0: 6, v1: 12, v2: 24 }) {
+export default function (arr_: iKData[], customeData_: iBIAS['param'] = { prop: 'close', v0: 6, v1: 12, v2: 24 }) {
   let result: iBIAS['data'][] = [];
 
-  const { v0, v1, v2 } = customeData_;
+  const { prop, v0, v1, v2 } = customeData_;
 
-  let closeArr: number[] = FinUtil.genArrByProp(arr_, 'close');
-  let mav0: number[] = MA(closeArr, v0),
-    mav1: number[] = MA(closeArr, v1),
-    mav2: number[] = MA(closeArr, v2);
-  let bias1Arr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(closeArr, mav0, '-'), mav0, '/'), 100, '*'),
-    bias2Arr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(closeArr, mav1, '-'), mav1, '/'), 100, '*'),
-    bias3Arr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(closeArr, mav2, '-'), mav2, '/'), 100, '*');
+  let propArr: number[] = FinUtil.genArrByProp(arr_, prop);
+
+  let mav0: number[] = MA(propArr, v0),
+    mav1: number[] = MA(propArr, v1),
+    mav2: number[] = MA(propArr, v2);
+  let bias1Arr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(propArr, mav0, '-'), mav0, '/'), 100, '*'),
+    bias2Arr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(propArr, mav1, '-'), mav1, '/'), 100, '*'),
+    bias3Arr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(propArr, mav2, '-'), mav2, '/'), 100, '*');
 
   for (let i: number = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
