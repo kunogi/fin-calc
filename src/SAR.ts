@@ -24,15 +24,19 @@ interface iSAR {
  * @returns 
  */
 export default function (arr_: iKData[], customData_: iSAR['param'] = { v0: 1, v1: 1, v2: 1 }): iSAR['data'][] {
-  let { v0, v1, v2 } = customData_;
-  let sarArr: iSAR['calc'] = calc(arr_, v0, v1, v2);
   let result: iSAR['data'][] = [];
+
+  const { v0, v1, v2 } = customData_;
+
+  let sarArr: iSAR['calc'] = calc(arr_, v0, v1, v2);
+  
   for (let i: number = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
       ignore_minmax: sarArr.direction[i],
       sar: sarArr.data[i]
-    };
+    }
   }
+
   return result;
 }
 
