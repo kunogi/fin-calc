@@ -1,7 +1,9 @@
 # calculator lib for finance related indicators
 
 ## ASI
+![image](./img/asi.png)
 ## BBIBOLL
+![image](./img/bbiboll.png)
 ```
 BBIBOLL:(MA(CLOSE,3)+MA(CLOSE,6)+MA(CLOSE,12)+MA(CLOSE,24))/4
 UPR:BBIBOLL+M*STD(BBIBOLL,N)
