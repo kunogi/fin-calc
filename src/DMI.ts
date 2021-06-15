@@ -21,16 +21,17 @@ interface iDMI {
  * @param customData_ 
  * @returns 
  * @description
-  MTR=EXPMEMA(MAX(MAX(HIGH-LOW,ABS(HIGH-REF(CLOSE,1))),ABS(REF(CLOSE,1)-LOW)),N)
-  HD =HIGH-REF(HIGH,1)
-  LD =REF(LOW,1)-LOW
-  DMP=EXPMEMA(IF(HD>0 && HD>LD,HD,0),N)
-  DMM=EXPMEMA(IF(LD>0 && LD>HD,LD,0),N)
-  PDI=DMP*100/MTR
-  MDI=DMM*100/MTR
-  ADX=EXPMEMA(ABS(MDI-PDI)/(MDI+PDI)*100,M)
-  ADXR=EXPMEMA(ADX,M)
+  MTR = EXPMEMA(MAX(MAX(HIGH - LOW, ABS(HIGH - REF(CLOSE, 1))), ABS(REF(CLOSE, 1) - LOW)), N)
+  HD = HIGH - REF(HIGH, 1)
+  LD = REF(LOW, 1) - LOW
+  DMP = EXPMEMA(IF(HD > 0 && HD > LD, HD, 0), N)
+  DMM = EXPMEMA(IF(LD > 0 && LD > HD, LD, 0), N)
+  PDI = DMP * 100 / MTR
+  MDI = DMM * 100 / MTR
+  ADX = EXPMEMA(ABS(MDI - PDI) / (MDI + PDI) * 100, M)
+  ADXR = EXPMEMA(ADX, M)
  */
+
 export default function (arr_: iKData[], customData_: iDMI['param'] = { v0: 14, v1: 6 }): iDMI['data'][] {
   let result: iDMI['data'][] = [];
 
