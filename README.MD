@@ -73,6 +73,7 @@ ADXR = EXPMEMA(ADX, M)
 
 
 ## EMA
+![image](./img/ema.png)
 
 
 
@@ -97,6 +98,7 @@ J = 3*K-2*D
 
 
 ## Moving Average (MA)
+![image](./img/ma.png)
 
 
 
