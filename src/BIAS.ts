@@ -22,12 +22,12 @@ interface iBIAS {
  * @param customeData_ 
  * @returns 
  * @description
-  MA_V0 =MA(CLOSE,V0)
-  MA_V1 =MA(CLOSE,V1)
-  MA_V2 =MA(CLOSE,V2)
-  BIAS1=(CLOSE-MA_V0)/MA_V0*100
-  BIAS2=(CLOSE-MA_V1)/MA_V1*100
-  BIAS3=(CLOSE-MA_V2)/MA_V2*100
+  MA_V0 = MA(CLOSE, V0)
+  MA_V1 = MA(CLOSE, V1)
+  MA_V2 = MA(CLOSE, V2)
+  BIAS1 = (CLOSE - MA_V0) / MA_V0 * 100
+  BIAS2 = (CLOSE - MA_V1) / MA_V1 * 100
+  BIAS3 = (CLOSE - MA_V2) / MA_V2 * 100
  */
 export default function (arr_: iKData[], customeData_: iBIAS['param'] = { prop: 'close', v0: 6, v1: 12, v2: 24 }) {
   let result: iBIAS['data'][] = [];

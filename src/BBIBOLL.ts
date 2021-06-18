@@ -21,9 +21,9 @@ interface iBBIBOLL {
  * @param customData_ 
  * @returns 
  * @description
-  BBIBOLL:(MA(CLOSE,3)+MA(CLOSE,6)+MA(CLOSE,12)+MA(CLOSE,24))/4
-  UPR:BBIBOLL+M*STD(BBIBOLL,N)
-  DWN:BBIBOLL-M*STD(BBIBOLL,N)
+  BBIBOLL = (MA(CLOSE, 3) + MA(CLOSE, 6) + MA(CLOSE, 12) + MA(CLOSE, 24)) / 4
+  UPR = BBIBOLL + M * STD(BBIBOLL, N)
+  DWN = BBIBOLL - M * STD(BBIBOLL, N)
  */
 export default function (arr_: iKData[], customData_: iBBIBOLL['param'] = { prop: 'close', v0: 11, v1: 6 }): iBBIBOLL['data'][] {
   let result: iBBIBOLL['data'][] = [];

@@ -21,8 +21,8 @@ interface iDMA {
  * @param customeData_ 
  * @returns 
  * @description
-  DIF = MA(CLOSE,SHORT) - MA(CLOSE,LONG)
-  DMA = MA(DIF,M)
+  DIF = MA(CLOSE, SHORT) - MA(CLOSE, LONG)
+  DMA = MA(DIF, M)
  */
 export default function (arr_: iKData[], customeData_: iDMA['param'] = { prop: 'close', v0: 10, v1: 50, v2: 10 }) {
   let result: iDMA['data'][] = [];
