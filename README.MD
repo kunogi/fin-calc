@@ -78,6 +78,7 @@ ADXR = EXPMEMA(ADX, M)
 
 
 ## EMV
+![image](./img/emv.jpg)
 ```
 VOLUME=MA(VOL,N)/VOL
 MID = 100*(HIGH+LOW-REFV(HIGH+LOW,1))/(HIGH+LOW)

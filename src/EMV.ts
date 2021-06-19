@@ -19,10 +19,10 @@ interface iEMV {
  * @param customData_ 
  * @returns 
  * @description
-  VOLUME=MA(VOL,N)/VOL
-  MID=100*(HIGH+LOW-REFV(HIGH+LOW,1))/(HIGH+LOW)
-  EMV=MA(MID*VOLUME*(HIGH-LOW)/MA(HIGH-LOW,N),N)
-  EMVA=MA(EMV,N1)
+  VOLUME = MA(VOL, N) / VOL
+  MID = 100 * (HIGH + LOW - REFV(HIGH + LOW, 1)) / (HIGH + LOW)
+  EMV = MA(MID * VOLUME * (HIGH - LOW) / MA(HIGH - LOW, N), N)
+  EMVA = MA(EMV, N1)
  */
 export default function (arr_: iKData[], customData_: iEMV['param'] = { v0: 14, v1: 9 }): iEMV['data'][] {
   let result: iEMV['data'][] = [];
@@ -37,9 +37,9 @@ export default function (arr_: iKData[], customData_: iEMV['param'] = { v0: 14, 
     hPlusLArr: number[] = FinUtil.arrOp(highArr, lowArr, '+'),
     hMinsLArr: number[] = FinUtil.arrOp(highArr, lowArr, '-');
 
-  //MID=100*(HIGH+LOW-REFV(HIGH+LOW,1))/(HIGH+LOW):
+  //MID = 100 * (HIGH + LOW - REFV(HIGH + LOW, 1)) / (HIGH + LOW):
   let midArr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(hPlusLArr, FinUtil.ref(hPlusLArr, 1), '-'), hPlusLArr, '/'), 100, '*');
-  //EMV=MA(MID*VOLUME*(HIGH-LOW)/MA(HIGH-LOW,N),N):
+  //EMV = MA(MID * VOLUME * (HIGH - LOW) / MA(HIGH - LOW, N), N):
   let emvArr: number[] = MA(FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(midArr, volArr, '*'), hMinsLArr, '*'), MA(hMinsLArr, N), '/'), N),
     maemvArr: number[] = MA(emvArr, N1);
 
