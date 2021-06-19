@@ -20,10 +20,10 @@ interface iKDJ {
  * @param customData_ 
  * @returns 
  * @description
-  RSV=(CLOSE-LLV(LOW,P1))/(HHV(HIGH,P1)-LLV(LOW,P1))*100
-  K = SMA(RSV,P2,1)
-  D = SMA(K,P3,1)
-  J = 3*K-2*D
+  RSV = (CLOSE - LLV(LOW, P1)) / (HHV(HIGH, P1) - LLV(LOW, P1)) * 100
+  K = SMA(RSV, P2, 1)
+  D = SMA(K, P3, 1)
+  J = 3 * K - 2 * D
  */
 export default function (arr_: iKData[], customData_: iKDJ['param'] = { P1: 9, P2: 3, P3: 3 }): iKDJ['data'][] {
   let result: iKDJ['data'][] = [];
@@ -34,7 +34,7 @@ export default function (arr_: iKData[], customData_: iKDJ['param'] = { P1: 9, P
     lowArr: number[] = FinUtil.genArrByProp(arr_, 'low'),
     highArr: number[] = FinUtil.genArrByProp(arr_, 'high');
 
-  //RSV=(CLOSE-LLV(LOW,P1))/(HHV(HIGH,P1)-LLV(LOW,P1))*100:
+  //RSV = (CLOSE - LLV(LOW, P1)) / (HHV(HIGH, P1) - LLV(LOW, P1)) * 100:
   let rsvArr: number[] = FinUtil.arrOp(FinUtil.arrOp(
     FinUtil.arrOp(closeArr, FinUtil.llv(lowArr, P1), '-'),
     FinUtil.arrOp(FinUtil.hhv(highArr, P1), FinUtil.llv(lowArr, P1), '-'), '/'), 100, '*');

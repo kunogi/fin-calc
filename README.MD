@@ -90,10 +90,10 @@ EMVA = MA(EMV, N1)
 
 ## KDJ
 ```
-RSV=(CLOSE-LLV(LOW,P1))/(HHV(HIGH,P1)-LLV(LOW,P1))*100
-K = SMA(RSV,P2,1)
-D = SMA(K,P3,1)
-J = 3*K-2*D
+RSV = (CLOSE - LLV(LOW, P1)) / (HHV(HIGH, P1) - LLV(LOW, P1)) * 100
+K = SMA(RSV, P2, 1)
+D = SMA(K, P3, 1)
+J = 3 * K - 2 * D
 ```
 
 
