@@ -37,7 +37,8 @@ export default function (arr_: iKData[], customData_: iKDJ['param'] = { P1: 9, P
   //RSV = (CLOSE - LLV(LOW, P1)) / (HHV(HIGH, P1) - LLV(LOW, P1)) * 100:
   let rsvArr: number[] = FinUtil.arrOp(FinUtil.arrOp(
     FinUtil.arrOp(closeArr, FinUtil.llv(lowArr, P1), '-'),
-    FinUtil.arrOp(FinUtil.hhv(highArr, P1), FinUtil.llv(lowArr, P1), '-'), '/'), 100, '*');
+    FinUtil.arrOp(FinUtil.hhv(highArr, P1), FinUtil.llv(lowArr, P1), '-'), '/'), 100, '*'
+  );
 
   let kArr: number[] = FinUtil.sma(rsvArr, P2, 1),
     dArr: number[] = FinUtil.sma(kArr, P3, 1),

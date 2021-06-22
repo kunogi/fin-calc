@@ -89,6 +89,7 @@ EMVA = MA(EMV, N1)
 
 
 ## KDJ
+![image](./img/kdj.jpg)
 ```
 RSV = (CLOSE - LLV(LOW, P1)) / (HHV(HIGH, P1) - LLV(LOW, P1)) * 100
 K = SMA(RSV, P2, 1)
