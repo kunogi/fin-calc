@@ -6,17 +6,16 @@
 
 
 ## BBIBOLL
-![image](./img/bbiboll.png)
 ```
 BBIBOLL = (MA(CLOSE, 3) + MA(CLOSE, 6) + MA(CLOSE, 12) + MA(CLOSE, 24)) / 4
 UPR = BBIBOLL + M * STD(BBIBOLL, N)
 DWN = BBIBOLL - M * STD(BBIBOLL, N)
 ```
+![image](./img/bbiboll.png)
 
 
 
 ## BIAS
-![image](./img/bias.png)
 ```
 MA_V0 = MA(CLOSE, V0)
 MA_V1 = MA(CLOSE, V1)
@@ -25,39 +24,39 @@ BIAS1 = (CLOSE - MA_V0) / MA_V0 * 100
 BIAS2 = (CLOSE - MA_V1) / MA_V1 * 100
 BIAS3 = (CLOSE - MA_V2) / MA_V2 * 100
 ```
+![image](./img/bias.png)
 
 
 
 ## BOLL
-![image](./img/boll.png)
 ```
 MID  = MA(CLOSE, PERIOD)
 UPPER= MID + TIMES * STD(CLOSE, PERIOD)
 LOWER= MID - TIMES * STD(CLOSE, PERIOD)
 ```
+![image](./img/boll.png)
 
 
 
 ## CCI
-![image](./img/cci.png)
 ```
 TYP = (HIGH + LOW + CLOSE) / 3
 CCI = (TYP - MA(TYP, N)) / (0.015 * AVEDEV(TYP, N))
 ```
+![image](./img/cci.png)
 
 
 
 ## DMA
-![image](./img/dma.png)
 ```
 DIF = MA(CLOSE, SHORT) - MA(CLOSE, LONG)
 DMA = MA(DIF, M)
 ```
+![image](./img/dma.png)
 
 
 
 ## DMI
-![image](./img/dmi.png)
 ```
 MTR = EXPMEMA(MAX(MAX(HIGH - LOW, ABS(HIGH - REF(CLOSE, 1))), ABS(REF(CLOSE, 1) - LOW)), N)
 HD = HIGH - REF(HIGH, 1)
@@ -69,6 +68,7 @@ MDI = DMM * 100 / MTR
 ADX = EXPMEMA(ABS(MDI - PDI) / (MDI + PDI) * 100, M)
 ADXR = EXPMEMA(ADX, M)
 ```
+![image](./img/dmi.png)
 
 
 
@@ -78,13 +78,13 @@ ADXR = EXPMEMA(ADX, M)
 
 
 ## EMV
-![image](./img/emv.jpg)
 ```
 VOLUME = MA(VOL, N) / VOL
 MID = 100 * (HIGH + LOW - REFV(HIGH + LOW, 1)) / (HIGH + LOW)
 EMV = MA(MID * VOLUME * (HIGH - LOW) / MA(HIGH - LOW, N), N)
 EMVA = MA(EMV, N1)
 ```
+![image](./img/emv.jpg)
 
 
 
