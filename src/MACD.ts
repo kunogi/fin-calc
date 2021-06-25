@@ -3,16 +3,16 @@ import EMA from './EMA';
 import { iKData } from './interface/iDatas';
 
 interface iMACD {
-  data: {
-    dif: number,
-    dea: number,
-    bar: number
-  },
   param: {
     prop: string,
     v0: number,//SHORT
     v1: number,//LONG
     v2: number//MID
+  },
+  data: {
+    dif: number,
+    dea: number,
+    bar: number
   }
 }
 
@@ -21,7 +21,7 @@ interface iMACD {
  * @description MACD, Moving Average Convergence and Divergence
   DIF = EMA(CLOSE, SHORT) - EMA(CLOSE, LONG)
   DEA = EMA(DIF, MID)
-  MACD= (DIF - DEA) *2
+  MACD = (DIF - DEA) * 2
  * @param arr_ 
  * @param customData_ default to calculate based on close price with params:12,26,9
  * @returns 
