@@ -105,6 +105,7 @@ J = 3 * K - 2 * D
 
 
 ## MACD
+![image](./img/macd.jpg)
 ```
 DIF = EMA(CLOSE, SHORT) - EMA(CLOSE, LONG)
 DEA = EMA(DIF, MID)
