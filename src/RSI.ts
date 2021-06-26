@@ -20,12 +20,12 @@ interface iRSI {
  * @param customData_ 
  * @returns 
  * @description
-  LC=REF(CLOSE,1)
-  MAXARR=MAX(CLOSE-LC,0)
-  ABSARR=ABS(CLOSE-LC)
-  RSI1=SMA(MAXARR,v0,1)/SMA(ABSARR,v0,1)*100
-  RSI2=SMA(MAXARR,v1,1)/SMA(ABSARR,v1,1)*100
-  RSI3=SMA(MAXARR,v2,1)/SMA(ABSARR,v2,1)*100
+  LC = REF(CLOSE, 1)
+  MAXARR = MAX(CLOSE - LC, 0)
+  ABSARR = ABS(CLOSE - LC)
+  RSI1 = SMA(MAXARR, v0, 1) / SMA(ABSARR, v0, 1) * 100
+  RSI2 = SMA(MAXARR, v1, 1) / SMA(ABSARR, v1, 1) * 100
+  RSI3 = SMA(MAXARR, v2, 1) / SMA(ABSARR, v2, 1) * 100
  */
 export default function (arr_: number[], customData_: iRSI['param'] = { prop: 'close', v0: 1, v1: 2, v2: 0 }): iRSI['data'][] {
   let result: iRSI['data'][] = [];

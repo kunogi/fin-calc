@@ -19,9 +19,10 @@ interface iROC {
  * @param customData_ 
  * @returns 
  * @description
-  ROC = (CLOSE-REF(CLOSE,N))/REF(CLOSE,N)*100
-  ROCMA=MA(ROC,M)
+  ROC = (CLOSE - REF(CLOSE, N)) / REF(CLOSE, N) * 100
+  ROCMA = MA(ROC, M)
  */
+
 export default function (arr_: number[], customData_: iROC['param'] = { prop: 'close', v0: 12, v1: 6 }): iROC['data'][] {
   let result: iROC['data'][] = [];
 
@@ -29,10 +30,10 @@ export default function (arr_: number[], customData_: iROC['param'] = { prop: 'c
 
   let arr: number[] = FinUtil.genArrByProp(arr_, prop);
 
-  //ROC = (CLOSE-REF(CLOSE,N))/REF(CLOSE,N)*100:
+  //ROC = (CLOSE - REF(CLOSE, N)) / REF(CLOSE, N) * 100:
   let refArr: number[] = FinUtil.ref(arr, N);
   let rocArr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(arr, refArr, '-'), refArr, '/'), 100, '*'),
-    marocArr:number[] = MA(rocArr, M);
+    marocArr: number[] = MA(rocArr, M);
 
   for (let i: number = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
