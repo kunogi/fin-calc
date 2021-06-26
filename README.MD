@@ -124,6 +124,7 @@ MACD = (DIF - DEA) * 2
 ROC = (CLOSE - REF(CLOSE, N)) / REF(CLOSE, N) * 100
 ROCMA = MA(ROC, M)
 ```
+![image](./img/roc.jpg)
 
 
 
