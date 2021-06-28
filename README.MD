@@ -137,10 +137,12 @@ RSI1 = SMA(MAXARR, v0, 1) / SMA(ABSARR, v0, 1) * 100
 RSI2 = SMA(MAXARR, v1, 1) / SMA(ABSARR, v1, 1) * 100
 RSI3 = SMA(MAXARR, v2, 1) / SMA(ABSARR, v2, 1) * 100
 ```
+![image](./img/rsi.jpg)
 
 
 
 ## SAR
+![image](./img/sar.jpg)
 
 
 
