@@ -1,6 +1,6 @@
 {
   "name": "fin-calc",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "a lib to calculate finance related indicators",
   "scripts": {
     "build": "webpack",
