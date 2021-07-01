@@ -147,6 +147,7 @@ RSI3 = SMA(MAXARR, v2, 1) / SMA(ABSARR, v2, 1) * 100
 
 
 ## TRIX
+![image](./img/trix.png)
 
 
 
