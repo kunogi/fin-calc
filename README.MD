@@ -147,11 +147,18 @@ RSI3 = SMA(MAXARR, v2, 1) / SMA(ABSARR, v2, 1) * 100
 
 
 ## TRIX
+```
+TR = EMA(EMA(EMA(CLOSE, P), P), P)
+TR1 = REF(TR, 1)
+TRIX = (TR - TR1) / TR1 * 100
+TRMA = MA(TRIX, N)
+```
 ![image](./img/trix.png)
 
 
 
 ## VR
+![image](./img/vr.jpg)
 
 
 
