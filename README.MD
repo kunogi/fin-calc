@@ -1,6 +1,8 @@
 # calculator lib for finance related indicators
 
 ## ASI
+```
+```
 ![image](./img/asi.png)
 
 
@@ -73,6 +75,8 @@ ADXR = EXPMEMA(ADX, M)
 
 
 ## EMA
+```
+```
 ![image](./img/ema.png)
 
 
@@ -89,17 +93,19 @@ EMVA = MA(EMV, N1)
 
 
 ## KDJ
-![image](./img/kdj.jpg)
 ```
 RSV = (CLOSE - LLV(LOW, P1)) / (HHV(HIGH, P1) - LLV(LOW, P1)) * 100
 K = SMA(RSV, P2, 1)
 D = SMA(K, P3, 1)
 J = 3 * K - 2 * D
 ```
+![image](./img/kdj.jpg)
 
 
 
 ## Moving Average (MA)
+```
+```
 ![image](./img/ma.png)
 
 
@@ -115,6 +121,8 @@ MACD = (DIF - DEA) * 2
 
 
 ## OBV
+```
+```
 ![image](./img/obv.jpg)
 
 
@@ -142,6 +150,8 @@ RSI3 = SMA(MAXARR, v2, 1) / SMA(ABSARR, v2, 1) * 100
 
 
 ## SAR
+```
+```
 ![image](./img/sar.jpg)
 
 
@@ -158,13 +168,15 @@ TRMA = MA(TRIX, N)
 
 
 ## VR
+```
+```
 ![image](./img/vr.jpg)
 
 
 
 ## WR
-···
-···
+```
+```
 ![image](./img/wr.jpg)
 
 
