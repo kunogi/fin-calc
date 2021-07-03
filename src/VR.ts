@@ -4,7 +4,7 @@ import FinUtil from './util/FinUtil';
 
 interface iVR {
   param: {
-    prop:string,
+    prop: string,
     v0: number,
     v1: number
   },
@@ -14,10 +14,10 @@ interface iVR {
   }
 }
 
-export default function (arr_: iKData[], customData_: iVR['param'] = {prop:'close', v0: 26, v1: 6 }):iVR['data'][] {
+export default function (arr_: iKData[], customData_: iVR['param'] = { prop: 'close', v0: 26, v1: 6 }): iVR['data'][] {
   let result: iVR['data'][] = [];
 
-  const { prop,v0, v1 } = customData_;
+  const { prop, v0, v1 } = customData_;
 
   let propArr: number[] = FinUtil.genArrByProp(arr_, prop),
     volumeArr: number[] = FinUtil.genArrByProp(arr_, 'volume');

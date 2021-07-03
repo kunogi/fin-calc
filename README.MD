@@ -163,7 +163,7 @@ TRMA = MA(TRIX, N)
 
 
 ## WR
-
+![image](./img/wr.jpg)
 
 
 ## WVAD
