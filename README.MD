@@ -167,3 +167,7 @@ TRMA = MA(TRIX, N)
 
 
 ## WVAD
+```
+WVAD = (CLOSE - OPEN) / (HIGH - LOW) * VOL
+```
+![image](./img/wvad.jpg)
