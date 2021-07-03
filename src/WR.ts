@@ -3,6 +3,7 @@ import { iKData } from './interface/iDatas';
 
 interface iWR {
   param: {
+    prop: string,
     v0: number,
     v1: number
   },
@@ -12,12 +13,12 @@ interface iWR {
   }
 }
 
-export default function (arr_: iKData[], customData_: iWR['param'] = { v0: 1, v1: 0 }): iWR['data'][] {
+export default function (arr_: iKData[], customData_: iWR['param'] = { prop: 'close', v0: 1, v1: 0 }): iWR['data'][] {
   let result: iWR['data'][] = [];
 
-  const { v0, v1 } = customData_;
+  const { prop, v0, v1 } = customData_;
 
-  let closeArr: number[] = FinUtil.genArrByProp(arr_, 'close'),
+  let closeArr: number[] = FinUtil.genArrByProp(arr_, prop),
     highArr: number[] = FinUtil.genArrByProp(arr_, 'high'),
     lowArr: number[] = FinUtil.genArrByProp(arr_, 'low');
 
