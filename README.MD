@@ -1,11 +1,8 @@
 # calculator lib for finance related indicators
-
 ## ASI
 ```
 ```
 ![image](./img/asi.png)
-
-
 
 ## BBIBOLL
 ```
@@ -14,8 +11,6 @@ UPR = BBIBOLL + M * STD(BBIBOLL, N)
 DWN = BBIBOLL - M * STD(BBIBOLL, N)
 ```
 ![image](./img/bbiboll.png)
-
-
 
 ## BIAS
 ```
@@ -27,8 +22,6 @@ BIAS2 = (CLOSE - MA_V1) / MA_V1 * 100
 BIAS3 = (CLOSE - MA_V2) / MA_V2 * 100
 ```
 ![image](./img/bias.png)
-
-
 
 ## BOLL
 ```
@@ -71,8 +64,6 @@ ADX = EXPMEMA(ABS(MDI - PDI) / (MDI + PDI) * 100, M)
 ADXR = EXPMEMA(ADX, M)
 ```
 ![image](./img/dmi.png)
-
-
 
 ## EMA
 ```
