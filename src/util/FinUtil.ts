@@ -25,7 +25,7 @@ class FinUtil {
     return NaN;
   }
 
-  public arrOp(arr1_: any, arr2_: any, op_: string) {
+  public arrOp(arr1_: any, arr2_: any, op_: string): number[] {
     let result: number[] = [], i: number, len1: number = arr1_.length, len2: number;
     switch (this.getClass(arr2_)) {
       case 'Array':
@@ -182,7 +182,7 @@ class FinUtil {
     return result;
   }
 
-  public abs(o_: any):number[] {
+  public abs(o_: number[]): number[] {
     /*
     switch (this.getClass(o_)) {
       default:throw new Error('argument of abs() is not supported');
@@ -191,11 +191,11 @@ class FinUtil {
 
       case 'Array':
     */
-        let result: number[] = [];
-        for (let i: number = 0, l: number = o_.length; i < l; i++) {
-          result.push(Math.abs(o_[i]));
-        }
-        return result;
+    let result: number[] = [];
+    for (let i: number = 0, l: number = o_.length; i < l; i++) {
+      result.push(Math.abs(o_[i]));
+    }
+    return result;
   }
 
   public sum(arr_: number[], n_: number): number[] {
@@ -287,9 +287,7 @@ class FinUtil {
   }
 
   private getClass(o_: any): string {
-    if (o_ === null) return "Null";
-    if (o_ === undefined) return "Undefined";
-    return Object.prototype.toString.call(o_).slice(8, -1);
+    return o_ === undefined ? 'undefined' : o_ === null ? 'null' : o_.constructor.name;
   }
 
   private getArrSum(arr_: number[]): number {
