@@ -287,9 +287,7 @@ class FinUtil {
   }
 
   private getClass(o_: any): string {
-    if (o_ === null) return "Null";
-    if (o_ === undefined) return "Undefined";
-    return Object.prototype.toString.call(o_).slice(8, -1);
+    return o_ === undefined ? 'undefined' : o_ === null ? 'null' : o_.constructor.name;
   }
 
   private getArrSum(arr_: number[]): number {
