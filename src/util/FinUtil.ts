@@ -1,14 +1,13 @@
 class FinUtil {
-
   /**
-   * 
+   *
    * @description calc average
-   * @param arr_ 
-   * @returns 
+   * @param arr_
+   * @returns
    */
   public avg(arr_: number[]): number {
     let sum: number = 0;
-    let l: number = arr_.length;
+    const l: number = arr_.length;
     for (let i: number = l; i--;) {
       sum += arr_[i];
     }
@@ -26,12 +25,12 @@ class FinUtil {
   }
 
   public arrOp(arr1_: any, arr2_: any, op_: string): number[] {
-    let result: number[] = [], i: number, len1: number = arr1_.length, len2: number;
+    const result: number[] = []; let i: number; const len1: number = arr1_.length; let len2: number;
     switch (this.getClass(arr2_)) {
       case 'Array':
         len2 = arr2_.length;
         for (i = 0; i < len1; i++) {
-          if (this.getClass(arr1_[i]) == 'Number' && this.getClass(arr2_[i]) == 'Number') {
+          if (this.getClass(arr1_[i]) === 'Number' && this.getClass(arr2_[i]) === 'Number') {
             result.push(this.op(op_, arr1_[i], arr2_[i]));
           } else {
             result.push(NaN);
@@ -45,7 +44,7 @@ class FinUtil {
 
       case 'Number':
         for (i = 0; i < len1; i++) {
-          if (this.getClass(arr1_[i]) == 'Number') {
+          if (this.getClass(arr1_[i]) === 'Number') {
             result.push(this.op(op_, arr1_[i], arr2_));
           } else {
             result.push(NaN);
@@ -62,13 +61,13 @@ class FinUtil {
 
   /**
    * @description calculate standard deviation
-   * @param arr_ 
-   * @param n_ 
-   * @returns 
+   * @param arr_
+   * @param n_
+   * @returns
    */
   public sd(arr_: number[], n_: number): number {
-    let avg: number = this.avg(arr_);
-    let l: number = arr_.length;
+    const avg: number = this.avg(arr_);
+    const l: number = arr_.length;
     let sum: number = 0;
     for (let i: number = l; i--;) {
       sum += Math.pow(arr_[i] - avg, 2);
@@ -77,15 +76,15 @@ class FinUtil {
   }
 
   /**
-   * 
+   *
    * @description Simple Moving Average
-   * @param arr_ 
-   * @param days_ 
-   * @param weight_ 
-   * @returns 
+   * @param arr_
+   * @param days_
+   * @param weight_
+   * @returns
    */
   public sma(arr_: number[], days_: number, weight_: number): number[] {
-    let result: number[] = [arr_[0]];
+    const result: number[] = [arr_[0]];
     for (let i: number = 1, l: number = arr_.length; i < l; i++) {
       result.push((weight_ * arr_[i] + (days_ - weight_) * result[i - 1]) / days_);
     }
@@ -93,14 +92,14 @@ class FinUtil {
   }
 
   /**
-   * 
-   * @description 
-   * @param arr_ 
-   * @param n_ 
-   * @returns 
+   *
+   * @description
+   * @param arr_
+   * @param n_
+   * @returns
    */
   public std(arr_: number[], n_: number): number[] {
-    let result: number[] = [];
+    const result: number[] = [];
     for (let i: number = 0, s: number, l: number = arr_.length; i < l; i++) {
       s = i < n_ ? 0 : i - n_ + 1;
       result.push(this.sd(arr_.slice(s, i + 1), 1));
@@ -109,16 +108,16 @@ class FinUtil {
   }
 
   /**
-   * 
+   *
    * @description calc absolute deviation
    * @link https://baike.baidu.com/item/%E7%BB%9D%E5%AF%B9%E5%81%8F%E5%B7%AE/5805166
-   * @param arr_ 
-   * @returns 
+   * @param arr_
+   * @returns
    */
   public ad(arr_: number[]): number {
-    let avg: number = this.avg(arr_);
+    const avg: number = this.avg(arr_);
     let sum: number = 0;
-    let l: number = arr_.length;
+    const l: number = arr_.length;
     for (let i: number = l; i--;) {
       sum += Math.abs(arr_[i] - avg);
     }
@@ -126,13 +125,13 @@ class FinUtil {
   }
 
   /**
-   * 
-   * @param arr_ 
-   * @param n_ 
-   * @returns 
+   *
+   * @param arr_
+   * @param n_
+   * @returns
    */
   public avedev(arr_: number[], n_: number): number[] {
-    let result: number[] = [];
+    const result: number[] = [];
     for (let i: number = 0, s: number, l: number = arr_.length; i < l; i++) {
       s = i < n_ ? 0 : i - n_ + 1;
       result.push(this.ad(arr_.slice(s, i + 1)));
@@ -141,15 +140,15 @@ class FinUtil {
   }
 
   /**
-   * 
-   * @param arr_ 
-   * @param n_ 
-   * @returns 
+   *
+   * @param arr_
+   * @param n_
+   * @returns
    */
   public hhv(arr_: number[], n_: number): number[] {
-    let result: number[] = [];
-    let l: number = arr_.length;
-    let max: number = Math.max(...arr_);
+    const result: number[] = [];
+    const l: number = arr_.length;
+    const max: number = Math.max(...arr_);
     for (let i: number = 0, s: number; i < l; i++) {
       if (n_) {
         s = i < n_ ? 0 : i - n_ + 1;
@@ -162,15 +161,15 @@ class FinUtil {
   }
 
   /**
-   * 
-   * @param arr_ 
-   * @param n_ 
-   * @returns 
+   *
+   * @param arr_
+   * @param n_
+   * @returns
    */
   public llv(arr_: number[], n_: number): number[] {
-    let result: number[] = [];
-    let l: number = arr_.length;
-    let min: number = Math.min(...arr_);
+    const result: number[] = [];
+    const l: number = arr_.length;
+    const min: number = Math.min(...arr_);
     for (let i: number = 0, s: number; i < l; i++) {
       if (n_) {
         s = i < n_ ? 0 : i - n_ + 1;
@@ -191,7 +190,7 @@ class FinUtil {
 
       case 'Array':
     */
-    let result: number[] = [];
+    const result: number[] = [];
     for (let i: number = 0, l: number = o_.length; i < l; i++) {
       result.push(Math.abs(o_[i]));
     }
@@ -199,7 +198,7 @@ class FinUtil {
   }
 
   public sum(arr_: number[], n_: number): number[] {
-    let result: number[] = [];
+    const result: number[] = [];
     if (n_) {
       for (let i: number = 0, s: number, l: number = arr_.length; i < l; i++) {
         s = i < n_ ? 0 : i - n_ + 1;
@@ -260,7 +259,7 @@ class FinUtil {
   }
 
   public ref(arr_: number[], n_: number): number[] {
-    let result: number[] = new Array(n_).fill(0);
+    const result: number[] = new Array(n_).fill(0);
     for (let i: number = n_, l: number = arr_.length; i < l; i++) {
       result.push(arr_[i - n_]);
     }
@@ -268,15 +267,15 @@ class FinUtil {
   }
 
   /**
-   * 
-   * @param arr_ 
-   * @param prop_ 
-   * @param f_ 
-   * @returns 
+   *
+   * @param arr_
+   * @param prop_
+   * @param f_
+   * @returns
    */
   public genArrByProp(arr_: any[], prop_: string, f_?: Function): number[] {
     if (prop_) {
-      let result = [];
+      const result = [];
       for (let i: number = 0, l: number = arr_.length; i < l; i++) {
         result.push(f_ ? f_(arr_[i][prop_]) : arr_[i][prop_]);
       }

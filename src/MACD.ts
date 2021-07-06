@@ -5,9 +5,9 @@ import { iKData } from './interface/iDatas';
 interface iMACD {
   param: {
     prop: string,
-    v0: number,//SHORT
-    v1: number,//LONG
-    v2: number//MID
+    v0: number, // SHORT
+    v1: number, // LONG
+    v2: number// MID
   },
   data: {
     dif: number,
@@ -17,25 +17,25 @@ interface iMACD {
 }
 
 /**
- * 
+ *
  * @description MACD, Moving Average Convergence and Divergence
   DIF = EMA(CLOSE, SHORT) - EMA(CLOSE, LONG)
   DEA = EMA(DIF, MID)
   MACD = (DIF - DEA) * 2
- * @param arr_ 
+ * @param arr_
  * @param customData_ default to calculate based on close price with params:12,26,9
- * @returns 
+ * @returns
  */
 export default function (arr_: iKData[], customData_: iMACD['param'] = { prop: 'close', v0: 12, v1: 26, v2: 9 }): iMACD['data'][] {
-  let result: iMACD['data'][] = [];
+  const result: iMACD['data'][] = [];
 
   const { prop, v0: SHORT, v1: LONG, v2: MID } = customData_;
 
-  let arr: number[] = FinUtil.genArrByProp(arr_, prop);
+  const arr: number[] = FinUtil.genArrByProp(arr_, prop);
 
-  let difArr: number[] = FinUtil.arrOp(EMA(arr, SHORT), EMA(arr, LONG), '-'),
-    deaArr: number[] = EMA(difArr, MID),
-    macdArr: number[] = FinUtil.arrOp(FinUtil.arrOp(difArr, deaArr, '-'), 2, '*');
+  const difArr: number[] = FinUtil.arrOp(EMA(arr, SHORT), EMA(arr, LONG), '-');
+  const deaArr: number[] = EMA(difArr, MID);
+  const macdArr: number[] = FinUtil.arrOp(FinUtil.arrOp(difArr, deaArr, '-'), 2, '*');
 
   for (let i: number = 0, l: number = arr.length; i < l; i++) {
     result[i] = {

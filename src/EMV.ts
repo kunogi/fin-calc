@@ -1,11 +1,11 @@
-import { iKData } from "./interface/iDatas";
-import MA from "./MA";
+import { iKData } from './interface/iDatas';
+import MA from './MA';
 import FinUtil from './util/FinUtil';
 
 interface iEMV {
   param: {
-    v0: number,//N
-    v1: number//N1
+    v0: number, // N
+    v1: number// N1
   },
   data: {
     emv: number,
@@ -14,10 +14,10 @@ interface iEMV {
 }
 
 /**
- * 
- * @param arr_ 
- * @param customData_ 
- * @returns 
+ *
+ * @param arr_
+ * @param customData_
+ * @returns
  * @description
   VOLUME = MA(VOL, N) / VOL
   MID = 100 * (HIGH + LOW - REFV(HIGH + LOW, 1)) / (HIGH + LOW)
@@ -25,23 +25,23 @@ interface iEMV {
   EMVA = MA(EMV, N1)
  */
 export default function (arr_: iKData[], customData_: iEMV['param'] = { v0: 14, v1: 9 }): iEMV['data'][] {
-  let result: iEMV['data'][] = [];
+  const result: iEMV['data'][] = [];
 
   const { v0: N, v1: N1 } = customData_;
 
-  let highArr: number[] = FinUtil.genArrByProp(arr_, 'high'),
-    lowArr: number[] = FinUtil.genArrByProp(arr_, 'low'),
-    volumeArr: number[] = FinUtil.genArrByProp(arr_, 'volume');
+  const highArr: number[] = FinUtil.genArrByProp(arr_, 'high');
+  const lowArr: number[] = FinUtil.genArrByProp(arr_, 'low');
+  const volumeArr: number[] = FinUtil.genArrByProp(arr_, 'volume');
 
-  let volArr: number[] = FinUtil.arrOp(MA(volumeArr, N), volumeArr, '/'),
-    hPlusLArr: number[] = FinUtil.arrOp(highArr, lowArr, '+'),
-    hMinsLArr: number[] = FinUtil.arrOp(highArr, lowArr, '-');
+  const volArr: number[] = FinUtil.arrOp(MA(volumeArr, N), volumeArr, '/');
+  const hPlusLArr: number[] = FinUtil.arrOp(highArr, lowArr, '+');
+  const hMinsLArr: number[] = FinUtil.arrOp(highArr, lowArr, '-');
 
-  //MID = 100 * (HIGH + LOW - REFV(HIGH + LOW, 1)) / (HIGH + LOW):
-  let midArr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(hPlusLArr, FinUtil.ref(hPlusLArr, 1), '-'), hPlusLArr, '/'), 100, '*');
-  //EMV = MA(MID * VOLUME * (HIGH - LOW) / MA(HIGH - LOW, N), N):
-  let emvArr: number[] = MA(FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(midArr, volArr, '*'), hMinsLArr, '*'), MA(hMinsLArr, N), '/'), N),
-    maemvArr: number[] = MA(emvArr, N1);
+  // MID = 100 * (HIGH + LOW - REFV(HIGH + LOW, 1)) / (HIGH + LOW):
+  const midArr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(hPlusLArr, FinUtil.ref(hPlusLArr, 1), '-'), hPlusLArr, '/'), 100, '*');
+  // EMV = MA(MID * VOLUME * (HIGH - LOW) / MA(HIGH - LOW, N), N):
+  const emvArr: number[] = MA(FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(midArr, volArr, '*'), hMinsLArr, '*'), MA(hMinsLArr, N), '/'), N);
+  const maemvArr: number[] = MA(emvArr, N1);
 
   for (let i: number = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {

@@ -16,39 +16,39 @@ interface iSAR {
   }
 }
 /**
- * 
- * @param arr_ 
- * @param n_ 
- * @param step_ 
- * @param max_ 
- * @returns 
+ *
+ * @param arr_
+ * @param n_
+ * @param step_
+ * @param max_
+ * @returns
  */
 export default function (arr_: iKData[], customData_: iSAR['param'] = { v0: 1, v1: 1, v2: 1 }): iSAR['data'][] {
-  let result: iSAR['data'][] = [];
+  const result: iSAR['data'][] = [];
 
   const { v0, v1, v2 } = customData_;
 
-  let sarArr: iSAR['calc'] = calc(arr_, v0, v1, v2);
+  const sarArr: iSAR['calc'] = calc(arr_, v0, v1, v2);
 
   for (let i: number = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
       ignore_minmax: sarArr.direction[i],
       sar: sarArr.data[i]
-    }
+    };
   }
 
   return result;
 }
 
-function calc(arr_: iKData[], n_: number, step_: number, max_: number): iSAR['calc'] {
-  let highArr: number[] = FinUtil.genArrByProp(arr_, 'high');
-  let lowArr: number[] = FinUtil.genArrByProp(arr_, 'low');
-  let len: number = arr_.length;
-  let result: number[] = [];
-  let stepArr: number[] = [];
-  let extremeArr: number[] = [];
-  let directionArr: number[] = [];
-  function up(l: number): void {
+function calc (arr_: iKData[], n_: number, step_: number, max_: number): iSAR['calc'] {
+  const highArr: number[] = FinUtil.genArrByProp(arr_, 'high');
+  const lowArr: number[] = FinUtil.genArrByProp(arr_, 'low');
+  const len: number = arr_.length;
+  const result: number[] = [];
+  const stepArr: number[] = [];
+  const extremeArr: number[] = [];
+  const directionArr: number[] = [];
+  function up (l: number): void {
     if (l < len) {
       result[l] = Math.min(...lowArr.slice(l - n_, l));
       directionArr[l] = 1;
@@ -74,7 +74,7 @@ function calc(arr_: iKData[], n_: number, step_: number, max_: number): iSAR['ca
       }
     }
   }
-  function down(l: number): void {
+  function down (l: number): void {
     if (l < len) {
       result[l] = Math.max(...highArr.slice(l - n_, l));
       directionArr[l] = 0;

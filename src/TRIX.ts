@@ -21,22 +21,22 @@ interface iTRIX {
   TR1 = REF(TR, 1)
   TRIX = (TR - TR1) / TR1 * 100
   TRMA = MA(TRIX, N)
- * @param arr_ 
- * @param customData_ 
- * @returns 
+ * @param arr_
+ * @param customData_
+ * @returns
  */
 export default function (arr_: iKData[], customData_: iTRIX['param'] = { prop: 'close', v0: 12, v1: 9 }): iTRIX['data'][] {
-  let result: iTRIX['data'][] = [];
+  const result: iTRIX['data'][] = [];
 
-  const { prop, v0:P, v1:N } = customData_;
+  const { prop, v0: P, v1: N } = customData_;
 
-  let propArr: number[] = FinUtil.genArrByProp(arr_, prop);
+  const propArr: number[] = FinUtil.genArrByProp(arr_, prop);
 
-  //EMA(EMA(EMA(CLOSE, P), P), P):
-  let trArr: number[] = EMA(EMA(EMA(propArr, P), P), P),
-    tr1Arr: number[] = FinUtil.ref(trArr, 1),
-    trixArr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(trArr, tr1Arr, '-'), tr1Arr, '/'), 100, '*'),
-    matrixArr: number[] = MA(trixArr, N);
+  // EMA(EMA(EMA(CLOSE, P), P), P):
+  const trArr: number[] = EMA(EMA(EMA(propArr, P), P), P);
+  const tr1Arr: number[] = FinUtil.ref(trArr, 1);
+  const trixArr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(trArr, tr1Arr, '-'), tr1Arr, '/'), 100, '*');
+  const matrixArr: number[] = MA(trixArr, N);
 
   for (let i: number = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {

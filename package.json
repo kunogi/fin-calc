@@ -5,7 +5,8 @@
   "scripts": {
     "build": "webpack",
     "serve": "webpack serve",
-    "test": "jest"
+    "test": "jest",
+    "lintjs": "eslint src --ext .ts,.js,.jsx,.tsx --fix"
   },
   "keywords": [],
   "author": "Xuan",
@@ -14,7 +15,15 @@
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-typescript": "^7.14.5",
+    "@typescript-eslint/eslint-plugin": "^4.28.2",
+    "@typescript-eslint/parser": "^4.28.2",
     "babel-jest": "^27.0.6",
+    "eslint": "^7.30.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-webpack-plugin": "^2.5.4",
     "html-webpack-plugin": "^5.3.1",
     "jest": "^27.0.6",
     "ts-loader": "^9.1.2",
