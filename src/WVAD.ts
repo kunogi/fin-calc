@@ -1,10 +1,9 @@
 import FinUtil from './util/FinUtil';
 import { iKData } from './interface/iDatas';
-import MA from "./MA";
+import MA from './MA';
 
 interface iWVAD {
   param: {
-    v0: number,
     v1: number
   },
   data: {
@@ -14,26 +13,26 @@ interface iWVAD {
 }
 
 /**
- * 
- * @param arr_ 
- * @param customeData_ 
- * @returns 
+ *
+ * @param arr_
+ * @param customeData_
+ * @returns
  * @description
   WVAD = (CLOSE - OPEN) / (HIGH - LOW) * VOL
  */
-export default function (arr_: iKData[], customeData_: iWVAD['param'] = { v0: 24, v1: 6 }): iWVAD['data'][] {
-  let result: iWVAD['data'][] = [];
+export default function (arr_: iKData[], customeData_: iWVAD['param'] = { v1: 6 }): iWVAD['data'][] {
+  const result: iWVAD['data'][] = [];
 
-  const { v0, v1 } = customeData_;
+  const { v1 } = customeData_;
 
-  let closeArr: number[] = FinUtil.genArrByProp(arr_, 'close'),
-    openArr: number[] = FinUtil.genArrByProp(arr_, 'open'),
-    highArr: number[] = FinUtil.genArrByProp(arr_, 'high'),
-    lowArr: number[] = FinUtil.genArrByProp(arr_, 'low'),
-    volArr: number[] = FinUtil.genArrByProp(arr_, 'volume');
+  const closeArr: number[] = FinUtil.genArrByProp(arr_, 'close');
+  const openArr: number[] = FinUtil.genArrByProp(arr_, 'open');
+  const highArr: number[] = FinUtil.genArrByProp(arr_, 'high');
+  const lowArr: number[] = FinUtil.genArrByProp(arr_, 'low');
+  const volArr: number[] = FinUtil.genArrByProp(arr_, 'volume');
 
-  let wvadArr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(closeArr, openArr, '-'), FinUtil.arrOp(highArr, lowArr, '-'), '/'), volArr, '*'),
-    maWvadArr: number[] = MA(wvadArr, v1);
+  const wvadArr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(closeArr, openArr, '-'), FinUtil.arrOp(highArr, lowArr, '-'), '/'), volArr, '*');
+  const maWvadArr: number[] = MA(wvadArr, v1);
 
   for (let i: number = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {

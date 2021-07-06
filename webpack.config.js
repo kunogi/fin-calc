@@ -1,19 +1,20 @@
-const path = require('path');
-const htmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
 
 module.exports = {
-  mode: "none",
+  mode: 'none',
 
   target: 'web',
-  devServer:{
-    port:8828,
-    open:true,
-    compress:true
+  devServer: {
+    port: 8828,
+    open: true,
+    compress: true
   },
 
   entry: './demo.js',
   output: {
-    filename: "demo.js",
+    filename: 'demo.js',
     path: path.resolve(__dirname, 'build')
   },
 
@@ -21,17 +22,18 @@ module.exports = {
     rules: [
       {
         test: /.tsx?$/i,
-        use: "ts-loader"
+        use: 'ts-loader'
       }
     ]
   },
 
   plugins: [
-    new htmlWebpackPlugin({
+    new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'www/index.html')
-    })
+    }),
+    new ESLintPlugin()
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
   }
-};
+}
