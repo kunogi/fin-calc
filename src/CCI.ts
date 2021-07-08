@@ -21,26 +21,25 @@ interface iCCI {
   CCI = (TYP - MA(TYP, N)) / (0.015 * AVEDEV(TYP, N))
  */
 export default function (arr_: iKData[], customeData_: iCCI['param'] = { v0: 14 }): iCCI['data'][] {
-  const result: iCCI['data'][] = [];
+    const result: iCCI['data'][] = [];
 
-  const { v0: N } = customeData_;
+    const { v0: N } = customeData_;
 
-  const closeArr: number[] = FinUtil.genArrByProp(arr_, 'close');
-  const highArr: number[] = FinUtil.genArrByProp(arr_, 'high');
-  const lowArr: number[] = FinUtil.genArrByProp(arr_, 'low');
+    const closeArr: number[] = FinUtil.genArrByProp(arr_, 'close');
+    const highArr: number[] = FinUtil.genArrByProp(arr_, 'high');
+    const lowArr: number[] = FinUtil.genArrByProp(arr_, 'low');
 
-  const typArr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(highArr, lowArr, '+'), closeArr, '+'), 3, '/');
-  // (TYP-MA(TYP,N)) / (0.015*AVEDEV(TYP,N)):
-  const cciArr: number[] = FinUtil.arrOp(
-    FinUtil.arrOp(typArr, MA(typArr, N), '-'),
-    FinUtil.arrOp(FinUtil.avedev(typArr, N), 0.015, '*'), '/'
-  );
+    const typArr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(highArr, lowArr, '+'), closeArr, '+'), 3, '/');
+    // (TYP-MA(TYP,N)) / (0.015*AVEDEV(TYP,N)):
+    const cciArr: number[] = FinUtil.arrOp(
+        FinUtil.arrOp(typArr, MA(typArr, N), '-'),
+        FinUtil.arrOp(FinUtil.avedev(typArr, N), 0.015, '*'), '/');
 
-  for (let i: number = 0, l: number = arr_.length; i < l; i++) {
-    result[i] = {
-      cci: cciArr[i]
+    for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+        result[i] = {
+            cci: cciArr[i],
+        };
     }
-  }
 
-  return result;
+    return result;
 }

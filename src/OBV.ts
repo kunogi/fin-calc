@@ -18,35 +18,41 @@ interface iOBV {
  * @returns
  */
 export default function (arr_: iKData[], customData_: iOBV['param'] = { v0: 30 }): iOBV['data'][] {
-  const result: iOBV['data'][] = [];
+    const result: iOBV['data'][] = [];
 
-  const { v0 } = customData_;
+    const { v0 } = customData_;
 
-  let data: iKData = arr_[0];
-  let va: number = data.volume;
-  let obv: number = va;
-  let sumMa: number = obv;
-  result.push({
-    obv: obv,
-    obvma: obv
-  });
-  for (let i: number = 1, l: number = arr_.length; i < l; i++) {
-    data = arr_[i];
-    const obj: iOBV['data'] = { obv: NaN, obvma: NaN };
-    result.push(obj);
+    let data: iKData = arr_[0];
+    let va: number = data.volume;
+    let obv: number = va;
+    let sumMa: number = obv;
 
-    if (data.close > arr_[i - 1].close) va = Number(data.volume);
-    else if (data.close === arr_[i - 1].close) va = 0;
-    else va = -Number(data.volume);
+    result.push({
+        obv: obv,
+        obvma: obv,
+    });
 
-    obv = va + result[i - 1].obv;
-    obj.obv = obv;
-    sumMa += obv;
-    if (i >= v0) {
-      sumMa -= result[i - v0].obv;
-      obj.obvma = sumMa / v0;
-    } else obj.obvma = sumMa / (i + 1);
-  }
+    for (let i: number = 1, l: number = arr_.length; i < l; i++) {
+        data = arr_[i];
+        const obj: iOBV['data'] = { obv: NaN, obvma: NaN };
+        result.push(obj);
 
-  return result;
+        if (data.close > arr_[i - 1].close) {
+            va = Number(data.volume);
+        } else if (data.close === arr_[i - 1].close) {
+            va = 0;
+        } else {
+            va = -Number(data.volume);
+        }
+
+        obv = va + result[i - 1].obv;
+        obj.obv = obv;
+        sumMa += obv;
+        if (i >= v0) {
+            sumMa -= result[i - v0].obv;
+            obj.obvma = sumMa / v0;
+        } else { obj.obvma = sumMa / (i + 1); }
+    }
+
+    return result;
 }
