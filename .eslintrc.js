@@ -4,7 +4,7 @@ module.exports = {
     es2021: true
   },
   extends: [
-    '@ks/eslint-config-ks'
+    'standard'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -15,13 +15,12 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
-    /*
     "space-before-function-paren": 'off',
-    quotes: [0],
     semi: [0, 'always'],
     'eol-last': [0, "never"],
     camelcase: "off",
+    /*
+    quotes: [0],
     */
-    "max-params": [1, 4]
   }
 }

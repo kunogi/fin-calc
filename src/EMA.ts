@@ -7,13 +7,13 @@
  * @returns
  */
 export default function (arr_: number | number[], days_: number): number[] {
-    if (typeof arr_ === 'number') {arr_ = [arr_];}
+  if (typeof arr_ === 'number') { arr_ = [arr_]; }
 
-    const result: number[] = [arr_[0]];
+  const result: number[] = [arr_[0]];
 
-    for (let i: number = 1, l: number = arr_.length; i < l; i++) {
-        result.push((2 * arr_[i] + (days_ - 1) * result[i - 1]) / (days_ + 1));
-    }
+  for (let i: number = 1, l: number = arr_.length; i < l; i++) {
+    result.push((2 * arr_[i] + (days_ - 1) * result[i - 1]) / (days_ + 1));
+  }
 
-    return result;
+  return result;
 }
