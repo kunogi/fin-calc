@@ -33,16 +33,16 @@ export default function (arr_: iKData[], customData_: iASI['param'] = { v0: 26, 
   for (let i: number = 0, l: number = aaArr.length; i < l; i++) {
     if (aaArr[i] > bbArr[i] && aaArr[i] > ccArr[i]) {
       rArr.push(aaArr[i] + bbArr[i] / 2 + ddArr[i] / 4);
+    } else if (bbArr[i] > ccArr[i] && bbArr[i] > aaArr[i]) {
+      rArr.push(bbArr[i] + aaArr[i] / 2 + ddArr[i] / 4);
     } else {
-      if (bbArr[i] > ccArr[i] && bbArr[i] > aaArr[i]) {
-        rArr.push(bbArr[i] + aaArr[i] / 2 + ddArr[i] / 4);
-      } else {
-        rArr.push(ccArr[i] + ddArr[i] / 4);
-      }
+      rArr.push(ccArr[i] + ddArr[i] / 4);
     }
   }
 
-  const xArr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(closeArr, lcArr, '-'), FinUtil.arrOp(FinUtil.arrOp(closeArr, openArr, '-'), 2, '/'), '+'), lcArr, '+'), FinUtil.ref(openArr, 1), '-');
+  const xArr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(
+    FinUtil.arrOp(closeArr, lcArr, '-'), FinUtil.arrOp(FinUtil.arrOp(closeArr, openArr, '-'), 2, '/'), '+'), lcArr, '+'),
+  FinUtil.ref(openArr, 1), '-');
   const siArr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(xArr, 16, '*'), rArr, '/'), FinUtil.max(aaArr, bbArr), '*');
   const asiArr: number[] = FinUtil.sum(siArr, v0);
   const asitArr: number[] = MA(asiArr, v1);
@@ -51,7 +51,7 @@ export default function (arr_: iKData[], customData_: iASI['param'] = { v0: 26, 
     result[i] = {
       asi: asiArr[i],
       asit: asitArr[i]
-    }
+    };
   }
 
   return result;

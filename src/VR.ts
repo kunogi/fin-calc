@@ -58,7 +58,7 @@ export default function (arr_: iKData[], customData_: iVR['param'] = { prop: 'cl
     result[i] = {
       vr: vrArr[i],
       mavr: mavrArr[i]
-    }
+    };
   }
 
   return result;

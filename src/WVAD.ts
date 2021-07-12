@@ -31,14 +31,15 @@ export default function (arr_: iKData[], customeData_: iWVAD['param'] = { v1: 6 
   const lowArr: number[] = FinUtil.genArrByProp(arr_, 'low');
   const volArr: number[] = FinUtil.genArrByProp(arr_, 'volume');
 
-  const wvadArr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(closeArr, openArr, '-'), FinUtil.arrOp(highArr, lowArr, '-'), '/'), volArr, '*');
+  const wvadArr: number[] = FinUtil.arrOp(FinUtil.arrOp(
+    FinUtil.arrOp(closeArr, openArr, '-'), FinUtil.arrOp(highArr, lowArr, '-'), '/'), volArr, '*');
   const maWvadArr: number[] = MA(wvadArr, v1);
 
   for (let i: number = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
       wvad: wvadArr[i],
       wvadma: maWvadArr[i]
-    }
+    };
   }
 
   return result;

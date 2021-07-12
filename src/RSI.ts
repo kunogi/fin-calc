@@ -47,7 +47,7 @@ export default function (arr_: number[], customData_: iRSI['param'] = { prop: 'c
       rsi1: rsi1Arr[i],
       rsi2: rsi2Arr[i],
       rsi3: rsi3Arr[i]
-    }
+    };
   }
 
   return result;

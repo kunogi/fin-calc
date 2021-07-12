@@ -39,7 +39,7 @@ export default function (arr_: number[], customData_: iROC['param'] = { prop: 'c
     result[i] = {
       roc: rocArr[i],
       maroc: marocArr[i]
-    }
+    };
   }
 
   return result;

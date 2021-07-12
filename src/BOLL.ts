@@ -40,7 +40,7 @@ export default function (arr_: iKData[], customData_: iBOLL['param'] = { prop: '
       boll: maArr[i],
       upper: upperArr[i],
       lower: lowerArr[i]
-    }
+    };
   }
 
   return result;

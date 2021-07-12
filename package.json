@@ -2,6 +2,10 @@
   "name": "fin-calc",
   "version": "1.0.0",
   "description": "a lib to calculate finance related indicators",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kunogi/fin-calc.git"
+  },
   "scripts": {
     "build": "webpack",
     "serve": "webpack serve",
@@ -15,14 +19,17 @@
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-typescript": "^7.14.5",
+    "@ks/eslint-config-ks": "^6.0.0",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^27.0.6",
     "eslint": "^7.30.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-vue": "^7.13.0",
     "eslint-webpack-plugin": "^2.5.4",
     "html-webpack-plugin": "^5.3.2",
     "jest": "^27.0.6",

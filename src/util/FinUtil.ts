@@ -183,13 +183,13 @@ class FinUtil {
 
   public abs(o_: number[]): number[] {
     /*
-    switch (this.getClass(o_)) {
-      default:throw new Error('argument of abs() is not supported');
-      case 'Number':
-        return Math.abs(o_);
+        switch (this.getClass(o_)) {
+          default:throw new Error('argument of abs() is not supported');
+          case 'Number':
+            return Math.abs(o_);
 
-      case 'Array':
-    */
+          case 'Array':
+        */
     const result: number[] = [];
     for (let i: number = 0, l: number = o_.length; i < l; i++) {
       result.push(Math.abs(o_[i]));
@@ -215,7 +215,9 @@ class FinUtil {
   }
 
   public max(arr1_: any, arr2_: any): number | number[] {
-    let result: number[], i: number, l: number;
+    let result: number[];
+    let i: number;
+    let l: number;
     switch (this.getClass(arr1_)) {
       case 'Array':
         switch (this.getClass(arr2_)) {
@@ -280,13 +282,18 @@ class FinUtil {
         result.push(f_ ? f_(arr_[i][prop_]) : arr_[i][prop_]);
       }
       return result;
-    } else {
-      return arr_;
     }
+    return arr_;
   }
 
   private getClass(o_: any): string {
-    return o_ === undefined ? 'undefined' : o_ === null ? 'null' : o_.constructor.name;
+    // return typeof o_ === 'undefined' ? 'undefined' : o_ === null ? 'null' : o_.constructor.name;
+    if (typeof o_ === 'undefined') {
+      return 'undefined';
+    } if (o_ === null) {
+      return 'null';
+    }
+    return o_.constructor.name;
   }
 
   private getArrSum(arr_: number[]): number {

@@ -33,13 +33,12 @@ export default function (arr_: iKData[], customeData_: iCCI['param'] = { v0: 14 
   // (TYP-MA(TYP,N)) / (0.015*AVEDEV(TYP,N)):
   const cciArr: number[] = FinUtil.arrOp(
     FinUtil.arrOp(typArr, MA(typArr, N), '-'),
-    FinUtil.arrOp(FinUtil.avedev(typArr, N), 0.015, '*'), '/'
-  );
+    FinUtil.arrOp(FinUtil.avedev(typArr, N), 0.015, '*'), '/');
 
   for (let i: number = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
       cci: cciArr[i]
-    }
+    };
   }
 
   return result;

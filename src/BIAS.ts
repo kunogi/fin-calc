@@ -48,7 +48,7 @@ export default function (arr_: iKData[], customeData_: iBIAS['param'] = { prop: 
       bias1: bias1Arr[i],
       bias2: bias2Arr[i],
       bias3: bias3Arr[i]
-    }
+    };
   }
 
   return result;

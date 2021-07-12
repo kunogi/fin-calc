@@ -16,9 +16,11 @@ module.exports = {
   ],
   rules: {
     "space-before-function-paren": 'off',
-    quotes: [0],
     semi: [0, 'always'],
     'eol-last': [0, "never"],
-    camelcase: "off"
+    camelcase: "off",
+    /*
+    quotes: [0],
+    */
   }
 }

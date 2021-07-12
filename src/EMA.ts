@@ -7,7 +7,7 @@
  * @returns
  */
 export default function (arr_: number | number[], days_: number): number[] {
-  if (typeof arr_ === 'number') arr_ = [arr_];
+  if (typeof arr_ === 'number') { arr_ = [arr_]; }
 
   const result: number[] = [arr_[0]];
 

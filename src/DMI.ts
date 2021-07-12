@@ -57,8 +57,8 @@ export default function (arr_: iKData[], customData_: iDMI['param'] = { v0: 14, 
   for (let hd: number, ld: number, i: number = 0, l: number = hdArr.length; i < l; i++) {
     hd = hdArr[i];
     ld = ldArr[i];
-    dmpArr.push((hd > 0 && hd > ld) ? hd : 0);
-    dmmArr.push((ld > 0 && ld > hd) ? ld : 0);
+    dmpArr.push(hd > 0 && hd > ld ? hd : 0);
+    dmmArr.push(ld > 0 && ld > hd ? ld : 0);
   }
   dmpArr = EMA(dmpArr, N);
   dmmArr = EMA(dmmArr, N);
@@ -66,7 +66,8 @@ export default function (arr_: iKData[], customData_: iDMI['param'] = { v0: 14, 
   const pdiArr: number[] = FinUtil.arrOp(FinUtil.arrOp(dmpArr, 100, '*'), mtrArr, '/');
   const mdiArr: number[] = FinUtil.arrOp(FinUtil.arrOp(dmmArr, 100, '*'), mtrArr, '/');
   // ADX=EXPMEMA(ABS(MDI-PDI)/(MDI+PDI)*100,M):
-  const adxArr: number[] = EMA(FinUtil.arrOp(FinUtil.arrOp(FinUtil.abs(FinUtil.arrOp(mdiArr, pdiArr, '-')), FinUtil.arrOp(mdiArr, pdiArr, '+'), '/'), 100, '*'), M);
+  const adxArr: number[] = EMA(FinUtil.arrOp(FinUtil.arrOp(
+    FinUtil.abs(FinUtil.arrOp(mdiArr, pdiArr, '-')), FinUtil.arrOp(mdiArr, pdiArr, '+'), '/'), 100, '*'), M);
   const adxrArr: number[] = EMA(adxArr, M);
 
   for (let i: number = 0, l: number = arr_.length; i < l; i++) {
@@ -75,7 +76,7 @@ export default function (arr_: iKData[], customData_: iDMI['param'] = { v0: 14, 
       mdi: mdiArr[i],
       adx: adxArr[i],
       adxr: adxrArr[i]
-    }
+    };
   }
 
   return result;

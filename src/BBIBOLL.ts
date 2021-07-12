@@ -47,7 +47,7 @@ export default function (arr_: iKData[], customData_: iBBIBOLL['param'] = { prop
       bbiboll: bbiArr[i],
       upr: uprArr[i],
       dwn: dwnArr[i]
-    }
+    };
   }
 
   return result;

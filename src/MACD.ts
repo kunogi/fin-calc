@@ -42,7 +42,7 @@ export default function (arr_: iKData[], customData_: iMACD['param'] = { prop: '
       dif: difArr[i],
       dea: deaArr[i],
       bar: macdArr[i]
-    }
+    };
   }
 
   return result;

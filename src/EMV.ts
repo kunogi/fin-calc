@@ -47,7 +47,7 @@ export default function (arr_: iKData[], customData_: iEMV['param'] = { v0: 14, 
     result[i] = {
       emv: emvArr[i],
       maemv: maemvArr[i]
-    }
+    };
   }
 
   return result;

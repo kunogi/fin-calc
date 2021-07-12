@@ -42,7 +42,7 @@ export default function (arr_: iKData[], customData_: iTRIX['param'] = { prop: '
     result[i] = {
       trix: trixArr[i],
       matrix: matrixArr[i]
-    }
+    };
   }
 
   return result;

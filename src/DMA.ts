@@ -40,7 +40,7 @@ export default function (arr_: iKData[], customeData_: iDMA['param'] = { prop: '
     result[i] = {
       dif: difArr[i],
       difma: amaArr[i]
-    }
+    };
   }
 
   return result;
