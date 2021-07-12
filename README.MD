@@ -160,6 +160,12 @@ TRMA = MA(TRIX, N)
 
 ## VR
 ```
+ref1 = REF(CLOSE, 1)
+TH = SUM(IFF(CLOSE > LC, VOL, 0), N)
+TL = SUM(IFF(CLOSE < LC, VOL, 0), N)
+TQ = SUM(IFF(CLOSE = LC, VOL, 0), N)
+VR = 100 * (TH * 2 + TQ) / (TL * 2 + TQ)
+VRMA = MA(VR, M)
 ```
 ![image](./img/vr.jpg)
 
