@@ -12,9 +12,9 @@ module.exports = {
     compress: true
   },
 
-  entry: './demo.js',
+  entry: './www/index.js',
   output: {
-    filename: 'demo.js',
+    filename: 'index.js',
     path: path.resolve(__dirname, 'build')
   },
 
