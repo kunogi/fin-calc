@@ -4,7 +4,7 @@ import MA from './MA';
 
 interface iWVAD {
   param: {
-    v1: number
+    v0: number
   },
   data: {
     wvad: number,
@@ -20,10 +20,10 @@ interface iWVAD {
  * @description
   WVAD = (CLOSE - OPEN) / (HIGH - LOW) * VOL
  */
-export default function (arr_: iKData[], customeData_: iWVAD['param'] = { v1: 6 }): iWVAD['data'][] {
+export default function (arr_: iKData[], customeData_: iWVAD['param'] = { v0: 6 }): iWVAD['data'][] {
   const result: iWVAD['data'][] = [];
 
-  const { v1 } = customeData_;
+  const { v0 } = customeData_;
 
   const closeArr: number[] = FinUtil.genArrByProp(arr_, 'close');
   const openArr: number[] = FinUtil.genArrByProp(arr_, 'open');
@@ -33,7 +33,7 @@ export default function (arr_: iKData[], customeData_: iWVAD['param'] = { v1: 6 
 
   const wvadArr: number[] = FinUtil.arrOp(FinUtil.arrOp(
     FinUtil.arrOp(closeArr, openArr, '-'), FinUtil.arrOp(highArr, lowArr, '-'), '/'), volArr, '*');
-  const maWvadArr: number[] = MA(wvadArr, v1);
+  const maWvadArr: number[] = MA(wvadArr, v0);
 
   for (let i: number = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {

@@ -15,12 +15,10 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
+    quotes: [0],
     "space-before-function-paren": 'off',
     semi: [0, 'always'],
     'eol-last': [0, "never"],
-    camelcase: "off",
-    /*
-    quotes: [0],
-    */
+    camelcase: "off"
   }
 }
