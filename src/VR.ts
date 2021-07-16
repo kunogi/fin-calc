@@ -35,11 +35,9 @@ export default function (arr_: iKData[], customData_: iVR['param'] = { prop: 'cl
   let thArr: number[] = [];
   let tlArr: number[] = [];
   let tqArr: number[] = [];
-  /*
-  TH = SUM(IFF(CLOSE > LC, VOL, 0), N)
-  TL = SUM(IFF(CLOSE < LC, VOL, 0), N)
-  TQ = SUM(IFF(CLOSE = LC, VOL, 0), N)
-  */
+  // TH = SUM(IFF(CLOSE > LC, VOL, 0), N)
+  // TL = SUM(IFF(CLOSE < LC, VOL, 0), N)
+  // TQ = SUM(IFF(CLOSE = LC, VOL, 0), N):
   for (let i: number = 0, l: number = propArr.length; i < l; i++) {
     thArr.push(propArr[i] > ref1Arr[i] ? volumeArr[i] : 0);
     tlArr.push(propArr[i] < ref1Arr[i] ? volumeArr[i] : 0);
