@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
@@ -12,11 +13,7 @@ module.exports = {
     compress: true
   },
 
-<<<<<<< HEAD
-  entry: './www/demo.js',
-=======
   entry: './www/index.js',
->>>>>>> ea331a74d1d7406177c5503f9b2ac8d4b216daad
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'build')
