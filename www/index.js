@@ -1,5 +1,4 @@
 import testdata from './assets/testdata.json';
-
 import FinUtil from '../src/util/FinUtil';
 import MA from '../src/MA';
 import MACD from '../src/MACD';

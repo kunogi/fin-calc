@@ -12,9 +12,13 @@ module.exports = {
     compress: true
   },
 
+<<<<<<< HEAD
   entry: './www/demo.js',
+=======
+  entry: './www/index.js',
+>>>>>>> ea331a74d1d7406177c5503f9b2ac8d4b216daad
   output: {
-    filename: 'demo.js',
+    filename: 'index.js',
     path: path.resolve(__dirname, 'build')
   },
 
