@@ -42,7 +42,7 @@ export default function (arr_: number[], customData_: iRSI['param'] = { prop: 'c
   const rsi2Arr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.sma(maxArr, v1, 1), FinUtil.sma(absArr, v1, 1), '/'), 100, '*');
   const rsi3Arr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.sma(maxArr, v2, 1), FinUtil.sma(absArr, v2, 1), '/'), 100, '*');
 
-  for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+  for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
       rsi1: rsi1Arr[i],
       rsi2: rsi2Arr[i],

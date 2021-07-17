@@ -43,7 +43,7 @@ export default function (arr_: iKData[], customData_: iKDJ['param'] = { P1: 9, P
   const dArr: number[] = FinUtil.sma(kArr, P3, 1);
   const jArr: number[] = FinUtil.arrOp(FinUtil.arrOp(kArr, 3, '*'), FinUtil.arrOp(dArr, 2, '*'), '-');
 
-  for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+  for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
       k: kArr[i],
       d: dArr[i],

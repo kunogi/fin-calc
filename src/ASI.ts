@@ -30,7 +30,7 @@ export default function (arr_: iKData[], customData_: iASI['param'] = { v0: 26, 
   const ddArr: number[] = FinUtil.abs(FinUtil.arrOp(lcArr, FinUtil.ref(openArr, 1), '-'));
 
   const rArr: number[] = [];
-  for (let i: number = 0, l: number = aaArr.length; i < l; i++) {
+  for (let i = 0, l: number = aaArr.length; i < l; i++) {
     if (aaArr[i] > bbArr[i] && aaArr[i] > ccArr[i]) {
       rArr.push(aaArr[i] + bbArr[i] / 2 + ddArr[i] / 4);
     } else if (bbArr[i] > ccArr[i] && bbArr[i] > aaArr[i]) {
@@ -47,7 +47,7 @@ export default function (arr_: iKData[], customData_: iASI['param'] = { v0: 26, 
   const asiArr: number[] = FinUtil.sum(siArr, v0);
   const asitArr: number[] = MA(asiArr, v1);
 
-  for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+  for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
       asi: asiArr[i],
       asit: asitArr[i]

@@ -38,7 +38,7 @@ export default function (arr_: iKData[], customData_: iTRIX['param'] = { prop: '
   const trixArr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(trArr, tr1Arr, '-'), tr1Arr, '/'), 100, '*');
   const matrixArr: number[] = MA(trixArr, N);
 
-  for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+  for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
       trix: trixArr[i],
       matrix: matrixArr[i]

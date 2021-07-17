@@ -1,12 +1,12 @@
-import testdata from './testdata.json';
+import testdata from './assets/testdata.json';
 
-import FinUtil from './src/util/FinUtil';
-import MA from './src/MA';
-import MACD from './src/MACD';
-import SAR from './src/SAR';
-import BBIBOLL from './src/BBIBOLL';
-import KDJ from './src/KDJ';
-import DMI from './src/DMI';
+import FinUtil from '../src/util/FinUtil';
+import MA from '../src/MA';
+import MACD from '../src/MACD';
+import SAR from '../src/SAR';
+import BBIBOLL from '../src/BBIBOLL';
+import KDJ from '../src/KDJ';
+import DMI from '../src/DMI';
 
 function getContainer() {
   const root = document.getElementById('root');

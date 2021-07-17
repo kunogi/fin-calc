@@ -42,7 +42,7 @@ export default function (arr_: iKData[], customData_: iBBIBOLL['param'] = { prop
   // DWN:BBIBOLL-M*STD(BBIBOLL,N):
   const dwnArr: number[] = FinUtil.arrOp(bbiArr, FinUtil.arrOp(FinUtil.std(bbiArr, N), M, '*'), '-');
 
-  for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+  for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
       bbiboll: bbiArr[i],
       upr: uprArr[i],

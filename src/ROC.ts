@@ -35,7 +35,7 @@ export default function (arr_: number[], customData_: iROC['param'] = { prop: 'c
   const rocArr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(arr, refArr, '-'), refArr, '/'), 100, '*');
   const marocArr: number[] = MA(rocArr, M);
 
-  for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+  for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
       roc: rocArr[i],
       maroc: marocArr[i]

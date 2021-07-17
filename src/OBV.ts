@@ -32,7 +32,7 @@ export default function (arr_: iKData[], customData_: iOBV['param'] = { v0: 30 }
     obvma: obv
   });
 
-  for (let i: number = 1, l: number = arr_.length; i < l; i++) {
+  for (let i = 1, l: number = arr_.length; i < l; i++) {
     data = arr_[i];
     const obj: iOBV['data'] = { obv: NaN, obvma: NaN };
     result.push(obj);

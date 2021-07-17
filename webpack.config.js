@@ -12,7 +12,7 @@ module.exports = {
     compress: true
   },
 
-  entry: './demo.js',
+  entry: './www/demo.js',
   output: {
     filename: 'demo.js',
     path: path.resolve(__dirname, 'build')
