@@ -38,7 +38,7 @@ export default function (arr_: iKData[], customData_: iVR['param'] = { prop: 'cl
   // TH = SUM(IFF(CLOSE > LC, VOL, 0), N)
   // TL = SUM(IFF(CLOSE < LC, VOL, 0), N)
   // TQ = SUM(IFF(CLOSE = LC, VOL, 0), N):
-  for (let i: number = 0, l: number = propArr.length; i < l; i++) {
+  for (let i = 0, l: number = propArr.length; i < l; i++) {
     thArr.push(propArr[i] > ref1Arr[i] ? volumeArr[i] : 0);
     tlArr.push(propArr[i] < ref1Arr[i] ? volumeArr[i] : 0);
     tqArr.push(propArr[i] === ref1Arr[i] ? volumeArr[i] : 0);
@@ -52,7 +52,7 @@ export default function (arr_: iKData[], customData_: iVR['param'] = { prop: 'cl
     FinUtil.arrOp(thArr, 2, '*'), tqArr, '+'), 100, '*'), FinUtil.arrOp(FinUtil.arrOp(tlArr, 2, '*'), tqArr, '+'), '/');
   const mavrArr = MA(vrArr, M);
 
-  for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+  for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
       vr: vrArr[i],
       mavr: mavrArr[i]

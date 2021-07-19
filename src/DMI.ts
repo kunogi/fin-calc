@@ -54,7 +54,7 @@ export default function (arr_: iKData[], customData_: iDMI['param'] = { v0: 14, 
   const hdArr: number[] = FinUtil.arrOp(highArr, FinUtil.ref(highArr, 1), '-');
   const ldArr: number[] = FinUtil.arrOp(FinUtil.ref(lowArr, 1), lowArr, '-');
   let dmpArr: number[] = []; let dmmArr: number[] = [];
-  for (let hd: number, ld: number, i: number = 0, l: number = hdArr.length; i < l; i++) {
+  for (let hd: number, ld: number, i = 0, l: number = hdArr.length; i < l; i++) {
     hd = hdArr[i];
     ld = ldArr[i];
     dmpArr.push(hd > 0 && hd > ld ? hd : 0);
@@ -70,7 +70,7 @@ export default function (arr_: iKData[], customData_: iDMI['param'] = { v0: 14, 
     FinUtil.abs(FinUtil.arrOp(mdiArr, pdiArr, '-')), FinUtil.arrOp(mdiArr, pdiArr, '+'), '/'), 100, '*'), M);
   const adxrArr: number[] = EMA(adxArr, M);
 
-  for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+  for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
       pdi: pdiArr[i],
       mdi: mdiArr[i],

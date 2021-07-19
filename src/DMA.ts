@@ -24,7 +24,7 @@ interface iDMA {
   DIF = MA(CLOSE, SHORT) - MA(CLOSE, LONG)
   DMA = MA(DIF, M)
  */
-export default function (arr_: iKData[], customeData_: iDMA['param'] = { prop: 'close', v0: 10, v1: 50, v2: 10 }) {
+export default function (arr_: iKData[], customeData_: iDMA['param'] = { prop: 'close', v0: 10, v1: 50, v2: 10 }): iDMA['data'][] {
   const result: iDMA['data'][] = [];
 
   const { v0: SHORT, v1: LONG, v2: M, prop } = customeData_;
@@ -36,7 +36,7 @@ export default function (arr_: iKData[], customeData_: iDMA['param'] = { prop: '
   const difArr: number[] = FinUtil.arrOp(maArr1, maArr2, '-');
   const amaArr: number[] = MA(difArr, M);
 
-  for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+  for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
       dif: difArr[i],
       difma: amaArr[i]

@@ -35,7 +35,7 @@ export default function (arr_: iKData[], customeData_: iWVAD['param'] = { v0: 6 
     FinUtil.arrOp(closeArr, openArr, '-'), FinUtil.arrOp(highArr, lowArr, '-'), '/'), volArr, '*');
   const maWvadArr: number[] = MA(wvadArr, v0);
 
-  for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+  for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
       wvad: wvadArr[i],
       wvadma: maWvadArr[i]

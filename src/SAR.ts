@@ -2,19 +2,19 @@ import FinUtil from './util/FinUtil';
 import { iKData } from './interface/iDatas';
 
 interface iSAR {
-    data: {
-        ignore_minmax: number,
-        sar: number
-    },
-    param: {
-        v0: number,
-        v1: number,
-        v2: number
-    },
-    calc: {
-        data: number[],
-        direction: number[]
-    }
+  data: {
+    ignore_minmax: number,
+    sar: number
+  },
+  param: {
+    v0: number,
+    v1: number,
+    v2: number
+  },
+  calc: {
+    data: number[],
+    direction: number[]
+  }
 }
 
 function calc(arr_: iKData[], n_: number, step_: number, max_: number): iSAR['calc'] {
@@ -25,7 +25,7 @@ function calc(arr_: iKData[], n_: number, step_: number, max_: number): iSAR['ca
   const stepArr: number[] = [];
   const extremeArr: number[] = [];
   const directionArr: number[] = [];
-  function up(l: number):any {
+  function up(l: number): any {
     if (l < len) {
       result[l] = Math.min(...lowArr.slice(l - n_, l));
       directionArr[l] = 1;
@@ -100,7 +100,7 @@ export default function (arr_: iKData[], customData_: iSAR['param'] = { v0: 1, v
 
   const sarArr: iSAR['calc'] = calc(arr_, v0, v1, v2);
 
-  for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+  for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
       ignore_minmax: sarArr.direction[i],
       sar: sarArr.data[i]

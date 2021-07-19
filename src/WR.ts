@@ -27,7 +27,7 @@ export default function (arr_: iKData[], customData_: iWR['param'] = { prop: 'cl
   const wr2Arr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(
     FinUtil.hhv(highArr, v1), closeArr, '-'), 100, '*'), FinUtil.arrOp(FinUtil.hhv(highArr, v1), FinUtil.llv(lowArr, v1), '-'), '/');
 
-  for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+  for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
       wr1: wr1Arr[i],
       wr2: wr2Arr[i]

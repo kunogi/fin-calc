@@ -29,7 +29,7 @@ interface iBIAS {
   BIAS2 = (CLOSE - MA_V1) / MA_V1 * 100
   BIAS3 = (CLOSE - MA_V2) / MA_V2 * 100
  */
-export default function (arr_: iKData[], customeData_: iBIAS['param'] = { prop: 'close', v0: 6, v1: 12, v2: 24 }) {
+export default function (arr_: iKData[], customeData_: iBIAS['param'] = { prop: 'close', v0: 6, v1: 12, v2: 24 }):iBIAS['data'][] {
   const result: iBIAS['data'][] = [];
 
   const { prop, v0, v1, v2 } = customeData_;
@@ -43,7 +43,7 @@ export default function (arr_: iKData[], customeData_: iBIAS['param'] = { prop: 
   const bias2Arr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(propArr, mav1, '-'), mav1, '/'), 100, '*');
   const bias3Arr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(propArr, mav2, '-'), mav2, '/'), 100, '*');
 
-  for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+  for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
       bias1: bias1Arr[i],
       bias2: bias2Arr[i],

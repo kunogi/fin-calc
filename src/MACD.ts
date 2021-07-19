@@ -37,7 +37,7 @@ export default function (arr_: iKData[], customData_: iMACD['param'] = { prop: '
   const deaArr: number[] = EMA(difArr, MID);
   const macdArr: number[] = FinUtil.arrOp(FinUtil.arrOp(difArr, deaArr, '-'), 2, '*');
 
-  for (let i: number = 0, l: number = arr.length; i < l; i++) {
+  for (let i = 0, l: number = arr.length; i < l; i++) {
     result[i] = {
       dif: difArr[i],
       dea: deaArr[i],

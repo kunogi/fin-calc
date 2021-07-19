@@ -35,7 +35,7 @@ export default function (arr_: iKData[], customData_: iBOLL['param'] = { prop: '
   const upperArr: number[] = FinUtil.arrOp(maArr, stdArr, '+');
   const lowerArr: number[] = FinUtil.arrOp(maArr, stdArr, '-');
 
-  for (let i: number = 0, l: number = arr.length; i < l; i++) {
+  for (let i = 0, l: number = arr.length; i < l; i++) {
     result[i] = {
       boll: maArr[i],
       upper: upperArr[i],

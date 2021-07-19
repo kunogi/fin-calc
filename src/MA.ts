@@ -7,10 +7,10 @@
  * @param {boolean} calcAnyDays_ calculate or not based on not enough days
  * @returns {number[]} moving average array
  */
-export default function (arr_: number[], days_: number, calcAnyDays_: boolean = true): number[] {
+export default function (arr_: number[], days_: number, calcAnyDays_ = true): number[] {
   const result: number[] = [];
 
-  for (let i: number = 0, sum: number = 0, ma: number | null, l: number = arr_.length; i < l; i++) {
+  for (let i = 0, sum = 0, ma: number | null, l: number = arr_.length; i < l; i++) {
     // add new incoming value to sum:
     arr_[i] && (sum += arr_[i]);
 

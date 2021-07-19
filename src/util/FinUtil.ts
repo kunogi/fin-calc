@@ -6,7 +6,7 @@ class FinUtil {
    * @returns
    */
   public avg(arr_: number[]): number {
-    let sum: number = 0;
+    let sum = 0;
     const l: number = arr_.length;
     for (let i: number = l; i--;) {
       sum += arr_[i];
@@ -68,7 +68,7 @@ class FinUtil {
   public sd(arr_: number[], n_: number): number {
     const avg: number = this.avg(arr_);
     const l: number = arr_.length;
-    let sum: number = 0;
+    let sum = 0;
     for (let i: number = l; i--;) {
       sum += Math.pow(arr_[i] - avg, 2);
     }
@@ -85,7 +85,7 @@ class FinUtil {
    */
   public sma(arr_: number[], days_: number, weight_: number): number[] {
     const result: number[] = [arr_[0]];
-    for (let i: number = 1, l: number = arr_.length; i < l; i++) {
+    for (let i = 1, l: number = arr_.length; i < l; i++) {
       result.push((weight_ * arr_[i] + (days_ - weight_) * result[i - 1]) / days_);
     }
     return result;
@@ -100,7 +100,7 @@ class FinUtil {
    */
   public std(arr_: number[], n_: number): number[] {
     const result: number[] = [];
-    for (let i: number = 0, s: number, l: number = arr_.length; i < l; i++) {
+    for (let i = 0, s: number, l: number = arr_.length; i < l; i++) {
       s = i < n_ ? 0 : i - n_ + 1;
       result.push(this.sd(arr_.slice(s, i + 1), 1));
     }
@@ -116,7 +116,7 @@ class FinUtil {
    */
   public ad(arr_: number[]): number {
     const avg: number = this.avg(arr_);
-    let sum: number = 0;
+    let sum = 0;
     const l: number = arr_.length;
     for (let i: number = l; i--;) {
       sum += Math.abs(arr_[i] - avg);
@@ -132,7 +132,7 @@ class FinUtil {
    */
   public avedev(arr_: number[], n_: number): number[] {
     const result: number[] = [];
-    for (let i: number = 0, s: number, l: number = arr_.length; i < l; i++) {
+    for (let i = 0, s: number, l: number = arr_.length; i < l; i++) {
       s = i < n_ ? 0 : i - n_ + 1;
       result.push(this.ad(arr_.slice(s, i + 1)));
     }
@@ -149,7 +149,7 @@ class FinUtil {
     const result: number[] = [];
     const l: number = arr_.length;
     const max: number = Math.max(...arr_);
-    for (let i: number = 0, s: number; i < l; i++) {
+    for (let i = 0, s: number; i < l; i++) {
       if (n_) {
         s = i < n_ ? 0 : i - n_ + 1;
         result.push(Math.max(...arr_.slice(s, i + 1)));
@@ -170,7 +170,7 @@ class FinUtil {
     const result: number[] = [];
     const l: number = arr_.length;
     const min: number = Math.min(...arr_);
-    for (let i: number = 0, s: number; i < l; i++) {
+    for (let i = 0, s: number; i < l; i++) {
       if (n_) {
         s = i < n_ ? 0 : i - n_ + 1;
         result.push(Math.min(...arr_.slice(s, i + 1)));
@@ -191,7 +191,7 @@ class FinUtil {
           case 'Array':
         */
     const result: number[] = [];
-    for (let i: number = 0, l: number = o_.length; i < l; i++) {
+    for (let i = 0, l: number = o_.length; i < l; i++) {
       result.push(Math.abs(o_[i]));
     }
     return result;
@@ -200,13 +200,13 @@ class FinUtil {
   public sum(arr_: number[], n_: number): number[] {
     const result: number[] = [];
     if (n_) {
-      for (let i: number = 0, s: number, l: number = arr_.length; i < l; i++) {
+      for (let i = 0, s: number, l: number = arr_.length; i < l; i++) {
         s = i < n_ ? 0 : i - n_ + 1;
         result.push(this.getArrSum(arr_.slice(s, i + 1)));
       }
     } else {
-      let last: number = 0;
-      for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+      let last = 0;
+      for (let i = 0, l: number = arr_.length; i < l; i++) {
         last += arr_[i];
         result.push(last);
       }
@@ -278,7 +278,7 @@ class FinUtil {
   public genArrByProp(arr_: any[], prop_: string, f_?: Function): number[] {
     if (prop_) {
       const result = [];
-      for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+      for (let i = 0, l: number = arr_.length; i < l; i++) {
         result.push(f_ ? f_(arr_[i][prop_]) : arr_[i][prop_]);
       }
       return result;
@@ -297,7 +297,7 @@ class FinUtil {
   }
 
   private getArrSum(arr_: number[]): number {
-    let sum: number = 0;
+    let sum = 0;
     for (let i: number = arr_.length; i--;) {
       sum += arr_[i];
     }

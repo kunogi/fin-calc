@@ -43,7 +43,7 @@ export default function (arr_: iKData[], customData_: iEMV['param'] = { v0: 14, 
   const emvArr: number[] = MA(FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(midArr, volArr, '*'), hMinsLArr, '*'), MA(hMinsLArr, N), '/'), N);
   const maemvArr: number[] = MA(emvArr, N1);
 
-  for (let i: number = 0, l: number = arr_.length; i < l; i++) {
+  for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
       emv: emvArr[i],
       maemv: maemvArr[i]
