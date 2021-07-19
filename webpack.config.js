@@ -12,10 +12,16 @@ module.exports = {
     compress: true
   },
 
-  entry: './www/index.js',
+  entry: {
+    demo: {
+      import: './www/demo.js',
+      dependOn: 'testdata'
+    },
+    testdata: './www/testdata.json'// separate testdatas from the main js
+  },
   output: {
-    filename: 'index.js',
-    path: path.resolve(__dirname, 'build')
+    path: path.resolve(__dirname, 'build'),
+    filename: '[name].js'
   },
 
   module: {

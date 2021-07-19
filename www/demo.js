@@ -1,4 +1,4 @@
-import testdata from '../testdata.json';
+import testdata from './testdata.json';
 
 import FinUtil from '../src/util/FinUtil';
 import MA from '../src/MA';
