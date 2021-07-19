@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import FinUtil from "../../src/util/FinUtil";
 
 describe('FinUtil', () => {
