@@ -1,4 +1,87 @@
 # calculator lib for finance related indicators
+# how to use
+### basic concept
+case 1:
+```
+resultArr0 = ARR_0 * 2 // would like to multiply each item in ARR_0 by 2, and saves in resultArr0.
+```
+in js it's actually:
+```
+resultArr0 = ARR_0.map(item => item * 2)
+```
+case 2:
+```
+resultArr1 = ARR_1 - ARR_2 // which means items in ARR_1 minus items in ARR_2 one by one, and returns a new array with the result.
+```
+with this lib you do thing below to implement the above cases:
+```
+import FinUtil from './util/FinUtil'
+
+resultArr0 = FinUtil.arrOp(ARR_0, 2, '*') // case1, ARR_0 * 2
+
+resultArr1 = FinUtil.arrOp(ARR_1, ARR_2, '-') // case2, ARR_1 - ARR_2
+```
+
+
+# main story
+an original formula you learn from any sources such like some stock software or wikipedia:
+```
+MA(CLOSE, 123)
+```
+which aims to calculate 123 days/months/minutes of the moving average of the close prices.<br/>
+```
+//assume your data arranged as following:
+const _DATAS_ = [
+    {
+        "open": 140.12,
+        "high": 141.03,
+        "low": 139.5,
+        "cLoSe": 139.68,
+        "volume": 25446000,
+        "date": "2019-08-11"
+    },
+    {
+        "open": 139.69,
+        "high": 140.29,
+        "low": 139.52,
+        "cLoSe": 139.55,
+        "volume": 13304300,
+        "date": "2019-08-12"
+    }
+]
+```
+
+0. do the import:
+```
+import FinUtil from './util/FinUtil'
+import MA from './src/MA'
+```
+1. generate array by close-prices:
+```
+const closePriceArr = FinUtil.genArrByProp(_DATAS_, 'cLoSe')
+
+const ma = MA(closePriceArr, 123) // calculate the ma based on CLOSE and the parameter 123
+```
+a complex example, let's say MACD:
+```
+DIF = EMA(CLOSE, SHORT) - EMA(CLOSE, LONG)
+DEA = EMA(DIF, MID)
+MACD = (DIF - DEA) * 2
+```
+
+```
+import FinUtil from './util/FinUtil'
+import EMA from './EMA'
+
+const close = FinUtil.genArrByProp(_DATAS_, 'cLoSe')
+
+const dif = FinUtil.arrOp(EMA(close, 12), EMA(close, 26), '-') // DIF = EMA(CLOSE, 12) - EMA(CLOSE, 26)
+
+const dea = EMA(dif, 9) // DEA = EMA(DIF, 9)
+
+const macd = FinUtil.arrOp(FinUtil.arrOp(dif, dea, '-'), 2, '*') // MACD = (DIF - DEA) * 2
+```
+# providing indicators
 ## ASI
 ```
 ```
@@ -108,6 +191,14 @@ DEA = EMA(DIF, MID)
 MACD = (DIF - DEA) * 2
 ```
 ![image](./img/macd.jpg)
+
+
+
+## MTM
+```
+MTM = CLOSE - REF(CLOSE, N)
+MTMMA = MA(MTM, M)
+```
 
 
 
