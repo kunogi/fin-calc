@@ -24,11 +24,11 @@ resultArr1 = FinUtil.arrOp(ARR_1, ARR_2, '-') // case2, ARR_1 - ARR_2
 
 
 # main story
-an original formula you learn from any sources such like some stock softwares or wikipedia:
+an original formula you learn from any sources such like some stock softwares or wikipedia, which aims to calculate 123 days/months/minutes of the moving average of the close prices:
 ```
 MA(CLOSE, 123)
 ```
-which aims to calculate 123 days/months/minutes of the moving average of the close prices.<br/>
+
 ```
 //assume your data arranged as following:
 const _DATAS_ = [
