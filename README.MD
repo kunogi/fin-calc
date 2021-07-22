@@ -24,7 +24,7 @@ resultArr1 = FinUtil.arrOp(ARR_1, ARR_2, '-') // case2, ARR_1 - ARR_2
 
 
 # main story
-an original formula you learn from any sources such like some stock software or wikipedia:
+an original formula you learn from any sources such like some stock softwares or wikipedia:
 ```
 MA(CLOSE, 123)
 ```
