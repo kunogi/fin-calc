@@ -54,13 +54,13 @@ const _DATAS_ = [{
 import FinUtil from './util/FinUtil'
 import MA from './src/MA'
 ```
-1. generate close-price array:
+1. generate close-price array and do the math:
 ```
 const closePriceArr = FinUtil.genArrByProp(_DATAS_, 'cLoSe')
 
 const ma = MA(closePriceArr, 123) // calculate the ma based on CLOSE and the parameter 123
 ```
-take MACD as an example:
+### take MACD as an example:
 ```
 DIF = EMA(CLOSE, SHORT) - EMA(CLOSE, LONG)
 DEA = EMA(DIF, MID)
