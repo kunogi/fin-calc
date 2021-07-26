@@ -124,6 +124,20 @@ CCI = (TYP - MA(TYP, N)) / (0.015 * AVEDEV(TYP, N))
 ![image](./img/cci.png)
 
 
+## CDP
+```
+CH = REF(HIGH, 1)
+CL = REF(LOW, 1)
+CC = REF(CLOSE, 1)
+CDP = (CH + CL + CC) / 3
+AH = CDP + CH - CL
+AL = CDP - CH + CL
+NH = CDP * 2 - CL
+NL = CDP * 2 - CH
+```
+![image](./img/cdp.jpg)
+
+
 
 ## DMA
 ```
