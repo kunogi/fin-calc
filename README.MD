@@ -13,7 +13,7 @@ case 2:
 ```
 resultArr1 = ARR_1 - ARR_2 // which means items in ARR_1 minus items in ARR_2 one by one, and returns a new array with the result.
 ```
-with this lib you do thing below to implement the above cases:
+with this lib to implement the above cases:
 ```
 import FinUtil from './util/FinUtil'
 
@@ -23,32 +23,30 @@ resultArr1 = FinUtil.arrOp(ARR_1, ARR_2, '-') // case2, ARR_1 - ARR_2
 ```
 
 
-# main story
-an original formula you learn from any sources such like some stock softwares or wikipedia, which aims to calculate 123 days/months/minutes of the moving average of the close prices:
+#  TL;DR
+an original formula you learn from any sources such as some stock-softwares or wikipedia, which aims to calculate 123 days/months/minutes of the moving average of the close prices would probably look like this:
 ```
 MA(CLOSE, 123)
 ```
 
 ```
 //assume your data arranged as following:
-const _DATAS_ = [
-    {
-        "open": 140.12,
-        "high": 141.03,
-        "low": 139.5,
-        "cLoSe": 139.68,
-        "volume": 25446000,
-        "date": "2019-08-11"
-    },
-    {
-        "open": 139.69,
-        "high": 140.29,
-        "low": 139.52,
-        "cLoSe": 139.55,
-        "volume": 13304300,
-        "date": "2019-08-12"
-    }
-]
+const _DATAS_ = [{
+  "open": 140.12,
+  "high": 141.03,
+  "low": 139.5,
+  "cLoSe": 139.68,
+  "volume": 25446000,
+  "date": "2019-08-11"
+},
+{
+  "open": 139.69,
+  "high": 140.29,
+  "low": 139.52,
+  "cLoSe": 139.55,
+  "volume": 13304300,
+  "date": "2019-08-12"
+}]
 ```
 
 0. do the import:
@@ -56,13 +54,13 @@ const _DATAS_ = [
 import FinUtil from './util/FinUtil'
 import MA from './src/MA'
 ```
-1. generate array by close-prices:
+1. generate close-price array:
 ```
 const closePriceArr = FinUtil.genArrByProp(_DATAS_, 'cLoSe')
 
 const ma = MA(closePriceArr, 123) // calculate the ma based on CLOSE and the parameter 123
 ```
-a complex example, let's say MACD:
+take MACD as an example:
 ```
 DIF = EMA(CLOSE, SHORT) - EMA(CLOSE, LONG)
 DEA = EMA(DIF, MID)
@@ -213,6 +211,7 @@ MACD = (DIF - DEA) * 2
 MTM = CLOSE - REF(CLOSE, N)
 MTMMA = MA(MTM, M)
 ```
+![image](./img/mtm.jpg)
 
 
 
