@@ -1,10 +1,10 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import DemoPage from '@/views/DemoPage.vue'
+import Panel from '@/views/Panel.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/demopage',
-    component: DemoPage
+    path: '/panel',
+    component: Panel
   }
 ]
 

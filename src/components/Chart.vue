@@ -1,7 +1,5 @@
-<template>
-  <div class="container">
-    <div class="chart" ref="chartRef"></div>
-  </div>
+<template >
+  <div class="chart" ref="chartRef"></div>
 </template>
 
 <script lang='ts'>
@@ -15,7 +13,6 @@ export default defineComponent({
     const chartRef = ref();
     const state = reactive({
       data: [],
-
     });
 
     onMounted(async () => {
@@ -25,7 +22,6 @@ export default defineComponent({
       onResize();
       window.addEventListener('resize', onResize);
     })
-
     onBeforeUnmount(() => {
       window.removeEventListener('resize', onResize);
     })
@@ -34,7 +30,7 @@ export default defineComponent({
       chart = echarts.init(chartRef.value);
       const initOpt = {
         title: {
-          text: 'echart-1'
+          text: 'chart title'
         },
         tooltip: {
           trigger: 'axis'
@@ -65,11 +61,11 @@ export default defineComponent({
         dataZoom: [{
           type: 'inside',
           xAxisIndex: 0
-        }, {
+        }/*, {
           type: 'slider',
           yAxisIndex: 0
-        }],
-
+        } */
+        ],
         series: [
           {
             name: '收盘价',
@@ -163,3 +159,11 @@ export default defineComponent({
   }
 })
 </script>
+
+<style scoped>
+.chart {
+  width: 300px;
+  height: 300px;
+  flex-grow: 1;
+}
+</style>
