@@ -1,38 +1,71 @@
 {
   "name": "fin-calc",
   "version": "1.0.0",
+  "private": true,
   "description": "a lib to calculate finance related indicators",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:kunogi/fin-calc.git"
+  "author": {
+    "name": "Xuan"
   },
   "scripts": {
-    "build": "webpack",
-    "serve": "webpack serve",
-    "test": "jest",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "diff": "lerna diff",
     "lintjs": "eslint src --ext .ts,.js,.jsx,.tsx --fix",
-    "diff": "lerna diff"
+    "test": "jest"
   },
-  "keywords": [],
-  "author": "Xuan",
-  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "babel-loader": "^8.2.2",
+    "core-js": "^3.6.5",
+    "echarts": "^5.1.2",
+    "vue": "^3.1.5",
+    "vue-router": "^4.0.0-0",
+    "vuex": "^4.0.0-0"
+  },
   "devDependencies": {
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-typescript": "^7.14.5",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/eslint-config-standard": "^5.1.2",
+    "@vue/eslint-config-typescript": "^7.0.0",
     "eslint": "^7.30.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^7.13.0",
     "eslint-webpack-plugin": "^2.5.4",
     "html-webpack-plugin": "^5.3.2",
     "jest": "^27.0.6",
     "lerna": "^4.0.0",
+    "less": "^3.0.4",
+    "less-loader": "^5.0.0",
     "ts-loader": "^9.2.3",
     "ts-node": "^10.1.0",
     "typescript": "^4.3.5",
-    "webpack": "^5.45.1",
+    "webpack": "^4.42.0",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"
   },
-  "dependencies": {}
+  "_id": "fin-calc@1.0.0",
+  "bugs": {
+    "url": "https://github.com/kunogi/fin-calc/issues"
+  },
+  "homepage": "https://github.com/kunogi/fin-calc#readme",
+  "keywords": [],
+  "license": "ISC",
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kunogi/fin-calc.git"
+  }
 }
