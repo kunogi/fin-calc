@@ -20,7 +20,7 @@ interface iCCI {
   TYP = (HIGH + LOW + CLOSE) / 3
   CCI = (TYP - MA(TYP, N)) / (0.015 * AVEDEV(TYP, N))
  */
-export default function (arr_: iKData[], customeData_: iCCI['param'] = { v0: 14 }): iCCI['data'][] {
+export default function(arr_: iKData[], customeData_: iCCI['param'] = { v0: 14 }): iCCI['data'][] {
   const result: iCCI['data'][] = []
 
   const { v0: N } = customeData_

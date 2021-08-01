@@ -32,7 +32,7 @@ interface iDMI {
   ADXR = EXPMEMA(ADX, M)
  */
 
-export default function (arr_: iKData[], customData_: iDMI['param'] = { v0: 14, v1: 6 }): iDMI['data'][] {
+export default function(arr_: iKData[], customData_: iDMI['param'] = { v0: 14, v1: 6 }): iDMI['data'][] {
   const result: iDMI['data'][] = []
 
   const { v0: N, v1: M } = customData_

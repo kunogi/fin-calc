@@ -23,7 +23,7 @@ interface iVR {
   VR = 100 * (TH * 2 + TQ) / (TL * 2 + TQ)
   VRMA = MA(VR, M)
  */
-export default function (arr_: iKData[], customData_: iVR['param'] = { prop: 'close', v0: 26, v1: 6 }): iVR['data'][] {
+export default function(arr_: iKData[], customData_: iVR['param'] = { prop: 'close', v0: 26, v1: 6 }): iVR['data'][] {
   const result: iVR['data'][] = []
 
   const { prop, v0: N, v1: M } = customData_

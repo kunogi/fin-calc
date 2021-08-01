@@ -24,7 +24,7 @@ interface iCDP {
     nl: number
   }
 }
-export default function (arr_: iKData[]): iCDP['data'][] {
+export default function(arr_: iKData[]): iCDP['data'][] {
   const result: iCDP['data'][] = []
 
   const high: number[] = FinUtil.genArrByProp(arr_, 'high')

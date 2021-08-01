@@ -13,7 +13,7 @@ interface iASI {
   }
 }
 
-export default function (arr_: iKData[], customData_: iASI['param'] = { v0: 26, v1: 10 }): iASI['data'][] {
+export default function(arr_: iKData[], customData_: iASI['param'] = { v0: 26, v1: 10 }): iASI['data'][] {
   const result: iASI['data'][] = []
 
   const { v0, v1 } = customData_

@@ -6,7 +6,7 @@ class FinUtil {
    * @param arr_
    * @returns
    */
-  public avg (arr_: number[]): number {
+  public avg(arr_: number[]): number {
     let sum = 0
     const l: number = arr_.length
     for (let i: number = l; i--;) {
@@ -15,7 +15,7 @@ class FinUtil {
     return sum / l
   }
 
-  public op (op_: string, s_: number, m_: number): number {
+  public op(op_: string, s_: number, m_: number): number {
     switch (op_) {
       case '+': return s_ + m_
       case '-': return s_ - m_
@@ -25,7 +25,7 @@ class FinUtil {
     return NaN
   }
 
-  public arrOp (arr1_: any, arr2_: any, op_: string): number[] {
+  public arrOp(arr1_: any, arr2_: any, op_: string): number[] {
     const result: number[] = []; let i: number; const len1: number = arr1_.length; let len2: number
     switch (this.getClass(arr2_)) {
       case 'Array':
@@ -66,7 +66,7 @@ class FinUtil {
    * @param n_
    * @returns
    */
-  public sd (arr_: number[], n_: number): number {
+  public sd(arr_: number[], n_: number): number {
     const avg: number = this.avg(arr_)
     const l: number = arr_.length
     let sum = 0
@@ -84,7 +84,7 @@ class FinUtil {
    * @param weight_
    * @returns
    */
-  public sma (arr_: number[], days_: number, weight_: number): number[] {
+  public sma(arr_: number[], days_: number, weight_: number): number[] {
     const result: number[] = [arr_[0]]
     for (let i = 1, l: number = arr_.length; i < l; i++) {
       result.push((weight_ * arr_[i] + (days_ - weight_) * result[i - 1]) / days_)
@@ -99,7 +99,7 @@ class FinUtil {
    * @param n_
    * @returns
    */
-  public std (arr_: number[], n_: number): number[] {
+  public std(arr_: number[], n_: number): number[] {
     const result: number[] = []
     for (let i = 0, s: number, l: number = arr_.length; i < l; i++) {
       s = i < n_ ? 0 : i - n_ + 1
@@ -115,7 +115,7 @@ class FinUtil {
    * @param arr_
    * @returns
    */
-  public ad (arr_: number[]): number {
+  public ad(arr_: number[]): number {
     const avg: number = this.avg(arr_)
     let sum = 0
     const l: number = arr_.length
@@ -131,7 +131,7 @@ class FinUtil {
    * @param n_
    * @returns
    */
-  public avedev (arr_: number[], n_: number): number[] {
+  public avedev(arr_: number[], n_: number): number[] {
     const result: number[] = []
     for (let i = 0, s: number, l: number = arr_.length; i < l; i++) {
       s = i < n_ ? 0 : i - n_ + 1
@@ -146,7 +146,7 @@ class FinUtil {
    * @param n_
    * @returns
    */
-  public hhv (arr_: number[], n_: number): number[] {
+  public hhv(arr_: number[], n_: number): number[] {
     const result: number[] = []
     const l: number = arr_.length
     const max: number = Math.max(...arr_)
@@ -167,7 +167,7 @@ class FinUtil {
    * @param n_
    * @returns
    */
-  public llv (arr_: number[], n_: number): number[] {
+  public llv(arr_: number[], n_: number): number[] {
     const result: number[] = []
     const l: number = arr_.length
     const min: number = Math.min(...arr_)
@@ -182,7 +182,7 @@ class FinUtil {
     return result
   }
 
-  public abs (o_: number[]): number[] {
+  public abs(o_: number[]): number[] {
     /*
         switch (this.getClass(o_)) {
           default:throw new Error('argument of abs() is not supported');
@@ -198,7 +198,7 @@ class FinUtil {
     return result
   }
 
-  public sum (arr_: number[], n_: number): number[] {
+  public sum(arr_: number[], n_: number): number[] {
     const result: number[] = []
     if (n_) {
       for (let i = 0, s: number, l: number = arr_.length; i < l; i++) {
@@ -215,7 +215,7 @@ class FinUtil {
     return result
   }
 
-  public max (arr1_: any, arr2_: any): number | number[] {
+  public max(arr1_: any, arr2_: any): number | number[] {
     let result: number[]
     let i: number
     let l: number
@@ -261,7 +261,7 @@ class FinUtil {
     }
   }
 
-  public ref (arr_: number[], n_: number): number[] {
+  public ref(arr_: number[], n_: number): number[] {
     const result: number[] = new Array(n_).fill(0)
     for (let i: number = n_, l: number = arr_.length; i < l; i++) {
       result.push(arr_[i - n_])
@@ -276,7 +276,7 @@ class FinUtil {
    * @param f_
    * @returns
    */
-  public genArrByProp (arr_: any[], prop_: string, f_?: (n: number) => number): number[] {
+  public genArrByProp(arr_: any[], prop_: string, f_?: (n: number) => number): number[] {
     if (prop_) {
       const result = []
       for (let i = 0, l: number = arr_.length; i < l; i++) {
@@ -287,7 +287,7 @@ class FinUtil {
     return arr_
   }
 
-  private getClass (o_: any): string {
+  private getClass(o_: any): string {
     // return typeof o_ === 'undefined' ? 'undefined' : o_ === null ? 'null' : o_.constructor.name;
     if (typeof o_ === 'undefined') {
       return 'undefined'
@@ -297,7 +297,7 @@ class FinUtil {
     return o_.constructor.name
   }
 
-  private getArrSum (arr_: number[]): number {
+  private getArrSum(arr_: number[]): number {
     let sum = 0
     for (let i: number = arr_.length; i--;) {
       sum += arr_[i]

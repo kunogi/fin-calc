@@ -26,7 +26,7 @@ interface iMACD {
  * @param customData_ default to calculate based on close price with params:12,26,9
  * @returns
  */
-export default function (arr_: iKData[], customData_: iMACD['param'] = { prop: 'close', v0: 12, v1: 26, v2: 9 }): iMACD['data'][] {
+export default function(arr_: iKData[], customData_: iMACD['param'] = { prop: 'close', v0: 12, v1: 26, v2: 9 }): iMACD['data'][] {
   const result: iMACD['data'][] = []
 
   const { prop, v0: SHORT, v1: LONG, v2: MID } = customData_

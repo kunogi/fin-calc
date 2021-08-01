@@ -24,7 +24,7 @@ interface iBOLL {
   UPPER= MID + TIMES * STD(CLOSE, PERIOD)
   LOWER= MID - TIMES * STD(CLOSE, PERIOD)
  */
-export default function (arr_: iKData[], customData_: iBOLL['param'] = { prop: 'close', v0: 20, v1: 2 }): iBOLL['data'][] {
+export default function(arr_: iKData[], customData_: iBOLL['param'] = { prop: 'close', v0: 20, v1: 2 }): iBOLL['data'][] {
   const result: iBOLL['data'][] = new Array(arr_.length)
 
   const { prop, v0: PERIOD, v1: TIMES } = customData_

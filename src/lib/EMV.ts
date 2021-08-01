@@ -24,7 +24,7 @@ interface iEMV {
   EMV = MA(MID * VOLUME * (HIGH - LOW) / MA(HIGH - LOW, N), N)
   EMVA = MA(EMV, N1)
  */
-export default function (arr_: iKData[], customData_: iEMV['param'] = { v0: 14, v1: 9 }): iEMV['data'][] {
+export default function(arr_: iKData[], customData_: iEMV['param'] = { v0: 14, v1: 9 }): iEMV['data'][] {
   const result: iEMV['data'][] = []
 
   const { v0: N, v1: N1 } = customData_

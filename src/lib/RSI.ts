@@ -27,7 +27,7 @@ interface iRSI {
   RSI2 = SMA(MAXARR, v1, 1) / SMA(ABSARR, v1, 1) * 100
   RSI3 = SMA(MAXARR, v2, 1) / SMA(ABSARR, v2, 1) * 100
  */
-export default function (arr_: number[], customData_: iRSI['param'] = { prop: 'close', v0: 1, v1: 2, v2: 0 }): iRSI['data'][] {
+export default function(arr_: number[], customData_: iRSI['param'] = { prop: 'close', v0: 1, v1: 2, v2: 0 }): iRSI['data'][] {
   const result: iRSI['data'][] = []
 
   const { prop, v0, v1, v2 } = customData_

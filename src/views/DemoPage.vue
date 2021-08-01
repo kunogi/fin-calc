@@ -1,5 +1,4 @@
 <template class='page'>
-  <h1>Demo Page</h1>
   <chart />
 </template>
 <script lang="ts">

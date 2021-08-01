@@ -17,7 +17,7 @@ interface iOBV {
  * @param customData_
  * @returns
  */
-export default function (arr_: iKData[], customData_: iOBV['param'] = { v0: 30 }): iOBV['data'][] {
+export default function(arr_: iKData[], customData_: iOBV['param'] = { v0: 30 }): iOBV['data'][] {
   const result: iOBV['data'][] = []
 
   const { v0 } = customData_

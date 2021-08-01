@@ -25,7 +25,7 @@ interface iTRIX {
  * @param customData_
  * @returns
  */
-export default function (arr_: iKData[], customData_: iTRIX['param'] = { prop: 'close', v0: 12, v1: 9 }): iTRIX['data'][] {
+export default function(arr_: iKData[], customData_: iTRIX['param'] = { prop: 'close', v0: 12, v1: 9 }): iTRIX['data'][] {
   const result: iTRIX['data'][] = []
 
   const { prop, v0: P, v1: N } = customData_

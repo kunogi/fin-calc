@@ -23,7 +23,7 @@ interface iROC {
   ROCMA = MA(ROC, M)
  */
 
-export default function (arr_: number[], customData_: iROC['param'] = { prop: 'close', v0: 12, v1: 6 }): iROC['data'][] {
+export default function(arr_: number[], customData_: iROC['param'] = { prop: 'close', v0: 12, v1: 6 }): iROC['data'][] {
   const result: iROC['data'][] = []
 
   const { prop, v0: N, v1: M } = customData_

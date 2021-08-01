@@ -19,7 +19,7 @@ interface iMTM {
 MTM = CLOSE - REF(CLOSE, N)
 MTMMA = MA(MTM, M)
  * */
-export default function (arr_: iKData[], customData_: iMTM['param'] = { prop: 'close', v0: 12, v1: 6 }): iMTM['data'][] {
+export default function(arr_: iKData[], customData_: iMTM['param'] = { prop: 'close', v0: 12, v1: 6 }): iMTM['data'][] {
   const result: iMTM['data'][] = []
 
   const { prop, v0: N, v1: M } = customData_

@@ -29,7 +29,7 @@ interface iBIAS {
   BIAS2 = (CLOSE - MA_V1) / MA_V1 * 100
   BIAS3 = (CLOSE - MA_V2) / MA_V2 * 100
  */
-export default function (arr_: iKData[], customeData_: iBIAS['param'] = { prop: 'close', v0: 6, v1: 12, v2: 24 }):iBIAS['data'][] {
+export default function(arr_: iKData[], customeData_: iBIAS['param'] = { prop: 'close', v0: 6, v1: 12, v2: 24 }):iBIAS['data'][] {
   const result: iBIAS['data'][] = []
 
   const { prop, v0, v1, v2 } = customeData_

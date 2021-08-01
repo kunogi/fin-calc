@@ -20,7 +20,7 @@ interface iWVAD {
  * @description
   WVAD = (CLOSE - OPEN) / (HIGH - LOW) * VOL
  */
-export default function (arr_: iKData[], customeData_: iWVAD['param'] = { v0: 6 }): iWVAD['data'][] {
+export default function(arr_: iKData[], customeData_: iWVAD['param'] = { v0: 6 }): iWVAD['data'][] {
   const result: iWVAD['data'][] = []
 
   const { v0 } = customeData_

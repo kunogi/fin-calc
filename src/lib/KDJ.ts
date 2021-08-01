@@ -25,7 +25,7 @@ interface iKDJ {
   D = SMA(K, P3, 1)
   J = 3 * K - 2 * D
  */
-export default function (arr_: iKData[], customData_: iKDJ['param'] = { P1: 9, P2: 3, P3: 3 }): iKDJ['data'][] {
+export default function(arr_: iKData[], customData_: iKDJ['param'] = { P1: 9, P2: 3, P3: 3 }): iKDJ['data'][] {
   const result: iKDJ['data'][] = []
 
   const { P1, P2, P3 } = customData_

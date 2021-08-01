@@ -25,7 +25,7 @@ interface iBBIBOLL {
   UPR = BBIBOLL + M * STD(BBIBOLL, N)
   DWN = BBIBOLL - M * STD(BBIBOLL, N)
  */
-export default function (arr_: iKData[], customData_: iBBIBOLL['param'] = { prop: 'close', v0: 11, v1: 6 }): iBBIBOLL['data'][] {
+export default function(arr_: iKData[], customData_: iBBIBOLL['param'] = { prop: 'close', v0: 11, v1: 6 }): iBBIBOLL['data'][] {
   const result: iBBIBOLL['data'][] = []
 
   const { prop, v0: N, v1: M } = customData_

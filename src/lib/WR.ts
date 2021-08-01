@@ -13,7 +13,7 @@ interface iWR {
   }
 }
 
-export default function (arr_: iKData[], customData_: iWR['param'] = { prop: 'close', v0: 1, v1: 0 }): iWR['data'][] {
+export default function(arr_: iKData[], customData_: iWR['param'] = { prop: 'close', v0: 1, v1: 0 }): iWR['data'][] {
   const result: iWR['data'][] = []
 
   const { prop, v0, v1 } = customData_
