@@ -20,6 +20,7 @@ module.exports = {
     semi: 'off',
     "comma-dangle": 'off',
     quotes: [0, "never"],
-    'no-trailing-spaces': ['error', { skipBlankLines: true }]
+    'no-trailing-spaces': ['error', { skipBlankLines: true }],
+    "spaced-comment": 'off'
   }
 }

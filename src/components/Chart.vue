@@ -8,7 +8,10 @@ import * as echarts from 'echarts'
 import axios from 'axios'
 
 export default defineComponent({
-  setup() {
+  props: {
+    option: Object,
+  },
+  setup(props) {
     let chart: echarts.ECharts;
     const chartRef = ref();
     const state = reactive({
@@ -28,94 +31,13 @@ export default defineComponent({
 
     function initChart() {
       chart = echarts.init(chartRef.value);
-      const initOpt = {
-        title: {
-          text: 'chart title'
-        },
-        tooltip: {
-          trigger: 'axis'
-        },
-        legend: {},
-        grid: {
-          containLabel: true,
-          top: '10%',
-          right: '2%',
-          bottom: '2%',
-          left: '2%'
-        },
-        xAxis: {
-          type: 'time',
-          boundaryGap: false
-        },
-        yAxis: [
-          {
-            name: '价格',
-            type: 'value',
-            scale: true
-          }, {
-            name: '量',
-            type: 'value',
-            scale: true
-          }
-        ],
-        dataZoom: [{
-          type: 'inside',
-          xAxisIndex: 0
-        }/*, {
-          type: 'slider',
-          yAxisIndex: 0
-        } */
-        ],
-        series: [
-          {
-            name: '收盘价',
-            type: 'line',
-            yAxisIndex: 0,
-            showSymbol: false,
-            markPoint: {
-              data: [{
-                type: 'max'
-              },
-              {
-                type: 'min'
-              }]
-            },
-            markLine: {
-              data: [
-                {
-                  type: 'average'
-                }
-              ]
-            }
-          }, {
-            name: '成交量',
-            type: 'bar',
-            label: {
-              // show: true,
-              position: 'top',
-              color: '#f00'
-            },
-            itemStyle: {
-              borderRadius: [90, 90, 0, 0]
-            },
-            yAxisIndex: 1,
-            showSymbol: false
-          }]
-      };
-      chart.setOption(initOpt);
+      chart.setOption(props.option as any);
     }
 
     async function getData() {
       const { data } = await axios({
         method: 'get',
-        baseURL: '_PROXYAPI_',
-        url: '/cn/api/json.php/CN_MarketDataService.getKLineData',
-        params: {
-          symbol: 'sh000001',
-          scale: 240,
-          ma: 'no',
-          datalen: 260
-        }
+        url: (props.option as any).dataSource,
       });
       state.data = data;
     }
@@ -130,13 +52,11 @@ export default defineComponent({
         },
         series: [
           {
-            name: '收盘价',
             encode: {
               x: 'day',
               y: 'close'
             }
           }, {
-            name: '成交量',
             encode: {
               x: 'day',
               y: 'volume'

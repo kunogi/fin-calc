@@ -22,7 +22,7 @@
     "element-plus": "^1.0.2-beta.65",
     "vue": "^3.1.5",
     "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.14.7",

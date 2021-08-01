@@ -1,14 +1,16 @@
 <template>
   <new-chart />
-
+  
   <ul class="container">
-    <chart v-for="c in charts" :key="c" />
+    <chart v-for="opt in store.state.chartOpts" :key="opt.id" :option="opt"/>
   </ul>
 </template>
+
 <script lang="ts">
-import { defineComponent, reactive } from 'vue';
+import { defineComponent } from 'vue';
 import Chart from '@/components/Chart.vue'
 import NewChart from '@/components/NewChart.vue'
+import store from '../store'
 
 export default defineComponent({
   components: {
@@ -16,14 +18,13 @@ export default defineComponent({
     NewChart
   },
   setup() {
-    const charts: number[] = reactive([]);
-
     return {
-      charts
+      store
     }
   }
 })
 </script>
+
 <style scoped>
 .container {
   display: flex;

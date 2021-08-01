@@ -3,12 +3,20 @@ module.exports = {
     port: 8828,
     open: true,
     proxy: {
-      '/_PROXYAPI_': {
+      '/_SINAPROXY_': {
         target: 'https://quotes.sina.cn/',
         secure: true,
         changeOrigin: true,
         pathRewrite: {
-          '^/_PROXYAPI_': ''
+          '^/_SINAPROXY_': ''
+        }
+      },
+      '/_MEITUANPROXY_': {
+        target: 'https://www.meituan.com',
+        secure: true,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/_MEITUANPROXY_': ''
         }
       }
     }
