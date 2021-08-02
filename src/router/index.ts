@@ -3,6 +3,10 @@ import Panel from '@/views/Panel.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
+    path: '/',
+    redirect: '/panel'
+  },
+  {
     path: '/panel',
     component: Panel
   }

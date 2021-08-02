@@ -1,25 +1,53 @@
 <template>
   <new-chart />
-  
+
+  <draggable
+    v-model="store.state.chartOpts"
+    group="charts"
+    @start="onDragStart"
+    @end="onDragEnd"
+    item-key="id"
+    class="container"
+  >
+    <template #item="{ element }">
+      <chart :key="element.id" :option="element" />
+    </template>
+  </draggable>
+  <!--
   <ul class="container">
-    <chart v-for="opt in store.state.chartOpts" :key="opt.id" :option="opt"/>
+    <chart v-for="opt in store.state.chartOpts" :key="opt.id" :option="opt" />
   </ul>
+  -->
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import Chart from '@/components/Chart.vue'
 import NewChart from '@/components/NewChart.vue'
 import store from '../store'
+import draggable from 'vuedraggable'
 
 export default defineComponent({
   components: {
     Chart,
-    NewChart
+    NewChart,
+    draggable
   },
   setup() {
+    const drag = ref(false);
+
+    function onDragStart() {
+      drag.value = true;
+    }
+    function onDragEnd() {
+      drag.value = false;
+    }
+
     return {
-      store
+      store,
+      onDragStart,
+      onDragEnd,
+      drag
     }
   }
 })
@@ -31,7 +59,7 @@ export default defineComponent({
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: start;
-  width: 100vw;
-  height: 100vh;
+  width: 80vw;
+  height: 80vh;
 }
 </style>

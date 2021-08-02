@@ -29,7 +29,7 @@ export default defineComponent({
     });
 
     const options = reactive([{
-      value: '/_SINAPROXY_/cn/api/json.php/CN_MarketDataService.getKLineData?symbol=sh000001&scale=240&ma5=no&datalen=123',
+      value: '/_SINAPROXY_/cn/api/json.php/CN_MarketDataService.getKLineData?symbol=sh000001&scale=240&ma=no&datalen=123',
       label: 'aa-aa'
     }, {
       value: '/_MEITUANPROXY_/ptapi/suggest?keyword=a',

@@ -1,3 +1,4 @@
+import { nextTick } from 'vue'
 import { createStore } from 'vuex'
 
 export default createStore({
@@ -5,7 +6,7 @@ export default createStore({
     chartOpts: <any>[]
   },
   mutations: {
-    newChart(state, chartInfo) {
+    async newChart(state, chartInfo) {
       const initOpt = {
         id: Date.now(),
         dataSource: chartInfo.dataSource,
@@ -49,6 +50,12 @@ export default createStore({
         ]
       };
       state.chartOpts.push(initOpt)
+
+      //manully resize to relocate all the exising charts:
+      await nextTick();
+      const event = document.createEvent("HTMLEvents");
+      event.initEvent("resize", true, true);
+      window.dispatchEvent(event);
     }
   },
   actions: {
