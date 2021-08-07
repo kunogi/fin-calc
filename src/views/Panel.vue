@@ -13,11 +13,6 @@
       <chart :key="element.id" :option="element" />
     </template>
   </draggable>
-  <!--
-  <ul class="container">
-    <chart v-for="opt in store.state.chartOpts" :key="opt.id" :option="opt" />
-  </ul>
-  -->
 </template>
 
 <script lang="ts">
