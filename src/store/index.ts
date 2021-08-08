@@ -7,7 +7,6 @@ export default createStore({
   },
   mutations: {
     async newChart(state, info) {
-      console.log(info);
       const initOpt = {
         id: Date.now(),
         title: {
