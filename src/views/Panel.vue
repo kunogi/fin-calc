@@ -1,5 +1,6 @@
 <template>
   <new-chart />
+
   <draggable
     v-model="store.state.chartOpts"
     group="charts"
@@ -18,7 +19,7 @@
 import { defineComponent, ref } from 'vue';
 import Chart from '@/components/Chart.vue'
 import NewChart from '@/components/NewChart.vue'
-import store from '../store'
+import store from '@/store'
 import draggable from 'vuedraggable'
 
 export default defineComponent({

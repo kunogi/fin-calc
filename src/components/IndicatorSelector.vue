@@ -1,14 +1,30 @@
 <template>
-  <el-select v-model="chartInfo.indicatorType" placeholder="Select Indicator">
-    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
-  </el-select>
-  <el-button type="primary" @click="generateChart">+</el-button>
+  <el-row>
+    <el-select v-model="chartInfo.indicatorType" placeholder="Select An Indicator" size="small">
+      <el-option
+        v-for="indicator in indicators"
+        :key="indicator.value"
+        :label="indicator.label"
+        :value="indicator.value"
+        :disabled="indicator.disabled"
+      ></el-option>
+    </el-select>
+
+    <el-button
+      type="primary"
+      @click="generateChart"
+      icon="el-icon-plus"
+      :disabled="!chartInfo.indicatorType"
+      size="small"
+    />
+  </el-row>
 </template>
-  
+
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
-import store from '../store'
-import options from '@/lib/util/indicators'
+import store from '@/store'
+import indicators from '@/lib/util/indicators'
+import { NEW_CHART } from '@/store/mutation-types'
 
 export default defineComponent({
   props: ['stockData'],
@@ -20,11 +36,11 @@ export default defineComponent({
     });
 
     function generateChart() {
-      store.dispatch('newChart', chartInfo);
+      store.dispatch(NEW_CHART, chartInfo)
     }
 
     return {
-      options,
+      indicators,
       chartInfo,
       generateChart,
     }

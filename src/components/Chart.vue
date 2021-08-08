@@ -17,8 +17,8 @@ export default defineComponent({
     let chart: echarts.ECharts;
 
     onMounted(() => {
-      chart = echarts.init(chartRef.value)
-      chart.setOption(props.option as any);
+      chart = echarts.init(chartRef.value);
+      chart.setOption(props.option as EChartsOption);
       window.addEventListener('resize', onResize);
     })
 

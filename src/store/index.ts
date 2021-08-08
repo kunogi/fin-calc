@@ -1,86 +1,64 @@
-import { nextTick } from 'vue'
+import { EChartsOption } from 'echarts'
 import { createStore } from 'vuex'
+import { NEW_CHART } from './mutation-types'
+import { nextTick } from 'vue'
 
 export default createStore({
   state: {
-    chartOpts: <any>[]
+    chartOpts: <EChartsOption | any>[]
   },
   mutations: {
-    async newChart(state, info) {
-      const initOpt = {
-        id: Date.now(),
-        title: {
-          text: info.indicatorType
-        },
-        tooltip: {
-          trigger: 'axis'
-        },
-
-        xAxis: {
-          type: 'category',
-          data: info.dates
-        },
-        yAxis: {
-          type: 'value',
-          scale: true
-        },
-        series: info.drawingDatas
-      };
-
-      state.chartOpts.push(initOpt)
-
-      //manully resize to relocate all the exising charts:
-      await nextTick();
-      const event = document.createEvent("HTMLEvents");
-      event.initEvent("resize", true, true);
-      window.dispatchEvent(event);
+    [NEW_CHART](state, option) {
+      state.chartOpts.push(option);
     }
   },
   actions: {
     async newChart(context, chartInfo) {
       const { indicatorType, stockData } = chartInfo;
-      const { default: indicatorFn } = await import(`@/lib/${indicatorType}.ts`)
+      const { default: indicatorFn } = await import(`@/lib/${indicatorType.toUpperCase()}.ts`);
       const indicatorData = indicatorFn(stockData);
-      const { drawingDatas, dates } = handleData(indicatorData);
-      context.commit('newChart', { drawingDatas, dates, indicatorType });
+      //generate key array and get rid of date field (x axis):
+      const sample = indicatorData[0];
+      const keys = Object.keys(sample).filter(k => k !== 'date');
+      const option = {
+        id: Date.now(),
+        title: {
+          text: indicatorType
+        },
+        tooltip: {
+          trigger: 'axis'
+        },
+        dataset: {
+          sourceHeader: false,
+          source: indicatorData
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false
+        },
+        yAxis: {
+          scale: true
+        },
+        series: keys.map(k => {
+          return {
+            type: 'line',
+            //encode: { x: 'date', y: k },
+            symbol: 'none'
+          }
+        })
+      };
+
+      context.commit(NEW_CHART, option);
+
+      //manully resize to relocate all the exising charts:
+      nextTick(function () {
+        const event = document.createEvent("HTMLEvents");
+        event.initEvent("resize", true, true);
+        window.dispatchEvent(event);
+      })
     }
   },
   modules: {
 
   }
 })
-
-function handleData(indicatorData: any) {
-  const target = [];
-
-  const dates = [];
-  for (let i = 0; i < indicatorData.length; i++) {
-    dates.push(indicatorData[i].date);
-  }
-
-  const sample = indicatorData[0];
-  for (const k in sample) {
-    if (k === 'date') continue;
-
-    const arr: number[] = [];
-    target.push({
-      name: k,
-      type: 'line',
-      symbol: 'none',
-      encode: {
-        x: 'date'
-      },
-      data: arr
-    })
-  }
-
-  for (let j = 0; j < target.length; j++) {
-    const one = target[j];
-    const name = one.name;
-    for (let i = 0; i < indicatorData.length; i++) {
-      const data = indicatorData[i];
-      one.data.push(data[name]);
-    }
-  }
-  return { drawingDatas: target, dates: dates };
-}
