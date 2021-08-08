@@ -1,9 +1,9 @@
 .DS_Store
-node_modules
-dist
-test_compress
-coverage
-build
+/node_modules
+/dist
+/test_compress
+/coverage
+/build
 
 # local env files
 .env.local
