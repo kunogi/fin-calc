@@ -1,5 +1,5 @@
 <template >
-  <div class="chart" ref="chartRef" id="chart"></div>
+  <div class="chart" ref="chartRef"></div>
 </template>
 
 <script lang='ts'>
@@ -17,7 +17,7 @@ export default defineComponent({
     let chart: echarts.ECharts;
 
     onMounted(() => {
-      chart = echarts.init(chartRef.value);
+      chart = echarts.init(chartRef.value, 'dark');
       chart.setOption(props.option as EChartsOption);
       window.addEventListener('resize', onResize);
     })

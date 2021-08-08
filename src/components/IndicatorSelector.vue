@@ -11,7 +11,7 @@
     </el-select>
 
     <el-button
-      type="primary"
+      type="danger"
       @click="generateChart"
       icon="el-icon-plus"
       :disabled="!chartInfo.indicatorType"
