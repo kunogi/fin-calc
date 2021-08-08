@@ -7,9 +7,11 @@ interface iMACD {
     prop: string,
     v0: number, // SHORT
     v1: number, // LONG
-    v2: number// MID
+    v2: number, // MID
+    date: string
   },
   data: {
+    date: unknown,
     dif: number,
     dea: number,
     bar: number
@@ -26,12 +28,13 @@ interface iMACD {
  * @param customData_ default to calculate based on close price with params:12,26,9
  * @returns
  */
-export default function(arr_: iKData[], customData_: iMACD['param'] = { prop: 'close', v0: 12, v1: 26, v2: 9 }): iMACD['data'][] {
+export default function (arr_: iKData[], customData_: iMACD['param'] = { prop: 'close', v0: 12, v1: 26, v2: 9, date: 'day' }): iMACD['data'][] {
   const result: iMACD['data'][] = []
 
-  const { prop, v0: SHORT, v1: LONG, v2: MID } = customData_
+  const { prop, v0: SHORT, v1: LONG, v2: MID, date } = customData_
 
-  const arr: number[] = FinUtil.genArrByProp(arr_, prop)
+  const arr: number[] = FinUtil.genArrByProp(arr_, prop, Number)
+  const dateArr: unknown[] = FinUtil.genArrByProp(arr_, date)
 
   const difArr: number[] = FinUtil.arrOp(EMA(arr, SHORT), EMA(arr, LONG), '-')
   const deaArr: number[] = EMA(difArr, MID)
@@ -39,6 +42,7 @@ export default function(arr_: iKData[], customData_: iMACD['param'] = { prop: 'c
 
   for (let i = 0, l: number = arr.length; i < l; i++) {
     result[i] = {
+      date: dateArr[i],
       dif: difArr[i],
       dea: deaArr[i],
       bar: macdArr[i]

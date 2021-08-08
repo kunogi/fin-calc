@@ -1,7 +1,7 @@
 <template>
   <el-button @click="drawer = true" type="primary" style="margin-left: 16px;">+</el-button>
 
-  <el-drawer title="新建图表" v-model="drawer" :direction="direction" destroy-on-close>
+  <el-drawer title="New Chart" v-model="drawer" :direction="direction" destroy-on-close>
     <indicator-selector :stockData="stockData" />
   </el-drawer>
 </template>

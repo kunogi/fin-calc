@@ -30,9 +30,9 @@ export default function (arr_: iKData[], customeData_: iCCI['param'] = { v0: 14,
 
   const { v0: N, close, high, low, date } = customeData_
 
-  const closeArr: number[] = FinUtil.genArrByProp(arr_, close)
-  const highArr: number[] = FinUtil.genArrByProp(arr_, high)
-  const lowArr: number[] = FinUtil.genArrByProp(arr_, low)
+  const closeArr: number[] = FinUtil.genArrByProp(arr_, close, Number)
+  const highArr: number[] = FinUtil.genArrByProp(arr_, high, Number)
+  const lowArr: number[] = FinUtil.genArrByProp(arr_, low, Number)
   const dateArr: unknown[] = FinUtil.genArrByProp(arr_, date)
 
   const typArr: number[] = FinUtil.arrOp(FinUtil.arrOp(FinUtil.arrOp(highArr, lowArr, '+'), closeArr, '+'), 3, '/')

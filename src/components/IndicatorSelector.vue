@@ -1,5 +1,5 @@
 <template>
-  <el-select v-model="chartInfo.indicatorType" placeholder="选择技术指标">
+  <el-select v-model="chartInfo.indicatorType" placeholder="Select Indicator">
     <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
   </el-select>
   <el-button type="primary" @click="generateChart">+</el-button>

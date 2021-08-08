@@ -5,9 +5,14 @@ import FinUtil from './util/FinUtil'
 interface iEMV {
   param: {
     v0: number, // N
-    v1: number// N1
+    v1: number, // N1
+    date: string,
+    high: string,
+    low: string,
+    volume: string
   },
   data: {
+    date: unknown,
     emv: number,
     maemv: number
   }
@@ -24,14 +29,15 @@ interface iEMV {
   EMV = MA(MID * VOLUME * (HIGH - LOW) / MA(HIGH - LOW, N), N)
   EMVA = MA(EMV, N1)
  */
-export default function(arr_: iKData[], customData_: iEMV['param'] = { v0: 14, v1: 9 }): iEMV['data'][] {
+export default function (arr_: iKData[], customData_: iEMV['param'] = { v0: 14, v1: 9, date: 'day', high: 'high', low: 'low', volume: 'volume' }): iEMV['data'][] {
   const result: iEMV['data'][] = []
 
-  const { v0: N, v1: N1 } = customData_
+  const { v0: N, v1: N1, date, high, low, volume } = customData_
 
-  const highArr: number[] = FinUtil.genArrByProp(arr_, 'high')
-  const lowArr: number[] = FinUtil.genArrByProp(arr_, 'low')
-  const volumeArr: number[] = FinUtil.genArrByProp(arr_, 'volume')
+  const highArr: number[] = FinUtil.genArrByProp(arr_, high, Number)
+  const lowArr: number[] = FinUtil.genArrByProp(arr_, low, Number)
+  const volumeArr: number[] = FinUtil.genArrByProp(arr_, volume, Number)
+  const dateArr: unknown[] = FinUtil.genArrByProp(arr_, date)
 
   const volArr: number[] = FinUtil.arrOp(MA(volumeArr, N), volumeArr, '/')
   const hPlusLArr: number[] = FinUtil.arrOp(highArr, lowArr, '+')
@@ -45,6 +51,7 @@ export default function(arr_: iKData[], customData_: iEMV['param'] = { v0: 14, v
 
   for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
+      date: dateArr[i],
       emv: emvArr[i],
       maemv: maemvArr[i]
     }
