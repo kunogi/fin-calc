@@ -1,6 +1,5 @@
 <template>
   <new-chart />
-
   <draggable
     v-model="store.state.chartOpts"
     group="charts"
@@ -28,12 +27,14 @@ export default defineComponent({
     NewChart,
     draggable
   },
+
   setup() {
     const drag = ref(false);
 
     function onDragStart() {
       drag.value = true;
     }
+
     function onDragEnd() {
       drag.value = false;
     }

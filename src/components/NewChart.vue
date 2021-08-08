@@ -2,25 +2,35 @@
   <el-button @click="drawer = true" type="primary" style="margin-left: 16px;">+</el-button>
 
   <el-drawer title="新建图表" v-model="drawer" :direction="direction" destroy-on-close>
-    <data-source />
+    <indicator-selector :stockData="stockData" />
   </el-drawer>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import DataSource from './DataSource.vue'
+import { defineComponent, ref } from 'vue'
+import IndicatorSelector from './IndicatorSelector.vue'
+import Services from '@/services'
 
 export default defineComponent({
   components: {
-    DataSource
+    IndicatorSelector
   },
+
   setup() {
+    const stockData = ref([]);
     const drawer = ref(false);
     const direction = ref('rtl');
+
+    async function loadData() {
+      const { data } = await Services.getStockData();
+      stockData.value = data;
+    }
+    loadData();
 
     return {
       drawer,
       direction,
+      stockData
     };
   },
 });

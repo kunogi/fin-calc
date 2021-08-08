@@ -1,4 +1,7 @@
 module.exports = {
+  configureWebpack: {
+    //devtool: process.env.NODE_ENV === 'dev' ? 'eval-source-map' : 'nosource-source-map'
+  },
   devServer: {
     port: 8828,
     open: true,
@@ -9,14 +12,6 @@ module.exports = {
         changeOrigin: true,
         pathRewrite: {
           '^/_SINAPROXY_': ''
-        }
-      },
-      '/_MEITUANPROXY_': {
-        target: 'https://www.meituan.com',
-        secure: true,
-        changeOrigin: true,
-        pathRewrite: {
-          '^/_MEITUANPROXY_': ''
         }
       }
     }

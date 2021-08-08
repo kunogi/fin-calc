@@ -5,5 +5,5 @@ export interface iKData {
   close: number,
   prevclose: number,
   volume: number,
-  date: string
+  day: string
 }

@@ -5,9 +5,14 @@ import EMA from './EMA'
 interface iDMI {
   param: {
     v0: number, // N
-    v1: number// M
+    v1: number, // M
+    date: string,
+    close: string,
+    high: string,
+    low: string
   },
   data: {
+    date: unknown,
     pdi: number,
     mdi: number,
     adx: number,
@@ -32,14 +37,15 @@ interface iDMI {
   ADXR = EXPMEMA(ADX, M)
  */
 
-export default function(arr_: iKData[], customData_: iDMI['param'] = { v0: 14, v1: 6 }): iDMI['data'][] {
+export default function (arr_: iKData[], customData_: iDMI['param'] = { v0: 14, v1: 6, date: 'day', close: 'close', high: 'high', low: 'low' }): iDMI['data'][] {
   const result: iDMI['data'][] = []
 
-  const { v0: N, v1: M } = customData_
+  const { v0: N, v1: M, date, close, high, low } = customData_
 
-  const closeArr: number[] = FinUtil.genArrByProp(arr_, 'close')
-  const highArr: number[] = FinUtil.genArrByProp(arr_, 'high')
-  const lowArr: number[] = FinUtil.genArrByProp(arr_, 'low')
+  const closeArr: number[] = FinUtil.genArrByProp(arr_, close, Number)
+  const highArr: number[] = FinUtil.genArrByProp(arr_, high, Number)
+  const lowArr: number[] = FinUtil.genArrByProp(arr_, low, Number)
+  const dateArr: unknown[] = FinUtil.genArrByProp(arr_, date)
 
   // MTR=EXPMEMA(MAX(MAX(HIGH-LOW, ABS(HIGH-REF(CLOSE,1))), ABS(REF(CLOSE,1)-LOW)),N):
   const mtrArr: number[] = EMA(
@@ -72,6 +78,7 @@ export default function(arr_: iKData[], customData_: iDMI['param'] = { v0: 14, v
 
   for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
+      date: dateArr[i],
       pdi: pdiArr[i],
       mdi: mdiArr[i],
       adx: adxArr[i],

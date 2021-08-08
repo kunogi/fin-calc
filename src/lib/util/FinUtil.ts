@@ -263,7 +263,7 @@ class FinUtil {
 
   public ref(arr_: number[], n_: number): number[] {
     const result: number[] = new Array(n_).fill(0)
-    for (let i: number = n_, l: number = arr_.length; i < l; i++) {
+    for (let i = n_, l = arr_.length; i < l; i++) {
       result.push(arr_[i - n_])
     }
     return result
@@ -276,10 +276,10 @@ class FinUtil {
    * @param f_
    * @returns
    */
-  public genArrByProp(arr_: any[], prop_: string, f_?: (n: number) => number): number[] {
+  public genArrByProp(arr_: any[], prop_: string, f_?: (n: any) => any): any[] {
     if (prop_) {
-      const result = []
-      for (let i = 0, l: number = arr_.length; i < l; i++) {
+      const result = [];
+      for (let i = 0, l = arr_.length; i < l; i++) {
         result.push(f_ ? f_(arr_[i][prop_]) : arr_[i][prop_])
       }
       return result

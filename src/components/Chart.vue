@@ -1,70 +1,30 @@
 <template >
-  <div class="chart" ref="chartRef"></div>
+  <div class="chart" ref="chartRef" id="chart"></div>
 </template>
 
 <script lang='ts'>
-import { defineComponent, onBeforeUnmount, onMounted, reactive, ref } from 'vue'
+import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import * as echarts from 'echarts'
-import axios from 'axios'
+import { EChartsOption } from 'echarts';
 
 export default defineComponent({
   props: {
     option: Object,
   },
-  setup(props) {
-    let chart: echarts.ECharts;
-    const chartRef = ref();
-    const state = reactive({
-      data: [],
-    });
 
-    onMounted(async () => {
-      initChart();
-      await getData();
-      updateChart();
-      onResize();
+  setup(props) {
+    const chartRef = ref();
+    let chart: echarts.ECharts;
+
+    onMounted(() => {
+      chart = echarts.init(chartRef.value)
+      chart.setOption(props.option as any);
       window.addEventListener('resize', onResize);
     })
+
     onBeforeUnmount(() => {
       window.removeEventListener('resize', onResize);
     })
-
-    function initChart() {
-      chart = echarts.init(chartRef.value);
-      chart.setOption(props.option as any);
-    }
-
-    async function getData() {
-      const { data } = await axios({
-        method: 'get',
-        url: (props.option as any).dataSource,
-      });
-      state.data = data;
-    }
-
-    function updateChart() {
-      const { data } = state;
-      const option = {
-        dataset: {
-          sourceHeader: false,
-          dimensions: ['day', 'open', 'high', 'low', 'close', 'volume'],
-          source: data
-        },
-        series: [
-          {
-            encode: {
-              x: 'day',
-              y: 'close'
-            }
-          }, {
-            encode: {
-              x: 'day',
-              y: 'volume'
-            }
-          }]
-      }
-      chart.setOption(option);
-    }
 
     function onResize() {
       const resizeOpt = {};
@@ -73,7 +33,6 @@ export default defineComponent({
     }
 
     return {
-      state,
       chartRef
     }
   }
