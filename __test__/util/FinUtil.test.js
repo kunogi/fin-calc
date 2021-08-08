@@ -3,7 +3,7 @@ import FinUtil from "../../src/util/FinUtil";
 
 describe('FinUtil', () => {
   it('avg 取数组平均数', () => {
-    let arr = [];
+    const arr = [];
     for (let i = 0; i < 99; i++) {
       arr.push(Math.random() * 100 - 50);
     }
@@ -33,13 +33,17 @@ describe('FinUtil', () => {
 
   describe('arrOp', () => {
     it('arrOp 操作数组与数组', () => {
-      let arr1 = [], arr2 = [];
+      const arr1 = [];
+      const arr2 = [];
       for (let i = 0; i < 1; i++) {
         arr1.push(Math.random() * 1e5);
         arr2.push(Math.random() * 1e5);
       }
 
-      let expected_plus = [], expected_minus = [], expected_multi = [], expected_div = [];
+      const expected_plus = [];
+      const expected_minus = [];
+      const expected_multi = [];
+      const expected_div = [];
       for (let i = 0; i < arr1.length; i++) {
         expected_plus.push(Number(arr1[i] + arr2[i]));
         expected_minus.push(Number(arr1[i] - arr2[i]));
@@ -47,11 +51,10 @@ describe('FinUtil', () => {
         expected_div.push(Number(arr1[i] / arr2[i]));
       }
 
-      let
-        received_plus = FinUtil.arrOp(arr1, arr2, '+'),
-        received_minus = FinUtil.arrOp(arr1, arr2, '-'),
-        received_multi = FinUtil.arrOp(arr1, arr2, '*'),
-        received_div = FinUtil.arrOp(arr1, arr2, '/');
+      let received_plus = FinUtil.arrOp(arr1, arr2, '+');
+      let received_minus = FinUtil.arrOp(arr1, arr2, '-');
+      let received_multi = FinUtil.arrOp(arr1, arr2, '*');
+      let received_div = FinUtil.arrOp(arr1, arr2, '/');
 
       expect(received_plus).toEqual(expected_plus);
       expect(received_minus).toEqual(expected_minus);
@@ -82,16 +85,19 @@ describe('FinUtil', () => {
     })
 
     it('arrOp 操作数组与数字', () => {
-      let arr1 = [], num2 = 678;
+      const arr1 = []; const num2 = 678;
       for (let i = 0; i < 9; i++) {
-        if (i == 0) {
+        if (i === 0) {
           arr1.push(undefined);
         } else {
           arr1.push(Math.random() * 1e5);
         }
       }
 
-      let expected_plus = [], expected_minus = [], expected_multi = [], expected_div = [];
+      const expected_plus = [];
+      const expected_minus = [];
+      const expected_multi = [];
+      const expected_div = [];
       for (let i = 0; i < arr1.length; i++) {
         expected_plus.push(Number(arr1[i] + num2));
         expected_minus.push(Number(arr1[i] - num2));
@@ -99,11 +105,10 @@ describe('FinUtil', () => {
         expected_div.push(Number(arr1[i] / num2));
       }
 
-      let
-        received_plus = FinUtil.arrOp(arr1, num2, '+'),
-        received_minus = FinUtil.arrOp(arr1, num2, '-'),
-        received_multi = FinUtil.arrOp(arr1, num2, '*'),
-        received_div = FinUtil.arrOp(arr1, num2, '/');
+      const received_plus = FinUtil.arrOp(arr1, num2, '+');
+      const received_minus = FinUtil.arrOp(arr1, num2, '-');
+      const received_multi = FinUtil.arrOp(arr1, num2, '*');
+      const received_div = FinUtil.arrOp(arr1, num2, '/');
 
       expect(received_plus).toEqual(expected_plus);
       expect(received_minus).toEqual(expected_minus);
@@ -112,7 +117,7 @@ describe('FinUtil', () => {
     })
 
     it('arrOp 操作数组与其他', () => {
-      let arr1 = [], others2 = null;
+      const arr1 = []; const others2 = null;
       expect(() => {
         FinUtil.arrOp(arr1, others2, '+');
       }).toThrow('argument of arrOp()')
@@ -120,10 +125,10 @@ describe('FinUtil', () => {
   })
 
   it('abs 绝对值', () => {
-    let expected=[];
-    let oriArr=[];
-    for(let i=0;i<99;i++){
-      let oriNum=Math.random()*100-50;
+    const expected = [];
+    const oriArr = [];
+    for (let i = 0; i < 99; i++) {
+      const oriNum = Math.random() * 100 - 50;
       oriArr.push(oriNum);
       expected.push(Math.abs(oriNum));
     }
