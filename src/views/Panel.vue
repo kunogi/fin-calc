@@ -4,10 +4,10 @@
   <draggable
     v-model="store.state.chartOpts"
     group="charts"
-    @start="onDragStart"
-    @end="onDragEnd"
     item-key="id"
     class="container"
+    @start="onDragStart"
+    @end="onDragEnd"
   >
     <template #item="{ element }">
       <chart :key="element.id" :option="element" />

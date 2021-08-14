@@ -13,7 +13,7 @@ export default createStore({
     }
   },
   actions: {
-    async newChart(context, chartInfo) {
+    async [NEW_CHART](context, chartInfo) {
       const { indicatorType, stockData } = chartInfo;
       const { default: indicatorFn } = await import(`@/lib/${indicatorType.toUpperCase()}.ts`);
       const indicatorData = indicatorFn(stockData);

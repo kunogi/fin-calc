@@ -1,26 +1,40 @@
+//const ksRules = require('@ks/eslint-config/index').rules;
+
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
+    browser: true,
   },
   extends: [
-    'plugin:vue/vue3-essential',
-    '@vue/standard',
-    '@vue/typescript/recommended'
+    'plugin:vue/vue3-recommended',
+    'eslint:recommended',
+    '@vue/typescript/recommended',
   ],
   parserOptions: {
-    ecmaVersion: 2020
+    parser: '@typescript-eslint/parser',
+    ecmaVersion: 2020,
   },
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    camelcase: ['error', { allow: ['w*_w*'] }],
-    'eol-last': ['error', 'never'],
-    'space-before-function-paren': 'off',
-    semi: 'off',
-    "comma-dangle": 'off',
-    quotes: [0, "never"],
-    'no-trailing-spaces': ['error', { skipBlankLines: true }],
-    "spaced-comment": 'off'
-  }
-}
+    //...ksRules,
+    'no-console': 'warn',
+    'no-debugger': 'warn',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-var-requires': 0,
+    'no-extra-parens': 'off',
+    'max-len': 'off',
+    'no-unused-expressions': 'off',
+    '@typescript-eslint/no-unused-expressions': [2, {
+      'allowShortCircuit': true,
+      'allowTernary': true
+    }],
+  },
+  overrides: [
+    {
+      files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],
+      env: {
+        jest: true,
+      },
+    },
+  ],
+};
