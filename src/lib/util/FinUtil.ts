@@ -22,38 +22,22 @@ class FinUtil {
     return NaN
   }
 
-  public arrOp(arr1_: any, arr2_: any, op_: string): number[] {
-    const result: number[] = []; let i: number; const len1: number = arr1_.length; let len2: number
-    switch (this.getClass(arr2_)) {
-      case 'Array':
-        len2 = arr2_.length
-        for (i = 0; i < len1; i++) {
-          if (this.getClass(arr1_[i]) === 'Number' && this.getClass(arr2_[i]) === 'Number') {
-            result.push(this.op(op_, arr1_[i], arr2_[i]))
-          } else {
-            result.push(NaN)
-          }
-        }
-
-        while (result.length < len2) {
-          result.push(NaN)
-        }
-        break
-
-      case 'Number':
-        for (i = 0; i < len1; i++) {
-          if (this.getClass(arr1_[i]) === 'Number') {
-            result.push(this.op(op_, arr1_[i], arr2_))
-          } else {
-            result.push(NaN)
-          }
-        }
-        break
-
-      default:
-        throw Error('argument of arrOp() is not supported')
+  public arrOp(arr1_: number[], arr2_: number | number[], op_: string): number[] {
+    const result: number[] = []
+    const len1 = arr1_.length
+    if (typeof arr2_ === 'number') {
+      for (let i = 0; i < len1; i++) {
+        result.push(this.op(op_, arr1_[i], arr2_))
+      }
+    } else {
+      const len2 = arr2_.length
+      for (let i = 0; i < len1; i++) {
+        result.push(this.op(op_, arr1_[i], arr2_[i]))
+      }
+      while (result.length < len2) {
+        result.push(NaN)
+      }
     }
-
     return result
   }
 
@@ -65,11 +49,8 @@ class FinUtil {
    */
   public sd(arr_: number[], n_: number): number {
     const avg: number = this.avg(arr_)
-    const l: number = arr_.length
-    let sum = 0
-    for (let i: number = l; i--;) {
-      sum += Math.pow(arr_[i] - avg, 2)
-    }
+    const l = arr_.length
+    const sum = arr_.reduce((a, c) => a + Math.pow(c - avg, 2), 0)
     return Math.sqrt(sum / (n_ ? l - n_ : l))
   }
 
@@ -285,18 +266,12 @@ class FinUtil {
   }
 
   private getClass(o_: any): string {
-    // return typeof o_ === 'undefined' ? 'undefined' : o_ === null ? 'null' : o_.constructor.name;
-    if (typeof o_ === 'undefined') {
-      return 'undefined'
-    } if (o_ === null) {
-      return 'null'
-    }
-    return o_.constructor.name
+    return typeof o_ === 'undefined' ? 'undefined' : o_ === null ? 'null' : o_.constructor.name;
   }
 
   private getArrSum(arr_: number[]): number {
     let sum = 0
-    for (let i: number = arr_.length; i--;) {
+    for (let i = arr_.length; i--;) {
       sum += arr_[i]
     }
     return sum
