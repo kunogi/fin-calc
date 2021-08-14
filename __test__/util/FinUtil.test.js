@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
-import FinUtil from "../../src/util/FinUtil";
+import FinUtil from "../../src/lib/util/FinUtil";
 
 describe('FinUtil', () => {
-  it('avg 取数组平均数', () => {
+  it('avg 计算数组平均数', () => {
     const arr = [];
     for (let i = 0; i < 99; i++) {
       arr.push(Math.random() * 100 - 50);

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 class FinUtil {
   /**
    *
@@ -7,14 +6,12 @@ class FinUtil {
    * @returns
    */
   public avg(arr_: number[]): number {
-    let sum = 0
-    const l: number = arr_.length
-    for (let i: number = l; i--;) {
-      sum += arr_[i]
-    }
-    return sum / l
+    return arr_.reduce((a, c) => a + c) / arr_.length;
   }
 
+  /**
+   * 
+   * */
   public op(op_: string, s_: number, m_: number): number {
     switch (op_) {
       case '+': return s_ + m_
