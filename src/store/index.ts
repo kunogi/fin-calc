@@ -42,8 +42,11 @@ export default createStore({
         series: keys.map(k => {
           return {
             type: 'line',
-            //encode: { x: 'date', y: k },
-            symbol: 'none'
+            //encode: { x: 'date', y: k },//echarts recognize the datas here
+            symbol: 'none',
+            lineStyle: {
+              width: 2
+            }
           }
         })
       };
