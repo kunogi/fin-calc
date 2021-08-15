@@ -51,8 +51,8 @@ const _DATAS_ = [{
 
 0. do the import:
 ```
-import FinUtil from './util/FinUtil'
-import MA from './src/MA'
+import FinUtil from '@/lib/util/FinUtil'
+import MA from '@/lib/MA'
 ```
 1. generate close-price array and do the math:
 ```
@@ -68,8 +68,8 @@ MACD = (DIF - DEA) * 2
 ```
 
 ```
-import FinUtil from './util/FinUtil'
-import EMA from './EMA'
+import FinUtil from '@/lib/util/FinUtil'
+import EMA from '@/lib/EMA'
 
 const close = FinUtil.genArrByProp(_DATAS_, 'cLoSe')
 
