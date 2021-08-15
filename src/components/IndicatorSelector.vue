@@ -7,15 +7,15 @@
         :label="indicator.label"
         :value="indicator.value"
         :disabled="indicator.disabled"
-      ></el-option>
+      />
     </el-select>
 
     <el-button
       type="danger"
-      @click="generateChart"
       icon="el-icon-plus"
       :disabled="!chartInfo.indicatorType"
       size="small"
+      @click="generateChart"
     />
   </el-row>
 </template>
@@ -27,7 +27,12 @@ import indicators from '@/lib/util/indicators'
 import { NEW_CHART } from '@/store/mutation-types'
 
 export default defineComponent({
-  props: ['stockData'],
+  props: {
+    stockData: {
+      type: [Array, Object],
+      require: true
+    }
+  },
 
   setup(props) {
     const chartInfo = reactive({
@@ -42,7 +47,7 @@ export default defineComponent({
     return {
       indicators,
       chartInfo,
-      generateChart,
+      generateChart
     }
   }
 })

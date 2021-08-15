@@ -2,14 +2,18 @@ import FinUtil from './util/FinUtil'
 import { iKData } from './interface/iDatas'
 
 interface iSAR {
-  data: {
-    ignore_minmax: number,
-    sar: number
-  },
   param: {
     v0: number,
     v1: number,
-    v2: number
+    v2: number,
+    date: string,
+    high: string,
+    low: string
+  },
+  data: {
+    date: unknown,
+    ignore_minmax: number,
+    sar: number
   },
   calc: {
     data: number[],
@@ -17,9 +21,9 @@ interface iSAR {
   }
 }
 
-function calc(arr_: iKData[], n_: number, step_: number, max_: number): iSAR['calc'] {
-  const highArr: number[] = FinUtil.genArrByProp(arr_, 'high')
-  const lowArr: number[] = FinUtil.genArrByProp(arr_, 'low')
+function calc(arr_: iKData[], n_: number, step_: number, max_: number, high: string, low: string): iSAR['calc'] {
+  const highArr: number[] = FinUtil.genArrByProp(arr_, high)
+  const lowArr: number[] = FinUtil.genArrByProp(arr_, low)
   const len: number = arr_.length
   const result: number[] = []
   const stepArr: number[] = []
@@ -95,15 +99,17 @@ function calc(arr_: iKData[], n_: number, step_: number, max_: number): iSAR['ca
  * @param max_
  * @returns
  */
-export default function(arr_: iKData[], customData_: iSAR['param'] = { v0: 1, v1: 1, v2: 1 }): iSAR['data'][] {
+export default function (arr_: iKData[], customData_: iSAR['param'] = { v0: 1, v1: 1, v2: 1, date: 'day', high: 'high', low: 'low' }): iSAR['data'][] {
   const result: iSAR['data'][] = []
 
-  const { v0, v1, v2 } = customData_
+  const { v0, v1, v2, date, high, low } = customData_
 
-  const sarArr: iSAR['calc'] = calc(arr_, v0, v1, v2)
+  const sarArr: iSAR['calc'] = calc(arr_, v0, v1, v2, high, low)
+  const dateArr: unknown[] = FinUtil.genArrByProp(arr_, date)
 
-  for (let i = 0, l: number = arr_.length; i < l; i++) {
+  for (let i = 0, l = arr_.length; i < l; i++) {
     result[i] = {
+      date: dateArr[i],
       ignore_minmax: sarArr.direction[i],
       sar: sarArr.data[i]
     }

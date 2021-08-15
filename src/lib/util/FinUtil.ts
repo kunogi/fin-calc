@@ -6,7 +6,10 @@ class FinUtil {
    * @returns
    */
   public avg(arr_: number[]): number {
-    return arr_.reduce((a, c) => a + c) / arr_.length;
+    return this.getArrSum(arr_) / arr_.length;
+  }
+  public avgByProp(arr_: Record<string, number>[], prop: string): number {
+    return arr_.map(item => item[prop]).reduce((a, c) => a + c, 0) / arr_.length;
   }
 
   /**
@@ -49,8 +52,8 @@ class FinUtil {
    */
   public sd(arr_: number[], n_: number): number {
     const avg: number = this.avg(arr_)
-    const l = arr_.length
     const sum = arr_.reduce((a, c) => a + Math.pow(c - avg, 2), 0)
+    const l = arr_.length
     return Math.sqrt(sum / (n_ ? l - n_ : l))
   }
 
@@ -64,7 +67,7 @@ class FinUtil {
    */
   public sma(arr_: number[], days_: number, weight_: number): number[] {
     const result: number[] = [arr_[0]]
-    for (let i = 1, l: number = arr_.length; i < l; i++) {
+    for (let i = 1, l = arr_.length; i < l; i++) {
       result.push((weight_ * arr_[i] + (days_ - weight_) * result[i - 1]) / days_)
     }
     return result
@@ -79,7 +82,7 @@ class FinUtil {
    */
   public std(arr_: number[], n_: number): number[] {
     const result: number[] = []
-    for (let i = 0, s: number, l: number = arr_.length; i < l; i++) {
+    for (let i = 0, s: number, l = arr_.length; i < l; i++) {
       s = i < n_ ? 0 : i - n_ + 1
       result.push(this.sd(arr_.slice(s, i + 1), 1))
     }
@@ -95,11 +98,8 @@ class FinUtil {
    */
   public ad(arr_: number[]): number {
     const avg: number = this.avg(arr_)
-    let sum = 0
-    const l: number = arr_.length
-    for (let i: number = l; i--;) {
-      sum += Math.abs(arr_[i] - avg)
-    }
+    const l = arr_.length
+    const sum: number = arr_.reduce((a, c) => a + Math.abs(c - avg), 0)
     return sum / l
   }
 
@@ -111,7 +111,7 @@ class FinUtil {
    */
   public avedev(arr_: number[], n_: number): number[] {
     const result: number[] = []
-    for (let i = 0, s: number, l: number = arr_.length; i < l; i++) {
+    for (let i = 0, s: number, l = arr_.length; i < l; i++) {
       s = i < n_ ? 0 : i - n_ + 1
       result.push(this.ad(arr_.slice(s, i + 1)))
     }
@@ -126,9 +126,8 @@ class FinUtil {
    */
   public hhv(arr_: number[], n_: number): number[] {
     const result: number[] = []
-    const l: number = arr_.length
     const max: number = Math.max(...arr_)
-    for (let i = 0, s: number; i < l; i++) {
+    for (let i = 0, l = arr_.length, s: number; i < l; i++) {
       if (n_) {
         s = i < n_ ? 0 : i - n_ + 1
         result.push(Math.max(...arr_.slice(s, i + 1)))
@@ -147,9 +146,8 @@ class FinUtil {
    */
   public llv(arr_: number[], n_: number): number[] {
     const result: number[] = []
-    const l: number = arr_.length
     const min: number = Math.min(...arr_)
-    for (let i = 0, s: number; i < l; i++) {
+    for (let i = 0, l = arr_.length, s: number; i < l; i++) {
       if (n_) {
         s = i < n_ ? 0 : i - n_ + 1
         result.push(Math.min(...arr_.slice(s, i + 1)))
@@ -160,32 +158,20 @@ class FinUtil {
     return result
   }
 
-  public abs(o_: number[]): number[] {
-    /*
-        switch (this.getClass(o_)) {
-          default:throw new Error('argument of abs() is not supported');
-          case 'Number':
-            return Math.abs(o_);
-
-          case 'Array':
-        */
-    const result: number[] = []
-    for (let i = 0, l: number = o_.length; i < l; i++) {
-      result.push(Math.abs(o_[i]))
-    }
-    return result
+  public abs(arr_: number[]): number[] {
+    return arr_.map(i => Math.abs(i));
   }
 
   public sum(arr_: number[], n_: number): number[] {
     const result: number[] = []
     if (n_) {
-      for (let i = 0, s: number, l: number = arr_.length; i < l; i++) {
+      for (let i = 0, s: number, l = arr_.length; i < l; i++) {
         s = i < n_ ? 0 : i - n_ + 1
         result.push(this.getArrSum(arr_.slice(s, i + 1)))
       }
     } else {
       let last = 0
-      for (let i = 0, l: number = arr_.length; i < l; i++) {
+      for (let i = 0, l = arr_.length; i < l; i++) {
         last += arr_[i]
         result.push(last)
       }
@@ -193,49 +179,28 @@ class FinUtil {
     return result
   }
 
-  public max(arr1_: any, arr2_: any): number | number[] {
-    let result: number[]
-    let i: number
-    let l: number
-    switch (this.getClass(arr1_)) {
-      case 'Array':
-        switch (this.getClass(arr2_)) {
-          case 'Array':
-            result = []
-            for (i = 0, l = arr1_.length; i < l; i++) {
-              result.push(Math.max(arr1_[i], arr2_[i]))
-            }
-            return result
-
-          case 'Number':
-            result = []
-            for (i = 0, l = arr1_.length; i < l; i++) {
-              result.push(Math.max(arr1_[i], arr2_))
-            }
-            return result
-
-          default:
-            throw new Error('argument of max() is not supported')
+  public max(arr1_: number | number[], arr2_: number | number[]): number | number[] {
+    const result: number[] = []
+    if (typeof arr1_ !== 'number') {//number[]
+      if (typeof arr2_ !== 'number') {//number[]
+        for (let i = 0, l = arr1_.length; i < l; i++) {
+          result.push(Math.max(arr1_[i], arr2_[i]))
         }
-
-      case 'Number':
-        switch (this.getClass(arr2_)) {
-          case 'Array':
-            result = []
-            for (i = 0, l = arr2_.length; i < l; i++) {
-              result.push(Math.max(arr1_, arr2_[i]))
-            }
-            return result
-
-          case 'Number':
-            return Math.max(arr1_, arr2_)
-
-          default:
-            throw new Error('argument of max() is not supported')
+      } else {
+        for (let i = 0, l = arr1_.length; i < l; i++) {
+          result.push(Math.max(arr1_[i], arr2_))
         }
-
-      default:
-        throw new Error('argument of max() is not supported')
+      }
+      return result
+    } else {
+      if (typeof arr2_ !== 'number') {//number[]
+        for (let i = 0, l = arr2_.length; i < l; i++) {
+          result.push(Math.max(arr1_, arr2_[i]))
+        }
+        return result;
+      } else {
+        return Math.max(arr1_, arr2_)
+      }
     }
   }
 
@@ -269,12 +234,8 @@ class FinUtil {
     return typeof o_ === 'undefined' ? 'undefined' : o_ === null ? 'null' : o_.constructor.name;
   }
 
-  private getArrSum(arr_: number[]): number {
-    let sum = 0
-    for (let i = arr_.length; i--;) {
-      sum += arr_[i]
-    }
-    return sum
+  public getArrSum(arr_: number[]): number {
+    return arr_.reduce((a, c) => a + c, 0)
   }
 }
 

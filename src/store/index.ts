@@ -19,9 +19,9 @@ export default createStore({
       const indicatorData = indicatorFn(stockData);
       //generate key array and get rid of date field (x axis):
       const sample = indicatorData[0];
-      const keys = Object.keys(sample).filter(k => k !== 'date');
+      const otherKeys = Object.keys(sample).filter(k => k !== 'date');
       const option = {
-        id: Date.now(),
+        id: Date.now() * Math.floor(Math.random() * 1e5 + 1),
         title: {
           text: indicatorType
         },
@@ -39,13 +39,13 @@ export default createStore({
         yAxis: {
           scale: true
         },
-        series: keys.map(k => {
+        series: otherKeys.map(k => {
           return {
             type: 'line',
             //encode: { x: 'date', y: k },//echarts recognize the datas here
             symbol: 'none',
             lineStyle: {
-              width: 2
+              width: 1
             }
           }
         })

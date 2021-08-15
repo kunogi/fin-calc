@@ -7,9 +7,11 @@ interface iTRIX {
   param: {
     prop: string,
     v0: number,
-    v1: number
+    v1: number,
+    date: string
   },
   data: {
+    date: unknown,
     trix: number,
     matrix: number
   }
@@ -25,12 +27,13 @@ interface iTRIX {
  * @param customData_
  * @returns
  */
-export default function(arr_: iKData[], customData_: iTRIX['param'] = { prop: 'close', v0: 12, v1: 9 }): iTRIX['data'][] {
+export default function (arr_: iKData[], customData_: iTRIX['param'] = { prop: 'close', v0: 12, v1: 9, date: 'day' }): iTRIX['data'][] {
   const result: iTRIX['data'][] = []
 
-  const { prop, v0: P, v1: N } = customData_
+  const { prop, v0: P, v1: N, date } = customData_
 
   const propArr: number[] = FinUtil.genArrByProp(arr_, prop)
+  const dateArr: unknown[] = FinUtil.genArrByProp(arr_, date)
 
   // EMA(EMA(EMA(CLOSE, P), P), P):
   const trArr: number[] = EMA(EMA(EMA(propArr, P), P), P)
@@ -40,6 +43,7 @@ export default function(arr_: iKData[], customData_: iTRIX['param'] = { prop: 'c
 
   for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
+      date: dateArr[i],
       trix: trixArr[i],
       matrix: matrixArr[i]
     }

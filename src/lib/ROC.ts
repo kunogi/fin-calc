@@ -5,9 +5,11 @@ interface iROC {
   param: {
     prop: string,
     v0: number, // N
-    v1: number// M
+    v1: number,// M
+    date: string
   },
   data: {
+    date: unknown,
     roc: number,
     maroc: number
   }
@@ -23,12 +25,13 @@ interface iROC {
   ROCMA = MA(ROC, M)
  */
 
-export default function(arr_: number[], customData_: iROC['param'] = { prop: 'close', v0: 12, v1: 6 }): iROC['data'][] {
+export default function (arr_: number[], customData_: iROC['param'] = { prop: 'close', v0: 12, v1: 6, date: 'day' }): iROC['data'][] {
   const result: iROC['data'][] = []
 
-  const { prop, v0: N, v1: M } = customData_
+  const { prop, v0: N, v1: M, date } = customData_
 
   const arr: number[] = FinUtil.genArrByProp(arr_, prop)
+  const dateArr: unknown[] = FinUtil.genArrByProp(arr_, date)
 
   // ROC = (CLOSE - REF(CLOSE, N)) / REF(CLOSE, N) * 100:
   const refArr: number[] = FinUtil.ref(arr, N)
@@ -37,6 +40,7 @@ export default function(arr_: number[], customData_: iROC['param'] = { prop: 'cl
 
   for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
+      date: dateArr[i],
       roc: rocArr[i],
       maroc: marocArr[i]
     }

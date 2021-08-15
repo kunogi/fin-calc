@@ -6,9 +6,12 @@ interface iVR {
   param: {
     prop: string,
     v0: number,
-    v1: number
+    v1: number,
+    date: string,
+    volume: string,
   },
   data: {
+    date: unknown,
     vr: number,
     mavr: number
   }
@@ -23,13 +26,14 @@ interface iVR {
   VR = 100 * (TH * 2 + TQ) / (TL * 2 + TQ)
   VRMA = MA(VR, M)
  */
-export default function(arr_: iKData[], customData_: iVR['param'] = { prop: 'close', v0: 26, v1: 6 }): iVR['data'][] {
+export default function (arr_: iKData[], customData_: iVR['param'] = { prop: 'close', v0: 26, v1: 6, date: 'day', volume: 'volume' }): iVR['data'][] {
   const result: iVR['data'][] = []
 
-  const { prop, v0: N, v1: M } = customData_
+  const { prop, v0: N, v1: M, date, volume } = customData_
 
   const propArr: number[] = FinUtil.genArrByProp(arr_, prop)
-  const volumeArr: number[] = FinUtil.genArrByProp(arr_, 'volume')
+  const dateArr: unknown[] = FinUtil.genArrByProp(arr_, date)
+  const volumeArr: number[] = FinUtil.genArrByProp(arr_, volume)
 
   const ref1Arr: number[] = FinUtil.ref(propArr, 1)
   let thArr: number[] = []
@@ -54,6 +58,7 @@ export default function(arr_: iKData[], customData_: iVR['param'] = { prop: 'clo
 
   for (let i = 0, l: number = arr_.length; i < l; i++) {
     result[i] = {
+      date: dateArr[i],
       vr: vrArr[i],
       mavr: mavrArr[i]
     }

@@ -1,12 +1,13 @@
 import { iKData } from './interface/iDatas'
 
 interface iOBV {
-  data: {
-    obv: number,
-    obvma: number
-  },
   param: {
     v0: number
+  },
+  data: {
+    date: unknown,
+    obv: number,
+    obvma: number
   }
 }
 
@@ -17,7 +18,7 @@ interface iOBV {
  * @param customData_
  * @returns
  */
-export default function(arr_: iKData[], customData_: iOBV['param'] = { v0: 30 }): iOBV['data'][] {
+export default function (arr_: iKData[], customData_: iOBV['param'] = { v0: 30 }): iOBV['data'][] {
   const result: iOBV['data'][] = []
 
   const { v0 } = customData_
@@ -28,13 +29,18 @@ export default function(arr_: iKData[], customData_: iOBV['param'] = { v0: 30 })
   let sumMa: number = obv
 
   result.push({
+    date: data.day,
     obv: obv,
     obvma: obv
   })
 
-  for (let i = 1, l: number = arr_.length; i < l; i++) {
+  for (let i = 1, l = arr_.length; i < l; i++) {
     data = arr_[i]
-    const obj: iOBV['data'] = { obv: NaN, obvma: NaN }
+    const obj: iOBV['data'] = {
+      date: data.day,
+      obv: 0,
+      obvma: 0
+    }
     result.push(obj)
 
     if (data.close > arr_[i - 1].close) {
@@ -51,7 +57,9 @@ export default function(arr_: iKData[], customData_: iOBV['param'] = { v0: 30 })
     if (i >= v0) {
       sumMa -= result[i - v0].obv
       obj.obvma = sumMa / v0
-    } else { obj.obvma = sumMa / (i + 1) }
+    } else {
+      obj.obvma = sumMa / (i + 1)
+    }
   }
 
   return result

@@ -2,7 +2,7 @@
   <el-button @click="drawer = true" type="danger" icon="el-icon-plus">Add Indicator</el-button>
 
   <el-drawer v-model="drawer" title="New Chart" :direction="direction" destroy-on-close>
-    <indicator-selector :stockData="stockData" />
+    <indicator-selector :stock-data="stockData" />
   </el-drawer>
 </template>
 
