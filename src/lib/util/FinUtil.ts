@@ -1,4 +1,8 @@
 class FinUtil {
+  public getArrSum(arr_: number[]): number {
+    return arr_.reduce((a, c) => a + c, 0)
+  }
+
   /**
    *
    * @description calc average
@@ -15,27 +19,27 @@ class FinUtil {
   /**
    * 
    * */
-  public op(op_: string, s_: number, m_: number): number {
+  public op(op_: '+' | '-' | '*' | '/', s_: number, m_: number): number {
     switch (op_) {
       case '+': return s_ + m_
       case '-': return s_ - m_
       case '*': return s_ * m_
       case '/': return m_ ? s_ / m_ : NaN
     }
-    return NaN
+    //return NaN
   }
 
-  public arrOp(arr1_: number[], arr2_: number | number[], op_: string): number[] {
+  public arrOp(arr1_: number[], second_: number | number[], op_: '+' | '-' | '*' | '/'): number[] {
     const result: number[] = []
     const len1 = arr1_.length
-    if (typeof arr2_ === 'number') {
+    if (typeof second_ === 'number') {
       for (let i = 0; i < len1; i++) {
-        result.push(this.op(op_, arr1_[i], arr2_))
+        result.push(this.op(op_, arr1_[i], second_))
       }
     } else {
-      const len2 = arr2_.length
+      const len2 = second_.length
       for (let i = 0; i < len1; i++) {
-        result.push(this.op(op_, arr1_[i], arr2_[i]))
+        result.push(this.op(op_, arr1_[i], second_[i]))
       }
       while (result.length < len2) {
         result.push(NaN)
@@ -179,27 +183,27 @@ class FinUtil {
     return result
   }
 
-  public max(arr1_: number | number[], arr2_: number | number[]): number | number[] {
+  public max(first_: number | number[], second_: number | number[]): number | number[] {
     const result: number[] = []
-    if (typeof arr1_ !== 'number') {//number[]
-      if (typeof arr2_ !== 'number') {//number[]
-        for (let i = 0, l = arr1_.length; i < l; i++) {
-          result.push(Math.max(arr1_[i], arr2_[i]))
+    if (typeof first_ !== 'number') {//number[]
+      if (typeof second_ !== 'number') {//number[]
+        for (let i = 0, l = first_.length; i < l; i++) {
+          result.push(Math.max(first_[i], second_[i]))
         }
       } else {
-        for (let i = 0, l = arr1_.length; i < l; i++) {
-          result.push(Math.max(arr1_[i], arr2_))
+        for (let i = 0, l = first_.length; i < l; i++) {
+          result.push(Math.max(first_[i], second_))
         }
       }
       return result
     } else {
-      if (typeof arr2_ !== 'number') {//number[]
-        for (let i = 0, l = arr2_.length; i < l; i++) {
-          result.push(Math.max(arr1_, arr2_[i]))
+      if (typeof second_ !== 'number') {//number[]
+        for (let i = 0, l = second_.length; i < l; i++) {
+          result.push(Math.max(first_, second_[i]))
         }
         return result;
       } else {
-        return Math.max(arr1_, arr2_)
+        return Math.max(first_, second_)
       }
     }
   }
@@ -219,23 +223,16 @@ class FinUtil {
    * @param f_
    * @returns
    */
-  public genArrByProp(arr_: any[], prop_: string, f_?: (n: any) => any): any[] {
-    if (prop_) {
-      const result = [];
-      for (let i = 0, l = arr_.length; i < l; i++) {
-        result.push(f_ ? f_(arr_[i][prop_]) : arr_[i][prop_])
-      }
-      return result
+  public genArrByProp(arr_: any[], prop_: string, f_?: (n: unknown) => number): number[] {
+    const result: number[] = [];
+    for (let i = 0, l = arr_.length; i < l; i++) {
+      result.push(f_ ? f_(arr_[i][prop_]) : arr_[i][prop_])
     }
-    return arr_
+    return result
   }
 
-  private getClass(o_: any): string {
+  private getClass(o_: Record<string, unknown>): string {
     return typeof o_ === 'undefined' ? 'undefined' : o_ === null ? 'null' : o_.constructor.name;
-  }
-
-  public getArrSum(arr_: number[]): number {
-    return arr_.reduce((a, c) => a + c, 0)
   }
 }
 
