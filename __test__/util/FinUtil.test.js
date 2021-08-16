@@ -60,28 +60,6 @@ describe('FinUtil', () => {
       expect(received_minus).toEqual(expected_minus);
       expect(received_multi).toEqual(expected_multi);
       expect(received_div).toEqual(expected_div);
-
-      arr1.push('not_a_number_test');
-      arr2.push('not_a_number_test');
-      expected_plus.push(NaN);
-      expected_minus.push(NaN);
-      expected_multi.push(NaN);
-      expected_div.push(NaN);
-      arr2.push('make arr2.length longer than arr1');
-      expected_plus.push(NaN);
-      expected_minus.push(NaN);
-      expected_multi.push(NaN);
-      expected_div.push(NaN);
-
-      received_plus = FinUtil.arrOp(arr1, arr2, '+');
-      received_minus = FinUtil.arrOp(arr1, arr2, '-');
-      received_multi = FinUtil.arrOp(arr1, arr2, '*');
-      received_div = FinUtil.arrOp(arr1, arr2, '/');
-
-      expect(received_plus).toEqual(expected_plus);
-      expect(received_minus).toEqual(expected_minus);
-      expect(received_multi).toEqual(expected_multi);
-      expect(received_div).toEqual(expected_div);
     })
 
     it('arrOp 操作数组与数字', () => {
@@ -120,7 +98,7 @@ describe('FinUtil', () => {
       const arr1 = []; const others2 = null;
       expect(() => {
         FinUtil.arrOp(arr1, others2, '+');
-      }).toThrow('argument of arrOp()')
+      }).toThrow()
     })
   })
 
