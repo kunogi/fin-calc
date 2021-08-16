@@ -24,7 +24,7 @@ export default function (arr_: iKData[], customData_: iOBV['param'] = { v0: 30 }
   const { v0 } = customData_
 
   let data: iKData = arr_[0]
-  let va: number = data.volume
+  let va: number = data.volume * 1
   let obv: number = va
   let sumMa: number = obv
 
@@ -43,12 +43,12 @@ export default function (arr_: iKData[], customData_: iOBV['param'] = { v0: 30 }
     }
     result.push(obj)
 
-    if (data.close > arr_[i - 1].close) {
-      va = Number(data.volume)
+    if (data.close > arr_[i - 1].close*1) {
+      va = 1 * data.volume
     } else if (data.close === arr_[i - 1].close) {
       va = 0
     } else {
-      va = -Number(data.volume)
+      va = -1 * (data.volume)
     }
 
     obv = va + result[i - 1].obv
