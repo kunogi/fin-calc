@@ -6,5 +6,5 @@ export interface iKData {
   prevclose: number,
   volume: number,
   day: string,
-  //[propName: string]: any;
+  // [propName: string]: number | string
 }
