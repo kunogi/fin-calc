@@ -56,7 +56,7 @@ export default defineComponent({
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: start;
-  width: 80vw;
-  height: 80vh;
+  width: 90vw;
+  height: 90vh;
 }
 </style>

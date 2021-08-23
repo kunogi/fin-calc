@@ -1,4 +1,5 @@
 class FinUtil {
+  
   public getArrSum(arr_: number[]): number {
     return arr_.reduce((a, c) => a + c, 0)
   }
@@ -16,10 +17,7 @@ class FinUtil {
     return arr_.map(item => item[prop]).reduce((a, c) => a + c, 0) / arr_.length;
   }
 
-  /**
-   * 
-   * */
-  public op(op_: '+' | '-' | '*' | '/', s_: number, m_: number): number {
+  private op(op_: '+' | '-' | '*' | '/', s_: number, m_: number): number {
     switch (op_) {
       case '+': return s_ + m_
       case '-': return s_ - m_

@@ -20,7 +20,7 @@ export default createStore({
       //generate key array and get rid of date field (x axis):
       const sample = indicatorData[0];
       const otherKeys = Object.keys(sample).filter(k => k !== 'date');
-      const option = {
+      const option: EChartsOption = {
         id: Date.now() * Math.floor(Math.random() * 1e5 + 1),
         title: {
           text: indicatorType
