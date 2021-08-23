@@ -8,7 +8,7 @@ export default createStore({
     chartOpts: <EChartsOption | any>[]
   },
   mutations: {
-    [NEW_CHART](state, option) {
+    [NEW_CHART](state, option: EChartsOption) {
       state.chartOpts.push(option);
     }
   },
