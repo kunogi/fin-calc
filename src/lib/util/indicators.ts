@@ -14,6 +14,7 @@ export default [
   { label: 'MACD', value: 'MACD', disabled: true },
   { label: 'MTM', value: 'MTM' },
   { label: 'OBV', value: 'OBV' },
+  { label: 'OSC', value: 'OSC'},
   { label: 'ROC', value: 'ROC' },
   { label: 'RSI', value: 'RSI' },
   { label: 'SAR', value: 'SAR', disabled: true},

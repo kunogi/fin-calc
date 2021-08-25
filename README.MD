@@ -222,6 +222,14 @@ MTMMA = MA(MTM, M)
 
 
 
+## OSC
+```
+OSC = 100 * (CLOSE - MA(CLOSE, N))
+OSCEMA = EXPMEMA(OSC, M)
+```
+![image](./img/osc.jpg)
+
+
 ## ROC
 ```
 ROC = (CLOSE - REF(CLOSE, N)) / REF(CLOSE, N) * 100
