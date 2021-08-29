@@ -9,6 +9,7 @@ export default [
   { label: 'DMI', value: 'DMI' },
   { label: 'EMA', value: 'EMA', disabled: true },
   { label: 'EMV', value: 'EMV' },
+  { label: 'ENE', value: 'ENE' },
   { label: 'KDJ', value: 'KDJ' },
   { label: 'MA', value: 'MA', disabled: true },
   { label: 'MACD', value: 'MACD', disabled: true },

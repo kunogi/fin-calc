@@ -178,6 +178,16 @@ EMVA = MA(EMV, N1)
 
 
 
+## ENE
+```
+UPPER = (1 + M1 / 100) * MA(CLOSE, M)
+LOWER = (1 - M2 / 100) * MA(CLOSE, M)
+ENE = (UPPER + LOWER) / 2
+```
+![image](./img/ene.jpg)
+
+
+
 ## KDJ
 ```
 RSV = (CLOSE - LLV(LOW, P1)) / (HHV(HIGH, P1) - LLV(LOW, P1)) * 100
