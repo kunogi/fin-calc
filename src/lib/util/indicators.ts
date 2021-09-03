@@ -1,5 +1,6 @@
 export default [
   { label: 'ASI', value: 'ASI' },
+  { label: 'ATR', value: 'ATR' },
   { label: 'BBIBOLL', value: 'BBIBOLL' },
   { label: 'BIAS', value: 'BIAS' },
   { label: 'BOLL', value: 'BOLL' },

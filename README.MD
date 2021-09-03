@@ -85,6 +85,17 @@ const macd = FinUtil.arrOp(FinUtil.arrOp(dif, dea, '-'), 2, '*') // MACD = (DIF 
 ```
 ![image](./img/asi.png)
 
+
+
+## ATR
+```
+TR1 = MAX(MAX((HIGH - LOW), ABS(REF(CLOSE, 1) - HIGH)), ABS(REF(CLOSE, 1) - LOW))
+ATR1 = MA(TR1, M)
+```
+![image](./img/atr.png)
+
+
+
 ## BBIBOLL
 ```
 BBIBOLL = (MA(CLOSE, 3) + MA(CLOSE, 6) + MA(CLOSE, 12) + MA(CLOSE, 24)) / 4
@@ -92,6 +103,8 @@ UPR = BBIBOLL + M * STD(BBIBOLL, N)
 DWN = BBIBOLL - M * STD(BBIBOLL, N)
 ```
 ![image](./img/bbiboll.png)
+
+
 
 ## BIAS
 ```
