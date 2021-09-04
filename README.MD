@@ -117,6 +117,8 @@ BIAS3 = (CLOSE - MA_V2) / MA_V2 * 100
 ```
 ![image](./img/bias.png)
 
+
+
 ## BOLL
 ```
 MID  = MA(CLOSE, PERIOD)
@@ -133,6 +135,7 @@ TYP = (HIGH + LOW + CLOSE) / 3
 CCI = (TYP - MA(TYP, N)) / (0.015 * AVEDEV(TYP, N))
 ```
 ![image](./img/cci.png)
+
 
 
 ## CDP
@@ -172,6 +175,8 @@ ADX = EXPMEMA(ABS(MDI - PDI) / (MDI + PDI) * 100, M)
 ADXR = EXPMEMA(ADX, M)
 ```
 ![image](./img/dmi.png)
+
+
 
 ## EMA
 ```
