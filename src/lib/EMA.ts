@@ -6,12 +6,12 @@
  * @param days_ days
  * @returns
  */
-export default function(arr_: number | number[], days_: number): number[] {
+export default function (arr_: number | number[], days_: number): number[] {
   if (typeof arr_ === 'number') { arr_ = [arr_] }
 
   const result: number[] = [arr_[0]]
 
-  for (let i = 1, l: number = arr_.length; i < l; i++) {
+  for (let i = 1, l = arr_.length; i < l; i++) {
     result.push((2 * arr_[i] + (days_ - 1) * result[i - 1]) / (days_ + 1))
   }
 
