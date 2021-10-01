@@ -28,6 +28,18 @@ export default createStore({
         tooltip: {
           trigger: 'axis'
         },
+        toolbox: {
+          show: true,
+          feature: {
+            dataZoom: {
+              yAxisIndex: 'none'
+            },
+            dataView: { readOnly: false },
+            magicType: { type: ['line', 'bar'] },
+            restore: {},
+            saveAsImage: {}
+          }
+        },
         dataset: {
           sourceHeader: false,
           source: indicatorData

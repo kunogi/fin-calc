@@ -234,6 +234,13 @@ MACD = (DIF - DEA) * 2
 
 
 
+## MI
+```
+AA = C - REF(C, M)
+MI = SMA(AA, M, 1)
+```
+![image](./img/mi.png)
+
 ## MTM
 ```
 MTM = CLOSE - REF(CLOSE, N)

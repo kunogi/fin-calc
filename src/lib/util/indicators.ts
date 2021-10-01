@@ -14,6 +14,7 @@ export default [
   { label: 'KDJ', value: 'KDJ' },
   { label: 'MA', value: 'MA', disabled: true },
   { label: 'MACD', value: 'MACD', disabled: true },
+  { label: 'MI', value: 'MI'},
   { label: 'MTM', value: 'MTM' },
   { label: 'OBV', value: 'OBV' },
   { label: 'OSC', value: 'OSC' },
