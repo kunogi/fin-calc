@@ -48,6 +48,7 @@ class FinUtil {
 
   /**
    * @description calculate standard deviation
+   * https://github.com/30-seconds/30-seconds-of-code/blob/master/snippets/standardDeviation.md
    * @param arr_
    * @param n_
    * @returns
