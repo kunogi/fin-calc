@@ -9,7 +9,8 @@ import 'element-plus/lib/theme-chalk/index.css'
 // axios.defaults.baseURL = '/_api_';
 
 const app = createApp(App)
-app.use(ElementPlus)
-app.use(router)
-app.use(store)
-app.mount('#app')
+app
+  .use(ElementPlus)
+  .use(router)
+  .use(store)
+  .mount('#app')

@@ -17,12 +17,12 @@ export default defineComponent({
   },
 
   setup() {
-    const stockData = ref([]);
+    const stockData = ref([] as any);
     const drawer = ref(false);
     const direction = ref('rtl');
 
     async function loadData() {
-      const { data } = await Services.getStockData();
+      const data = await Services.getStockData();
       stockData.value = data;
     }
     loadData();

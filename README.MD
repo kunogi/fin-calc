@@ -79,6 +79,10 @@ const dea = EMA(dif, 9) // DEA = EMA(DIF, 9)
 
 const macd = FinUtil.arrOp(FinUtil.arrOp(dif, dea, '-'), 2, '*') // MACD = (DIF - DEA) * 2
 ```
+# an online preview: 
+https://fincalc.web.cloudendpoint.cn/
+
+
 # providing indicators
 ## ASI
 ```
